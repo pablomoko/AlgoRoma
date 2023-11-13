@@ -6,10 +6,11 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo {N}
 
-* **Integrante 1** - [integrante1](https://github.com/integrante1)
+* **Franco Favotti** - [Franco-Favotti](https://github.com/Franco-Favotti)
 * **Lucas Sebastian Jun** - [Lucas-Jun](https://github.com/Lucas-Jun)
 * **Integrante 3** - [integrante3](https://github.com/integrante3)
 * **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Integrante 5** - [integrante5](https://github.com/integrante5)
 
 Corrector: **{Corrector}**
 
