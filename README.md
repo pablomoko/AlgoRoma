@@ -10,7 +10,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Lucas Sebastian Jun** - [Lucas-Jun](https://github.com/Lucas-Jun)
 * **Mateo Zorzi** - [Mateo-Zorzi](https://github.com/mateozorzi)
 * **Pablo A. Mokorel** - [Pablo-Mokorel](https://github.com/pablomoko)
-* **Integrante 5** - [integrante5](https://github.com/integrante5)
+* **Julian Rodriguez** - [JulianRdz00](https://github.com/JulianRdz00)
 
 Corrector: **{Corrector}**
 
