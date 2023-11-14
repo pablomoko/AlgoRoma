@@ -29,9 +29,23 @@ public class EntregaTest1 {
     }
 
     @Test
-    public void messageGreetingDefaultLanguage() {
-        Message message = new Message("Hola Mundo!", "Hello world!");
+    public void test03VerificarQueunJugadorsinEnergíaNoPuedaJugarelTurno() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador, "messi");
 
-        assertEquals("Hola Mundo!", message.greet());
+        jugador.setEnergia(0);
+
+        assertEquals(false, jugador.sePuedeMover());
     }
+    @Test
+    public void test04VerificarSiRecibeComidaIncrementaEn10Energia() {
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador, "messi");
+
+        int energia = jugador.EnergiaGladiador();
+        jugador.alimentarGladiador();
+
+        assertEquals((energia + 10),jugador.EnergiaGladiador());
+    }
+
 }

@@ -18,4 +18,16 @@ public class Gladiador {
         return (this.equipamiento);
     }
 
+    public void setEnergia(int energia){
+        this.energia = energia;
+    }
+
+    public boolean sePuedeMover(){
+        return (energia > 0);
+    }
+
+    public void alimentarse(){
+        this.energia += 10;
+    }
+
 }
