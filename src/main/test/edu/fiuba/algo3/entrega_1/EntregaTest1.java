@@ -28,8 +28,19 @@ public class EntregaTest1 {
         assertEquals(null,equipamiento);
     }
 
+    /*@Test
+    public void test03JugadorSeInicializaEnCasillaInicial() {
+        CasillaVacia casillaInicial(0);
+        Gladiador gladiador = new Gladiador();
+        Jugador jugador = new Jugador(gladiador, "messi", casillaInicial);
+
+        ?????????????
+
+        assertEquals(0,jugador.casillaActual());
+    }*/
+
     @Test
-    public void test03VerificarQueunJugadorsinEnergíaNoPuedaJugarelTurno() {
+    public void test04VerificarQueunJugadorsinEnergíaNoPuedaJugarelTurno() {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador, "messi");
 
@@ -38,7 +49,7 @@ public class EntregaTest1 {
         assertEquals(false, jugador.sePuedeMover());
     }
     @Test
-    public void test04VerificarSiRecibeComidaIncrementaEn10Energia() {
+    public void test05VerificarSiRecibeComidaIncrementaEn10Energia() {
         Gladiador gladiador = new Gladiador();
         Jugador jugador = new Jugador(gladiador, "messi");
 
@@ -47,5 +58,7 @@ public class EntregaTest1 {
 
         assertEquals((energia + 10),jugador.EnergiaGladiador());
     }
+
+
 
 }
