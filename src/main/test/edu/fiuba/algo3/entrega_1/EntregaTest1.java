@@ -35,7 +35,7 @@ public class EntregaTest1 {
 
         gladiador.mover(1);
 
-        assertEquals(0,gladiador.caclularEnergia());
+        assertEquals(0,gladiador.verPasos());
 
     }
     @Test
