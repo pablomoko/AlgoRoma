@@ -6,7 +6,7 @@ public interface Equipamiento {
 
 class Casco implements Equipamiento{
 
-    int usar(){
+    public int usar(){
         return (15);
     }
 }
