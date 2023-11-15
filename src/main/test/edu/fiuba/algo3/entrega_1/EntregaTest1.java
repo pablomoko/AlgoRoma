@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EntregaTest1 {
     @Test
@@ -16,7 +15,7 @@ public class EntregaTest1 {
         Gladiador gladiador = new Gladiador();
 
         assertEquals(20,gladiador.caclularEnergia());
-        assertEquals(true, gladiador.verEquipamiento().empty());
+        assertTrue(gladiador.verEquipamiento().empty());
 
     }
     @Test
@@ -25,7 +24,7 @@ public class EntregaTest1 {
         Gladiador gladiador = new Gladiador();
         //VER CONTRA QUE VERIFICAR EL PRIMER MOVIMIENTO, SI CONTRA NUMERO DE CASILLA O ATRIBUTOS DEL GLAD,
         assertEquals(20,gladiador.caclularEnergia());
-        assertEquals(true, gladiador.verEquipamiento().empty());
+        assertTrue(gladiador.verEquipamiento().empty());
 
     }
 
