@@ -13,6 +13,10 @@ public class Energia {
         valor = valor + unaComida.caclularValorEnergetico();
         return valor;
     }
+    public int gastarEnergiaPeleando(Gladiador gladiador){
+        valor = valor - gladiador.usarEquipamiento();
+        return valor;
+    }
 
 
 }

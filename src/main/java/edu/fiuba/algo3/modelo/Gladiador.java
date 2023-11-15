@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Gladiador {
@@ -7,7 +8,7 @@ public class Gladiador {
 
     public Gladiador(){
         this.energia = new Energia(20);
-        this.equipamiento = null;
+        this.equipamiento = new ArrayList<>();
     }
 
     public Gladiador(int valorEnergia){
@@ -26,6 +27,16 @@ public class Gladiador {
     public List<Equipamiento> verEquipamiento(){
         return (this.equipamiento);
     }
+
+    public void equiparse(){
+        if (equipamiento.size() == 0){
+            Casco casco = new Casco();
+            equipamiento.add(casco);
+        }
+    }
+
+    public int usarEquipamiento() {return equipamiento.get(equipamiento.size() - 1).usar();}
+    public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
 
 
 
