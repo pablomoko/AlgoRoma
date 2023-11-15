@@ -16,7 +16,7 @@ public class EntregaTest1 {
         Gladiador gladiador = new Gladiador();
 
         assertEquals(20,gladiador.caclularEnergia());
-        assertEquals(new ArrayList<>(), gladiador.verEquipamiento());
+        assertEquals(true, gladiador.verEquipamiento().empty());
 
     }
     @Test
@@ -25,7 +25,7 @@ public class EntregaTest1 {
         Gladiador gladiador = new Gladiador();
         //VER CONTRA QUE VERIFICAR EL PRIMER MOVIMIENTO, SI CONTRA NUMERO DE CASILLA O ATRIBUTOS DEL GLAD,
         assertEquals(20,gladiador.caclularEnergia());
-        assertNull(gladiador.verEquipamiento());
+        assertEquals(true, gladiador.verEquipamiento().empty());
 
     }
 

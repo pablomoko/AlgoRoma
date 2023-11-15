@@ -1,14 +1,15 @@
 package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Gladiador {
     private Energia energia;
-    private List<Equipamiento> equipamiento;
+    private Stack<Equipamiento> equipamiento;
 
     public Gladiador(){
         this.energia = new Energia(20);
-        this.equipamiento = new ArrayList<>();
+        this.equipamiento = new Stack<>();
     }
 
     public Gladiador(int valorEnergia){
@@ -24,18 +25,18 @@ public class Gladiador {
         return energia.aumentarEnergiaComiendo(unaComida);
     }
 
-    public List<Equipamiento> verEquipamiento(){
+    public Stack<Equipamiento> verEquipamiento(){
         return (this.equipamiento);
     }
 
     public void equiparse(){
         if (equipamiento.size() == 0){
             Casco casco = new Casco();
-            equipamiento.add(casco);
+            equipamiento.push(casco);
         }
     }
 
-    public int usarEquipamiento() {return equipamiento.get(equipamiento.size() - 1).usar();}
+    public int usarEquipamiento() {return equipamiento.peek().usar();}
     public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
 
 
