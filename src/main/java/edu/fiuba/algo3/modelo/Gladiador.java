@@ -3,22 +3,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Gladiador {
+public class Gladiador implements Movible{
     private Energia energia;
     private Stack<Equipamiento> equipamiento;
+    private int pasos;
 
     public Gladiador(){
         this.energia = new Energia(20);
         this.equipamiento = new Stack<>();
-    }
-
-    public Gladiador(int valorEnergia){
-        this.energia = new Energia(valorEnergia);
-        this.equipamiento = null;
+        this.pasos = 0;
     }
 
     public int caclularEnergia(){
-        return (this.energia.caclularEnergia());
+        return (this.energia.calcularEnergia());
     }
 
     public int alimentarse(Comida unaComida){
@@ -38,6 +35,16 @@ public class Gladiador {
 
     public int usarEquipamiento() {return equipamiento.peek().usar();}
     public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
+    public int verPasos(){
+        return (this.pasos);
+    }
+
+    public void mover(int unaCantidad){
+        if(energia.calcularEnergia() > 0) {
+            this.pasos = (pasos + unaCantidad);
+        }
+
+    }
 
 
 

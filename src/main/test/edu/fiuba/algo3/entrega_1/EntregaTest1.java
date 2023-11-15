@@ -22,9 +22,7 @@ public class EntregaTest1 {
     public void test02VerificarQeeJugadorSalgaDeLaCasillaInicial(){
 
         Gladiador gladiador = new Gladiador();
-        //VER CONTRA QUE VERIFICAR EL PRIMER MOVIMIENTO, SI CONTRA NUMERO DE CASILLA O ATRIBUTOS DEL GLAD,
-        assertEquals(20,gladiador.caclularEnergia());
-        assertTrue(gladiador.verEquipamiento().empty());
+        assertEquals(0,gladiador.verPasos());
 
     }
 
@@ -33,8 +31,10 @@ public class EntregaTest1 {
     public void test03VerificarQueJugadorSinEnergiaNoPuedaJugarElTurno() {
 
         Gladiador gladiador = new Gladiador(0);
-        //HABRIA QUE CREAR UNA INTERFAZ MOVIBLE, Y PREGUNTARLE A ELLA SI UN GLADIADOR PUEDE MOVERSE O NO
-        assertEquals(0,gladiador.caclularEnergia());
+
+        gladiador.mover(1);
+
+        assertEquals(0,gladiador.verPasos());
 
     }
     @Test
@@ -59,6 +59,7 @@ public class EntregaTest1 {
         assertEquals(5,gladiador.pelearContraFiera());
 
     }
+
 
 
 
