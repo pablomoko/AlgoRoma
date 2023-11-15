@@ -5,14 +5,12 @@ public class Energia {
     public Energia(int valor){
         this.valor = valor;
     }
-    public int caclularEnergia(){
+    public int calcularEnergia(){
         return valor;
     }
-
     public int aumentarEnergiaComiendo(Comida unaComida){
         valor = valor + unaComida.caclularValorEnergetico();
         return valor;
     }
-
 
 }
