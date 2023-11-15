@@ -2,32 +2,31 @@ package edu.fiuba.algo3.modelo;
 import java.util.List;
 
 public class Gladiador {
-    private int energia;
+    private Energia energia;
     private List<Equipamiento> equipamiento;
 
     public Gladiador(){
-        this.energia = 20;
+        this.energia = new Energia(20);
         this.equipamiento = null;
     }
 
-    public int verEnergia(){
-        return (this.energia);
+    public Gladiador(int valorEnergia){
+        this.energia = new Energia(valorEnergia);
+        this.equipamiento = null;
+    }
+
+    public int caclularEnergia(){
+        return (this.energia.caclularEnergia());
+    }
+
+    public int alimentarse(Comida unaComida){
+        return energia.aumentarEnergiaComiendo(unaComida);
     }
 
     public List<Equipamiento> verEquipamiento(){
         return (this.equipamiento);
     }
 
-    public void setEnergia(int energia){
-        this.energia = energia;
-    }
 
-    public boolean sePuedeMover(){
-        return (energia > 0);
-    }
-
-    public void alimentarse(){
-        this.energia += 10;
-    }
 
 }

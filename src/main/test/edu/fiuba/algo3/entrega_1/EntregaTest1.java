@@ -6,58 +6,50 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class EntregaTest1 {
     @Test
-    public void test01VerificarQUeJugadorEmpiezaConEnergiaCorrespondiente() {
+    public void test01VerificarQUeJugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() {
+
         Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador, "messi");
 
-        int energia = jugador.EnergiaGladiador();
+        assertEquals(20,gladiador.caclularEnergia());
+        assertNull(gladiador.verEquipamiento());
 
-        assertEquals(20,energia);
-    }
-
-    @Test
-    public void test02VerificarQUeJugadorEmpiezaConEquipamientoCorrespondiente() {
-        Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador, "messi");
-
-        List<Equipamiento> equipamiento = jugador.EquipamientoGladiador();
-
-        assertEquals(null,equipamiento);
-    }
-
-    /*@Test
-    public void test03JugadorSeInicializaEnCasillaInicial() {
-        CasillaVacia casillaInicial(0);
-        Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador, "messi", casillaInicial);
-
-        ?????????????
-
-        assertEquals(0,jugador.casillaActual());
-    }*/
-
-    @Test
-    public void test04VerificarQueunJugadorsinEnergíaNoPuedaJugarelTurno() {
-        Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador, "messi");
-
-        jugador.setEnergia(0);
-
-        assertEquals(false, jugador.sePuedeMover());
     }
     @Test
-    public void test05VerificarSiRecibeComidaIncrementaEn10Energia() {
+    public void test02VerificarQeeJugadorSalgaDeLaCasillaInicial(){
+
         Gladiador gladiador = new Gladiador();
-        Jugador jugador = new Jugador(gladiador, "messi");
+        //VER CONTRA QUE VERIFICAR EL PRIMER MOVIMIENTO, SI CONTRA NUMERO DE CASILLA O ATRIBUTOS DEL GLAD,
+        assertEquals(20,gladiador.caclularEnergia());
+        assertNull(gladiador.verEquipamiento());
 
-        int energia = jugador.EnergiaGladiador();
-        jugador.alimentarGladiador();
-
-        assertEquals((energia + 10),jugador.EnergiaGladiador());
     }
+
+
+    @Test
+    public void test03VerificarQueJugadorSinEnergiaNoPuedaJugarElTurno() {
+
+        Gladiador gladiador = new Gladiador(0);
+        //HABRIA QUE CREAR UNA INTERFAZ MOVIBLE, Y PREGUNTARLE A ELLA SI UN GLADIADOR PUEDE MOVERSE O NO
+        assertEquals(0,gladiador.caclularEnergia());
+
+    }
+    @Test
+    public void test04VerificarQueSiRecibeComidaIncremenetaEnergiaEn10() {
+
+        Gladiador gladiador = new Gladiador();
+
+        Comida milanesaConPure = new Comida(10) ;
+
+        gladiador.alimentarse(milanesaConPure);
+
+        assertEquals(20+10,gladiador.caclularEnergia());
+
+    }
+
 
 
 
