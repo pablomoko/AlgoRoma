@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +16,7 @@ public class EntregaTest1 {
         Gladiador gladiador = new Gladiador();
 
         assertEquals(20,gladiador.caclularEnergia());
-        assertNull(gladiador.verEquipamiento());
+        assertEquals(new ArrayList<>(), gladiador.verEquipamiento());
 
     }
     @Test
@@ -50,17 +51,17 @@ public class EntregaTest1 {
         assertEquals(20+10,gladiador.caclularEnergia());
 
     }
-/*
-    public void test05VerificarQueSiRecibeUnPremioPorPrimeraVezObtieneUnCasco() {
+    @Test
+    public void test05VerificarQueSiRecibeEquipamientoPorPrimeraVezObtieneCasco() {
 
         Gladiador gladiador = new Gladiador();
-        Casco casco = new Casco();
 
-        gladiador.recibirPremio(unPremio);
+        gladiador.equiparse();
 
-        assertEquals(20+10,gladiador.caclularEnergia());
+        assertEquals(5,gladiador.pelearContraFiera());
 
-    }*/
+    }
+
 
 
 
