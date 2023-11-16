@@ -30,11 +30,11 @@ public class EntregaTest1 {
     @Test
     public void test03VerificarQueJugadorSinEnergiaNoPuedaJugarElTurno() {
 
-        Gladiador gladiador = new Gladiador(0);
+        Gladiador gladiador = new Gladiador();
 
         gladiador.mover(1);
 
-        assertEquals(0,gladiador.verPasos());
+        assertEquals(1,gladiador.verPasos());
 
     }
     @Test
