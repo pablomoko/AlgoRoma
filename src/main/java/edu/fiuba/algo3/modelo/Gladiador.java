@@ -34,9 +34,8 @@ public class Gladiador implements Movible{
         if (equipamiento.isEmpty()){
             Casco casco = new Casco();
             equipamiento.push(casco);
-        }else if(equipamiento.peek().siguienteEquipamiento() != null){
-            Equipamiento nuevo = equipamiento.peek().siguienteEquipamiento();
-            equipamiento.push(nuevo);
+        }else{
+            equipamiento.peek().equiparProximo(equipamiento);
         }
     }
 

@@ -84,5 +84,32 @@ public class EntregaTest1 {
 
     }
 
+    @Test
+    public void test10PeleaConFieraYTieneTodoElEquipamentoNoPierdeEnergia(){
+        Gladiador gladiador = new Gladiador();
+
+        gladiador.equiparse();
+        gladiador.equiparse();
+        gladiador.equiparse();
+        gladiador.equiparse();
+
+        assertEquals(20,gladiador.pelearContraFiera());
+    }
+
+    @Test
+    public void test11PeleaObtienePremioPeroYaTieneTodoEntoncesNoRecibeNada(){
+        Gladiador gladiador = new Gladiador();
+
+        gladiador.equiparse();
+        gladiador.equiparse();
+        gladiador.equiparse();
+        gladiador.equiparse();
+
+        assertEquals((new Llave()).getClass(),gladiador.verEquipamiento().peek().getClass());
+
+        gladiador.equiparse();
+        assertEquals((new Llave()).getClass(),gladiador.verEquipamiento().peek().getClass());
+    }
+
 
 }
