@@ -17,4 +17,8 @@ public class Energia {
         return valor;
     }
 
+    public void disminuirEnergia(int unValor){
+        valor = valor - unValor;
+    }
+
 }

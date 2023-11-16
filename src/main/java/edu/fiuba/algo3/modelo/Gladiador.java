@@ -14,6 +14,12 @@ public class Gladiador implements Movible{
         this.pasos = 0;
     }
 
+    public Gladiador(int energia){
+        this.energia = new Energia(energia);
+        this.equipamiento = new Stack<>();
+        this.pasos = 0;
+    }
+
     public int caclularEnergia(){
         return (this.energia.calcularEnergia());
     }
@@ -42,6 +48,7 @@ public class Gladiador implements Movible{
     public void mover(int unaCantidad){
         if(energia.calcularEnergia() > 0) {
             this.pasos = (pasos + unaCantidad);
+            energia.disminuirEnergia(1);
         }
 
     }
