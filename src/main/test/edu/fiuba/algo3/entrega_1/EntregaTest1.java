@@ -54,14 +54,35 @@ public class EntregaTest1 {
 
         Gladiador gladiador = new Gladiador();
 
+        gladiador.equiparse(); //aca recibe el casco, entonces el proximo que deberia recibir es la armadura
+
+        assertEquals((new Armadura()).getClass(),gladiador.verEquipamiento().peek().siguienteEquipamiento().getClass());
+
+    }
+
+    @Test
+    public void test06VerificarQueSiTresEquipamientoObtieneEscudoYEspada() {
+
+        Gladiador gladiador = new Gladiador();
+
+        gladiador.equiparse();
+        gladiador.equiparse();
+        gladiador.equiparse(); //aca recibe el escudo y espada, entonces el proximo quedeberia recibir es la llave
+
+        assertEquals((new Llave()).getClass(),gladiador.verEquipamiento().peek().siguienteEquipamiento().getClass());
+
+    }
+
+    @Test
+    public void test07PeleaConFieraYTieneCascoPierde15DeEnergiaSeQuedaCon5() {
+
+        Gladiador gladiador = new Gladiador();
+
         gladiador.equiparse();
 
         assertEquals(5,gladiador.pelearContraFiera());
 
     }
-
-
-
 
 
 }

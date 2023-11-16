@@ -1,6 +1,4 @@
 package edu.fiuba.algo3.modelo;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class Gladiador implements Movible{
@@ -33,9 +31,12 @@ public class Gladiador implements Movible{
     }
 
     public void equiparse(){
-        if (equipamiento.size() == 0){
+        if (equipamiento.isEmpty()){
             Casco casco = new Casco();
             equipamiento.push(casco);
+        }else if(equipamiento.peek().siguienteEquipamiento() != null){
+            Equipamiento nuevo = equipamiento.peek().siguienteEquipamiento();
+            equipamiento.push(nuevo);
         }
     }
 
