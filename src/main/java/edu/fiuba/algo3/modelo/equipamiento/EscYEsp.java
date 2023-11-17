@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.equipamiento;
 
 import java.util.Stack;
 
-public class EscYEsp implements Equipamiento{
+public class EscYEsp implements Equipamiento {
     public int usar(){
         return (2);
     }

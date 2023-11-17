@@ -1,10 +1,12 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.equipamiento.Armadura;
+import edu.fiuba.algo3.modelo.equipamiento.Llave;
+import edu.fiuba.algo3.modelo.seniority.Novato;
+import edu.fiuba.algo3.modelo.seniority.SemiSenior;
+import edu.fiuba.algo3.modelo.seniority.Seniority;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,8 +23,10 @@ public class EntregaTest1 {
     @Test
     public void test02VerificarQeeJugadorSalgaDeLaCasillaInicial(){
 
-        Gladiador gladiador = new Gladiador();
-        assertEquals(0,gladiador.verPasos());
+        Seniority seniority = new Novato();
+        Gladiador gladiador = new Gladiador(20, seniority);
+
+        assertEquals(0, seniority.verPasos());
 
     }
 
@@ -30,11 +34,12 @@ public class EntregaTest1 {
     @Test
     public void test03VerificarQueJugadorSinEnergiaNoPuedaJugarElTurno() {
 
-        Gladiador gladiador = new Gladiador(0);
+        Seniority seniority = new Novato();
+        Gladiador gladiador = new Gladiador(0, seniority);
 
         gladiador.mover(1);
 
-        assertEquals(0,gladiador.verPasos());
+        assertEquals(0, seniority.verPasos());
 
     }
     @Test
@@ -83,6 +88,16 @@ public class EntregaTest1 {
         assertEquals(5,gladiador.pelearContraFiera());
 
     }
+    @Test
+    public void test08SiPasan8TurnosElSeniorityDelGladiadorPasaDeNovatoASeniorYVeSuEnergíaIncrementadaAlPróximoTurno() {
+        Gladiador gladiador = new Gladiador(20, new Novato());
+
+        for (int i=0; i<8; i++){
+            gladiador.aumentarTurno();
+        }
+
+        assertEquals(new SemiSenior().getClass(),gladiador.verSeniority().getClass());
+    }
 
     @Test
     public void test10PeleaConFieraYTieneTodoElEquipamentoNoPierdeEnergia(){
@@ -110,6 +125,8 @@ public class EntregaTest1 {
         gladiador.equiparse();
         assertEquals((new Llave()).getClass(),gladiador.verEquipamiento().peek().getClass());
     }
+
+
 
 
 }
