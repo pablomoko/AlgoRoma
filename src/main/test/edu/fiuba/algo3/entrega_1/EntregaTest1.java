@@ -1,11 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.equipamiento.Armadura;
-import edu.fiuba.algo3.modelo.equipamiento.Llave;
-import edu.fiuba.algo3.modelo.seniority.Novato;
-import edu.fiuba.algo3.modelo.seniority.SemiSenior;
-import edu.fiuba.algo3.modelo.seniority.Seniority;
+import edu.fiuba.algo3.modelo.equipamiento.*;
+import edu.fiuba.algo3.modelo.seniority.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
