@@ -47,6 +47,10 @@ public class Gladiador implements Movible{
         return (this.equipamiento);
     }
 
+    public Equipamiento verSiguienteEquipamiento(){
+        return (this.equipamiento.peek().siguienteEquipamiento());
+    }
+
     public void equiparse(){
         if (equipamiento.isEmpty()){
             Casco casco = new Casco();
