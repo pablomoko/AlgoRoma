@@ -6,4 +6,12 @@ public class SemiSenior extends Seniority{
         super(8);
     }
 
+    public Seniority sumarPaso() {
+        this.cantidadPasos++;
+        if (cantidadPasos == 12){
+            return new Senior();
+        }
+        return this;
+    }
+
 }
