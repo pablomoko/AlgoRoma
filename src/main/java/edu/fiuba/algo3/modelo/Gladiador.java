@@ -49,13 +49,15 @@ public class Gladiador implements Movible{
         return (this.equipamiento.peek().siguienteEquipamiento());
     }
 
-    public void equiparse(){
+    public Equipamiento equiparse(){
+        Equipamiento nuevo;
         if (equipamiento.isEmpty()){
-            Casco casco = new Casco();
-            equipamiento.push(casco);
+            nuevo = new Casco();
+            equipamiento.push(nuevo);
         }else{
-            equipamiento.peek().equiparProximo(equipamiento);
+            nuevo = equipamiento.peek().equiparProximo(equipamiento);
         }
+        return nuevo;
     }
 
     public int usarEquipamiento() {return equipamiento.peek().usar();}

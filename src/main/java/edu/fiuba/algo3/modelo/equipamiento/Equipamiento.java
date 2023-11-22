@@ -6,6 +6,6 @@ public interface Equipamiento {
     int usar();
     Equipamiento siguienteEquipamiento();
 
-    void equiparProximo(Stack<Equipamiento> equipamiento);
+    Equipamiento equiparProximo(Stack<Equipamiento> equipamiento);
 }
 

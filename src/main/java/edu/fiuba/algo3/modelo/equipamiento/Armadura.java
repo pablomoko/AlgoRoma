@@ -11,8 +11,9 @@ public class Armadura implements Equipamiento {
         return (new EscYEsp());
     }
 
-    public void equiparProximo(Stack<Equipamiento> equipamiento){
+    public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){
         Equipamiento nuevo = equipamiento.peek().siguienteEquipamiento();
         equipamiento.push(nuevo);
+        return nuevo;
     }
 }

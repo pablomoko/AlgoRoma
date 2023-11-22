@@ -11,7 +11,7 @@ public class Llave implements Equipamiento {
         return null;
     }
 
-    public void equiparProximo(Stack<Equipamiento> equipamiento){
-
+    public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){
+        return this;
     }
 }

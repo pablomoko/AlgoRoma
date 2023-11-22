@@ -56,9 +56,9 @@ public class EntregaTest1 {
 
         Gladiador gladiador = new Gladiador();
 
-        gladiador.equiparse(); //aca recibe el casco, entonces el proximo que deberia recibir es la armadura
+        Equipamiento actual = gladiador.equiparse(); //aca recibe el casco, entonces el proximo que deberia recibir es la armadura
 
-        assertEquals(Armadura.class,gladiador.verSiguienteEquipamiento().getClass());
+        assertEquals(Armadura.class,actual.siguienteEquipamiento().getClass());
 
     }
 
@@ -69,9 +69,9 @@ public class EntregaTest1 {
 
         gladiador.equiparse();
         gladiador.equiparse();
-        gladiador.equiparse(); //aca recibe el escudo y espada, entonces el proximo quedeberia recibir es la llave
+        Equipamiento actual = gladiador.equiparse(); //aca recibe el escudo y espada, entonces el proximo quedeberia recibir es la llave
 
-        assertEquals(Llave.class,gladiador.verSiguienteEquipamiento().getClass());
+        assertEquals(Llave.class,actual.siguienteEquipamiento().getClass());
 
     }
 
@@ -115,12 +115,12 @@ public class EntregaTest1 {
         gladiador.equiparse();
         gladiador.equiparse();
         gladiador.equiparse();
-        gladiador.equiparse();
+        Equipamiento actual = gladiador.equiparse();
 
-        assertEquals(Llave.class,gladiador.verEquipamiento().peek().getClass());
+        assertEquals(Llave.class,actual.getClass());
 
-        gladiador.equiparse();
-        assertEquals(Llave.class,gladiador.verEquipamiento().peek().getClass());
+        actual = gladiador.equiparse();
+        assertEquals(Llave.class,actual.getClass());
     }
 
 

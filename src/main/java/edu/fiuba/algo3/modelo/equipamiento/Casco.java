@@ -11,8 +11,9 @@ public class Casco implements Equipamiento {
         return (new Armadura());
     }
 
-    public void equiparProximo(Stack<Equipamiento> equipamiento){
+    public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){
         Equipamiento nuevo = equipamiento.peek().siguienteEquipamiento();
         equipamiento.push(nuevo);
+        return nuevo;
     }
 }
