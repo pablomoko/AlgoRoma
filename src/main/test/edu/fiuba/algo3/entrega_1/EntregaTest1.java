@@ -3,7 +3,10 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.equipamiento.*;
 import edu.fiuba.algo3.modelo.seniority.*;
+import javafx.scene.control.Tab;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -94,6 +97,22 @@ public class EntregaTest1 {
         }
 
         assertEquals(SemiSenior.class,gladiador.verSeniority().getClass());
+    }
+
+    @Test
+    public void test09SiLlegaALaMetaSinLaLLaveEnElEquipamientoRetrocedMitadDeLasCasillas(){
+
+        ArrayList<Casilla> casillas = new ArrayList<Casilla>();
+
+        for (int i = 0; i < 31; i++) {
+            Casilla casilla = new Casilla(i, null, null);
+            casillas.add(casilla);
+        }
+        Tablero tablero = new Tablero(casillas);
+        Gladiador gladiador = new Gladiador(20, new Novato());
+
+        tablero.colocarMovibleEnCasilla(gladiador,29);
+        tablero.moverGladiador(gladiador,1);
     }
 
     @Test

@@ -8,6 +8,7 @@ import java.util.Stack;
 public class Gladiador implements Movible{
     private Energia energia;
     private Stack<Equipamiento> equipamiento;
+
     //private int pasos;
 
     private Seniority seniority;
