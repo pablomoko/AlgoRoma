@@ -108,7 +108,7 @@ public class EntregaTest1 {
         tablero.colocarMovibleEnCasilla(gladiador,28);
         tablero.moverGladiador(gladiador,1);
 
-        //assertEquals(tablero.obtenerCasilla(gladiador), casillas.get(14));
+        assertEquals(tablero.obtenerCasilla(gladiador).getPosicion(), 14);
     }
 
     @Test
