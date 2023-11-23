@@ -3,7 +3,10 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.equipamiento.*;
 import edu.fiuba.algo3.modelo.seniority.*;
+import javafx.scene.control.Tab;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -97,6 +100,18 @@ public class EntregaTest1 {
     }
 
     @Test
+    public void test09SiLlegaALaMetaSinLaLLaveEnElEquipamientoRetrocedMitadDeLasCasillas(){
+
+        Tablero tablero = new Tablero(30);
+        Gladiador gladiador = new Gladiador(20, new Novato());
+
+        tablero.colocarMovibleEnCasilla(gladiador,28);
+        tablero.moverGladiador(gladiador,1);
+
+        //assertEquals(tablero.obtenerCasilla(gladiador), casillas.get(14));
+    }
+
+    @Test
     public void test10PeleaConFieraYTieneTodoElEquipamentoNoPierdeEnergia(){
         Gladiador gladiador = new Gladiador();
 
@@ -123,7 +138,18 @@ public class EntregaTest1 {
         assertEquals(Llave.class,actual.getClass());
     }
 
-
-
+    @Test
+    public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() {
+        Gladiador gladiador1 = new Gladiador();
+        Gladiador gladiador2 = new Gladiador();
+        ArrayList<Gladiador> gladiadores = new ArrayList<Gladiador>();
+        gladiadores.add(gladiador1);
+        gladiadores.add(gladiador2);
+        Juego juego = new Juego(gladiadores, 50);
+        for (int i=0; i<30; i++)  {
+            juego.jugarTurno();
+        }
+        assertTrue(juego.terminado());
+    }
 
 }

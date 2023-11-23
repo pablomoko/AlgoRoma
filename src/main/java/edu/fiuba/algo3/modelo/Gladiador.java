@@ -8,6 +8,7 @@ import java.util.Stack;
 public class Gladiador implements Movible{
     private Energia energia;
     private Stack<Equipamiento> equipamiento;
+
     //private int pasos;
 
     private Seniority seniority;
@@ -84,6 +85,9 @@ public class Gladiador implements Movible{
         return this.seniority;
     }
 
+    public boolean estaCompleto() {
+        return (this.equipamiento.size() == 4);
+    }
 
 
 }
