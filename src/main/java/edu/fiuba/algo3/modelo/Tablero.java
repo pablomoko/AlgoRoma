@@ -35,8 +35,7 @@ public class Tablero {
 
         if (casillaActual != null) {
             int nuevaPosicion = (casillas.indexOf(casillaActual) + unosPasos);
-            if (!(nuevaPosicion > casillas.indexOf(casillaActual))) {
-
+            if (!(nuevaPosicion > (casillas.size()-1))) {
                 Casilla casillaDestino;
                 int ultimaPosicion = this.casillas.size() - 1;
                 if (nuevaPosicion == ultimaPosicion && !gladiador.estaCompleto()) {

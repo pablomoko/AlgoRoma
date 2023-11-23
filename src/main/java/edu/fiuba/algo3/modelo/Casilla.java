@@ -30,4 +30,9 @@ public class Casilla {
     public boolean tieneMovible(Movible unMovible) {
         return (this.movibles.contains(unMovible));
     }
+
+    public int getPosicion(){
+        return this.posicion;
+    }
+
 }
