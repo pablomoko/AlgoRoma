@@ -5,25 +5,29 @@ import java.util.ArrayList;
 public class Juego implements Dado {
 
     private int turnos;
-    private ArrayList<Gladiador> gladiadores;
+    private ArrayList<Jugador> jugadores;
 
     private boolean terminado;
 
-    private Tablero tablero;
+    private Mapa mapa;
 
-    public Juego(ArrayList<Gladiador> gladiadores, int cantidadDeCasillas){
+    public Juego(ArrayList<Jugador> jugadores, int tamanio){
         this.turnos = 0;
-        this.gladiadores = gladiadores;
+        this.jugadores = jugadores;
         this.terminado = false;
-        this.tablero = new Tablero(cantidadDeCasillas);
-        for (Gladiador gladiador : gladiadores) {
-            tablero.colocarMovibleEnCasilla(gladiador, 0);
+        this.mapa = new Mapa(tamanio);
+        for (Jugador jugador : jugadores) {
+            jugador.inicializarMovible(this.mapa);
         }
     }
 
+    public ArrayList<Jugador> getJugadores(){
+        return this.jugadores;
+    }
+
     public void jugarTurno() {
-        for (Gladiador gladiador : this.gladiadores) {
-            this.tablero.moverGladiador(gladiador, this.tirarDado());
+        for (Jugador jugador : this.jugadores) {
+            jugador.moverMovible(mapa);
         }
         this.turnos++;
         if (this.turnos == 30) {

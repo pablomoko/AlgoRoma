@@ -102,13 +102,15 @@ public class EntregaTest1 {
     @Test
     public void test09SiLlegaALaMetaSinLaLLaveEnElEquipamientoRetrocedMitadDeLasCasillas(){
 
-        Tablero tablero = new Tablero(30);
-        Gladiador gladiador = new Gladiador(20, new Novato());
+        Movible gladiador = new Gladiador(20, new Novato());
+        Jugador jugador = new Jugador(gladiador);
+        Mapa mapa = new Mapa(30);
+        mapa.inicializarMovible(gladiador);
 
-        tablero.colocarMovibleEnCasilla(gladiador,28);
-        tablero.moverGladiador(gladiador,1);
+        mapa.ubicarMovible(gladiador, 28);
+        mapa.ubicarMovible(gladiador, 1);
 
-        assertEquals(tablero.obtenerCasilla(gladiador).getPosicion(), 14);
+        assertEquals(mapa.obtenerCasillaDe(gladiador), mapa.obtenerCasillaDe(14));
     }
 
     @Test
@@ -140,12 +142,12 @@ public class EntregaTest1 {
 
     @Test
     public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() {
-        Gladiador gladiador1 = new Gladiador();
-        Gladiador gladiador2 = new Gladiador();
-        ArrayList<Gladiador> gladiadores = new ArrayList<Gladiador>();
-        gladiadores.add(gladiador1);
-        gladiadores.add(gladiador2);
-        Juego juego = new Juego(gladiadores, 50);
+        Jugador jugador1 = new Jugador(new Gladiador(20, new Novato()));
+        Jugador jugador2 = new Jugador(new Gladiador(20, new Novato()));
+        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+        jugadores.add(jugador1);
+        jugadores.add(jugador2);
+        Juego juego = new Juego(jugadores, 50);
         for (int i=0; i<30; i++)  {
             juego.jugarTurno();
         }
