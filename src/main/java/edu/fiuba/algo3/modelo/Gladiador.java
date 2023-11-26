@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
@@ -42,6 +43,9 @@ public class Gladiador implements Movible{
         obstaculo.afectarGladiador(this);
     }
 
+    public void obtenerPremio(Premio premio){
+        premio.afectarGladiador(this);
+    }
     public int caclularEnergia(){
         return (this.energia.calcularEnergia());
     }

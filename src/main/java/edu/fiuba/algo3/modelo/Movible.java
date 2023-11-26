@@ -8,5 +8,5 @@ public interface Movible {
     public boolean estaCompleto();
 
     public void vs(Obstaculo obstaculo);
-    //public void obtenerPremio(Premio premio);
+    public void obtenerPremio(Premio premio);
 }

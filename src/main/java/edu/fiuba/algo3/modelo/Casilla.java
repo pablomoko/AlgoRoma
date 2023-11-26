@@ -43,7 +43,7 @@ public class Casilla {
 
     public void afectarMovible(Movible movible){
         movible.vs(this.obstaculo);
-        //movible.obtenerPremio(this.premio);
+        movible.obtenerPremio(this.premio);
     }
 
     public boolean tieneMovible(Movible unMovible) {

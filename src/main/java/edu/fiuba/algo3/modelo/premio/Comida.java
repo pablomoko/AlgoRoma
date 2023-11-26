@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.premio;
 
+import edu.fiuba.algo3.modelo.Gladiador;
 import edu.fiuba.algo3.modelo.premio.Premio;
 
 public class Comida extends Premio {
@@ -9,5 +10,10 @@ public class Comida extends Premio {
     }
     public int caclularValorEnergetico(){
         return valorEnergetico;
+    }
+
+    @Override
+    public void afectarGladiador(Gladiador gladiador) {
+        gladiador.alimentarse(this);
     }
 }
