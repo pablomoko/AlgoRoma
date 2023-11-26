@@ -1,9 +1,10 @@
 package edu.fiuba.algo3.modelo;
-
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 public class Tablero {
 
     private ArrayList<Casilla> casillas;
