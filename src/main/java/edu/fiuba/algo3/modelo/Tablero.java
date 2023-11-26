@@ -1,57 +1,66 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Tablero {
-    private ArrayList<Casilla> casillas;
 
-    public Tablero(int cantidadDeCasillas) {
+    private ArrayList<Casilla> casillas;
+    private Map<Movible, Integer> mapa;
+
+    public Tablero(int tamanio){
+        this.mapa = new HashMap<>();
         this.casillas = new ArrayList<Casilla>();
-        for (int i=0; i<cantidadDeCasillas; i++) {
+        for (int i=0; i<tamanio; i++) {
             this.casillas.add(new Casilla(i));
         }
     }
 
-    public void colocarMovibleEnCasilla(Movible movible, int numeroCasilla) {
-        if (numeroCasilla >= 0 && numeroCasilla < casillas.size()) {
-            casillas.get(numeroCasilla).colocarMovible(movible);
-        } else {
-            throw new IllegalArgumentException("Número de casilla fuera de rango");
-        }
+
+    public ArrayList<Casilla> getCasillas(){
+        return this.casillas;
     }
 
-    public Casilla obtenerCasilla(Gladiador gladiador) {
-        for (Casilla casilla : casillas) {
-            if (casilla.tieneMovible(gladiador)) {
-                return casilla;
-            }
-        }
-        return null;
+    public void inicializarMovible(Movible movible){
+        this.mapa.put(movible,0);
+        casillas.get(0).colocarMovible(movible);
     }
 
-    public void moverGladiador(Gladiador gladiador, int unosPasos) {
-        Casilla casillaActual = obtenerCasilla(gladiador);
+    public void ubicarMovible(Movible movible, int unosPasos){
 
-        if (casillaActual != null) {
-            int nuevaPosicion = (casillas.indexOf(casillaActual) + unosPasos);
-            if (!(nuevaPosicion > (casillas.size()-1))) {
-                Casilla casillaDestino;
-                int ultimaPosicion = this.casillas.size() - 1;
-                if (nuevaPosicion == ultimaPosicion && !gladiador.estaCompleto()) {
-                    casillaDestino = casillas.get(ultimaPosicion / 2);
-                } else {
-                    casillaDestino = casillas.get(nuevaPosicion);
-                }
-                casillaActual.moverMovible(casillaDestino, gladiador);
-                gladiador.mover(unosPasos);
+        int nuevaPosicion = unosPasos + this.mapa.get(movible);
+        Casilla casillaDestino;
+
+
+        if (!(nuevaPosicion > (this.casillas.size()-1))) {
+            int ultimaPosicion = this.casillas.size() - 1;
+            if (nuevaPosicion == ultimaPosicion && !movible.estaCompleto()){
+                casillaDestino = this.casillas.get(ultimaPosicion / 2);
+                this.mapa.put(movible, ultimaPosicion/2);
+            } else {
+                casillaDestino = this.casillas.get(nuevaPosicion);
+                this.mapa.put(movible, nuevaPosicion);
             }
-        } else {
-            throw new IllegalStateException("El gladiador no está en el tablero");
+
+            casillaDestino.colocarMovible(movible);
+            movible.mover(unosPasos);
+
         }
+
+    }
+
+
+    public Casilla obtenerCasillaDe(Movible movible){
+        return this.casillas.get(this.mapa.get(movible));
+    }
+
+    public Casilla obtenerCasillaDe(int posicion){
+        return this.casillas.get(posicion);
     }
 
 
 
 
 }
+

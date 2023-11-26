@@ -9,15 +9,15 @@ public class Juego implements Dado {
 
     private boolean terminado;
 
-    private Mapa mapa;
+    private Tablero tablero;
 
     public Juego(ArrayList<Jugador> jugadores, int tamanio){
         this.turnos = 0;
         this.jugadores = jugadores;
         this.terminado = false;
-        this.mapa = new Mapa(tamanio);
+        this.tablero = new Tablero(tamanio);
         for (Jugador jugador : jugadores) {
-            jugador.inicializarMovible(this.mapa);
+            jugador.inicializarMovible(this.tablero);
         }
     }
 
@@ -27,7 +27,7 @@ public class Juego implements Dado {
 
     public void jugarTurno() {
         for (Jugador jugador : this.jugadores) {
-            jugador.moverMovible(mapa);
+            jugador.moverMovible(tablero);
         }
         this.turnos++;
         if (this.turnos == 30) {

@@ -10,12 +10,12 @@ public class Jugador implements Dado{
         this.movible = movible;
     }
 
-    public void inicializarMovible(Mapa mapa){
-        mapa.inicializarMovible(this.movible);
+    public void inicializarMovible(Tablero tablero){
+        tablero.inicializarMovible(this.movible);
     }
 
-   public void moverMovible(Mapa mapa){
-        mapa.ubicarMovible(this.movible, this.tirarDado());
+   public void moverMovible(Tablero tablero){
+        tablero.ubicarMovible(this.movible, this.tirarDado());
    }
 
 

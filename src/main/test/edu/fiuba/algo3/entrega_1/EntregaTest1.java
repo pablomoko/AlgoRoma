@@ -104,7 +104,7 @@ public class EntregaTest1 {
 
         Movible gladiador = new Gladiador(20, new Novato());
         Jugador jugador = new Jugador(gladiador);
-        Mapa mapa = new Mapa(30);
+        Tablero mapa = new Tablero(30);
         mapa.inicializarMovible(gladiador);
 
         mapa.ubicarMovible(gladiador, 28);
