@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.equipamiento.*;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Llave;
 import edu.fiuba.algo3.modelo.seniority.*;
-import javafx.scene.control.Tab;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

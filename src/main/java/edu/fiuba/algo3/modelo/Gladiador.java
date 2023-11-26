@@ -1,6 +1,9 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.equipamiento.*;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.seniority.*;
 
 import java.util.Stack;

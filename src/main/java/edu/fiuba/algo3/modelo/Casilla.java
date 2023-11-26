@@ -3,13 +3,22 @@ package edu.fiuba.algo3.modelo;
 import java.util.ArrayList;
 
 public class Casilla {
-    private int posicion;
+    private int x;
+    private int y;
+    private String tipo;
     private ArrayList<Movible> movibles;
     private Ubicable ubicable;
 
     public Casilla(int unNumeroPosicion) {
-        this.posicion = unNumeroPosicion;
+        this.x = unNumeroPosicion;
         this.movibles = new ArrayList<Movible>();
+    }
+    public Casilla(int x, int y, String tipo, Ubicable ubicable ) {
+        this.x = x;
+        this.y = y;
+        this.tipo = tipo;
+        this.ubicable = ubicable;
+        this.movibles = new ArrayList<>();
     }
 
 
@@ -32,7 +41,7 @@ public class Casilla {
     }
 
     public int getPosicion(){
-        return this.posicion;
+        return this.x;
     }
 
 }

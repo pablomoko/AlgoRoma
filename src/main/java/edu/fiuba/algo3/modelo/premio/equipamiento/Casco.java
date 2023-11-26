@@ -1,14 +1,14 @@
-package edu.fiuba.algo3.modelo.equipamiento;
+package edu.fiuba.algo3.modelo.premio.equipamiento;
 
 import java.util.Stack;
 
-public class Armadura implements Equipamiento {
-    public int usar(){
-        return (10);
-    }
+public class Casco implements Equipamiento {
 
-    public Equipamiento siguienteEquipamiento() {
-        return (new EscYEsp());
+    public int usar() {
+        return (15);
+    }
+    public Equipamiento siguienteEquipamiento(){
+        return (new Armadura());
     }
 
     public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){

@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.equipamiento;
+package edu.fiuba.algo3.modelo.premio.equipamiento;
 
 import java.util.Stack;
 
