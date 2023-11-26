@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.premio.Premio;
+
 import java.util.ArrayList;
 
 public class Casilla {
@@ -7,17 +10,19 @@ public class Casilla {
     private int y;
     private String tipo;
     private ArrayList<Movible> movibles;
-    private Ubicable ubicable;
+    private Premio premio;
+    private Obstaculo obstaculo;
 
     public Casilla(int unNumeroPosicion) {
         this.x = unNumeroPosicion;
         this.movibles = new ArrayList<Movible>();
     }
-    public Casilla(int x, int y, String tipo, Ubicable ubicable ) {
+    public Casilla(int x, int y, String tipo, Premio premio, Obstaculo obstaculo) {
         this.x = x;
         this.y = y;
         this.tipo = tipo;
-        this.ubicable = ubicable;
+        this.premio = premio;
+        this.obstaculo = obstaculo;
         this.movibles = new ArrayList<>();
     }
 
@@ -34,6 +39,11 @@ public class Casilla {
             throw new IllegalStateException("No hay gladiador en esta casilla");
         }
 
+    }
+
+    public void afectarMovible(Movible movible){
+        movible.vs(this.obstaculo);
+        //movible.obtenerPremio(this.premio);
     }
 
     public boolean tieneMovible(Movible unMovible) {

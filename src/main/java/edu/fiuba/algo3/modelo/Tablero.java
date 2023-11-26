@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.obstaculo.Bacanal;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public class Tablero {
@@ -20,7 +21,7 @@ public class Tablero {
         this.mapa = new HashMap<>();
         this.casillas = new ArrayList<Casilla>();
         for (int i=0; i<tamanio; i++) {
-            this.casillas.add(new Casilla(i));
+            this.casillas.add(new Casilla(i,i,"camino",(new Comida(10)), new Fiera()));
         }
     }
 
@@ -43,21 +44,28 @@ public class Tablero {
             int y = celdaObject.getInt("y");
             String tipo = celdaObject.getString("tipo");
 
-            Ubicable ubicable = crearUbicable(celdaObject);
+            Obstaculo obstaculo = crearObstaculo(celdaObject);
+            Premio premio = crearPremio(celdaObject);
 
-            Casilla casilla = new Casilla(x, y, tipo, ubicable);
+            Casilla casilla = new Casilla(x, y, tipo, premio, obstaculo);
             this.casillas.add(casilla);
         }
     }
 
-    private Ubicable crearUbicable(JSONObject celdaObject) {
+    private Obstaculo crearObstaculo(JSONObject celdaObject) {
         if (celdaObject.has("obstaculo")) {
             String tipoObstaculo = celdaObject.getString("obstaculo");
             return crearObstaculo(tipoObstaculo);
-        } else if (celdaObject.has("premio")) {
+        }else {
+            return null;
+        }
+    }
+
+    private Premio crearPremio(JSONObject celdaObject) {
+        if (celdaObject.has("premio")) {
             String tipoPremio = celdaObject.getString("premio");
             return crearPremio(tipoPremio);
-        } else {
+        }else {
             return null;
         }
     }
@@ -79,9 +87,8 @@ public class Tablero {
         switch (tipoPremio) {
             case "Comida":
                 return new Comida(15);
-    //        case "Equipamiento":
-    //            return new Equipamiento(tipoPremio);
-            //VER COMO SOLUCIONAR LA PARTE DEL EQUIPAMIENTO
+            case "Equipamiento":
+                return new Equipamiento();
             default:
                 return null;
         }
@@ -113,7 +120,7 @@ public class Tablero {
 
             casillaDestino.colocarMovible(movible);
             movible.mover(unosPasos);
-
+            casillaDestino.afectarMovible(movible);
         }
 
     }

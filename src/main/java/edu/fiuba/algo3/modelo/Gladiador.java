@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
@@ -37,6 +38,10 @@ public class Gladiador implements Movible{
         this.seniority = seniority;
     }
 
+    public void vs(Obstaculo obstaculo){
+        obstaculo.afectarGladiador(this);
+    }
+
     public int caclularEnergia(){
         return (this.energia.calcularEnergia());
     }
@@ -64,8 +69,19 @@ public class Gladiador implements Movible{
         return nuevo;
     }
 
-    public int usarEquipamiento() {return equipamiento.peek().usar();}
+    public int usarEquipamiento() {
+        if(equipamiento.isEmpty()){
+            return 20;
+        }else{
+            return equipamiento.peek().usar();
+        }
+    }
     public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
+
+    public void afectarEnergia(int energia){
+        this.energia.disminuirEnergia(energia);
+    }
+
 
     /*public int verPasos(){
         return (this.pasos);
