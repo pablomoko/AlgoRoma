@@ -16,7 +16,8 @@ public class TestJugador {
 
         Gladiador gladiador = new Gladiador(20, new Novato());
         Jugador jugador = new Jugador(gladiador);
-        Tablero tablero = new Tablero(30);
+        String rutaArchivo = "src/main/resources/mapa.json";
+        Tablero tablero = new Tablero(rutaArchivo);
         jugador.inicializarMovible(tablero);
 
         assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(0));

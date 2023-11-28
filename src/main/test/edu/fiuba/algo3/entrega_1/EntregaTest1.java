@@ -106,13 +106,14 @@ public class EntregaTest1 {
 
         Movible gladiador = new Gladiador(20, new Novato());
         Jugador jugador = new Jugador(gladiador);
-        Tablero mapa = new Tablero(30);
+        String rutaArchivo = "src/main/resources/mapa.json";
+        Tablero mapa = new Tablero(rutaArchivo);
         mapa.inicializarMovible(gladiador);
 
-        mapa.ubicarMovible(gladiador, 28);
+        mapa.ubicarMovible(gladiador, 38);
         mapa.ubicarMovible(gladiador, 1);
 
-        assertEquals(mapa.obtenerCasillaDe(gladiador), mapa.obtenerCasillaDe(14));
+        assertEquals(mapa.obtenerCasillaDe(gladiador), mapa.obtenerCasillaDe(19));
     }
 
     @Test
@@ -149,7 +150,8 @@ public class EntregaTest1 {
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
-        Juego juego = new Juego(jugadores, 50);
+        String rutaArchivo = "src/main/resources/mapa.json";
+        Juego juego = new Juego(jugadores, rutaArchivo);
         for (int i=0; i<30; i++)  {
             juego.jugarTurno();
         }

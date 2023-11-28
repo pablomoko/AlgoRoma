@@ -21,7 +21,8 @@ public class TestJuego {
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
-        Juego juego = new Juego(jugadores, 50);
+        String rutaArchivo = "src/main/resources/mapa.json";
+        Juego juego = new Juego(jugadores, rutaArchivo);
 
         assertEquals(juego.getJugadores(),jugadores);
 

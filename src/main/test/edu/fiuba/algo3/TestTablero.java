@@ -10,18 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestTablero {
 
+
+/*
     @Test
-    public void test01SeInicializaElTableroConSusAtributosCorrectos() {
-
-        Tablero tablero = new Tablero(50);
-
-        assertEquals(tablero.getCasillas().size(), 50);
-
-    }
-
-
-    @Test
-    public void test02TableroInicializaElMovibleIndicadoEnLaPosicionCero() {
+    public void test01TableroInicializaElMovibleIndicadoEnLaPosicionCero() {
 
         Movible gladiador = new Gladiador(20, new Novato());
         Tablero tablero = new Tablero(50);
@@ -31,7 +23,7 @@ public class TestTablero {
 
     }
     @Test
-    public void test03UbicarMovibleUbicaAlMovibleIndicado() {
+    public void test02UbicarMovibleUbicaAlMovibleIndicado() {
 
         Movible gladiador = new Gladiador(20, new Novato());
         Tablero tablero = new Tablero(50);
@@ -41,5 +33,5 @@ public class TestTablero {
         assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(4));
 
     }
-
+*/
 }

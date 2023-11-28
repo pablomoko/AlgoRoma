@@ -1,26 +1,25 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.casilla;
 
+import edu.fiuba.algo3.modelo.Movible;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 import edu.fiuba.algo3.modelo.premio.Premio;
+import edu.fiuba.algo3.modelo.Posicion;
 
 import java.util.ArrayList;
 
-public class Casilla {
-    private int x;
-    private int y;
-    private String tipo;
+public abstract class Casilla {
+
+    private Posicion posicion;
     private ArrayList<Movible> movibles;
     private Premio premio;
     private Obstaculo obstaculo;
-
+/*
     public Casilla(int unNumeroPosicion) {
         this.x = unNumeroPosicion;
         this.movibles = new ArrayList<Movible>();
-    }
-    public Casilla(int x, int y, String tipo, Premio premio, Obstaculo obstaculo) {
-        this.x = x;
-        this.y = y;
-        this.tipo = tipo;
+    }*/
+    public Casilla(Posicion posicion, Premio premio, Obstaculo obstaculo) {
+        this.posicion = posicion;
         this.premio = premio;
         this.obstaculo = obstaculo;
         this.movibles = new ArrayList<>();
@@ -49,9 +48,10 @@ public class Casilla {
     public boolean tieneMovible(Movible unMovible) {
         return (this.movibles.contains(unMovible));
     }
-
+/*
     public int getPosicion(){
-        return this.x;
-    }
+        return this.posicion;
+    }*/
+
 
 }
