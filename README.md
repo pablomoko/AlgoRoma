@@ -4,7 +4,7 @@
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo {6}
 
 * **Franco Favotti** - [Franco-Favotti](https://github.com/Franco-Favotti)
 * **Lucas Sebastian Jun** - [Lucas-Jun](https://github.com/Lucas-Jun)
@@ -12,7 +12,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Pablo A. Mokorel** - [Pablo-Mokorel](https://github.com/pablomoko)
 * **Julian Rodriguez** - [JulianRdz00](https://github.com/JulianRdz00)
 
-Corrector: **{Corrector}**
+Corrector: **{Joaquien Pandolfi, Santiago Valdez}**
 
 ## Aplicación
 
