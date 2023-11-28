@@ -14,28 +14,23 @@ public class Gladiador implements Movible{
     private Energia energia;
     private Stack<Equipamiento> equipamiento;
 
-    //private int pasos;
-
     private Seniority seniority;
 
     public Gladiador(){
         this.energia = new Energia(20);
         this.equipamiento = new Stack<>();
-        //this.pasos = 0;
         this.seniority = new Novato();
     }
 
     public Gladiador(int energia){
         this.energia = new Energia(energia);
         this.equipamiento = new Stack<>();
-        //this.pasos = 0;
         this.seniority = new Novato();
     }
 
     public Gladiador(int energia, Seniority seniority){
         this.energia = new Energia(energia);
         this.equipamiento = new Stack<>();
-        //this.pasos = 0;
         this.seniority = seniority;
     }
 
@@ -87,14 +82,9 @@ public class Gladiador implements Movible{
     }
 
 
-    /*public int verPasos(){
-        return (this.pasos);
-    }*/
-
     public void mover(int unaCantidad){
         if(energia.calcularEnergia() > 0) {
             this.seniority.sumarPasos(unaCantidad);
-            //this.pasos = (pasos + unaCantidad);
             energia.disminuirEnergia(1);
         }
 
