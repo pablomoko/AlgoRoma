@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo.seniority;
 
+import edu.fiuba.algo3.modelo.Energia;
 public abstract class Seniority {
 
     int cantidadPasos = 0;
@@ -16,6 +17,10 @@ public abstract class Seniority {
         this.cantidadPasos = this.cantidadPasos + unaCantidad;
         return this;
     };
+
+    public Energia plusDeEnergia(Energia energia){
+        return energia;
+    }
 
     public int verPasos(){
         return (this.cantidadPasos);

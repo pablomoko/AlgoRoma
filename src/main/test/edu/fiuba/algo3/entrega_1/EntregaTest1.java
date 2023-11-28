@@ -18,7 +18,7 @@ public class EntregaTest1 {
 
         Gladiador gladiador = new Gladiador();
 
-        assertEquals(20,gladiador.caclularEnergia());
+        assertEquals(20,gladiador.calcularEnergia());
         assertTrue(gladiador.verEquipamiento().empty());
 
     }
@@ -53,7 +53,7 @@ public class EntregaTest1 {
 
         gladiador.alimentarse(milanesaConPure);
 
-        assertEquals(20+10,gladiador.caclularEnergia());
+        assertEquals(20+10,gladiador.calcularEnergia());
 
     }
     @Test
@@ -91,14 +91,14 @@ public class EntregaTest1 {
 
     }
     @Test
-    public void test08SiPasan8TurnosElSeniorityDelGladiadorPasaDeNovatoASeniorYVeSuEnergíaIncrementadaAlPróximoTurno() {
+    public void test08SiPasan8TurnosElSeniorityDelGladiadorPasaDeNovatoASemiSeniorYVeSuEnergíaIncrementadaAlPróximoTurno() {
         Gladiador gladiador = new Gladiador(20, new Novato());
 
         for (int i=0; i<8; i++){
             gladiador.aumentarTurno();
         }
 
-        assertEquals(SemiSenior.class,gladiador.verSeniority().getClass());
+        assertEquals(gladiador.calcularEnergia(), 25);
     }
 
     @Test

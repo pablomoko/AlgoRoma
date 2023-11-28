@@ -5,7 +5,6 @@ import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.seniority.*;
 
 import java.util.Stack;
@@ -41,7 +40,7 @@ public class Gladiador implements Movible{
     public void obtenerPremio(Premio premio){
         premio.afectarGladiador(this);
     }
-    public int caclularEnergia(){
+    public int calcularEnergia(){
         return (this.energia.calcularEnergia());
     }
 
@@ -77,21 +76,20 @@ public class Gladiador implements Movible{
     }
     public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
 
-    public void afectarEnergia(int energia){
-        this.energia.disminuirEnergia(energia);
+    public void afectarEnergia(int unaCantidad){
+        this.energia.disminuirEnergia(unaCantidad);
     }
-
 
     public void mover(int unaCantidad){
         if(energia.calcularEnergia() > 0) {
             this.seniority.sumarPasos(unaCantidad);
-            energia.disminuirEnergia(1);
+            energia.disminuirEnergia(unaCantidad);
         }
-
     }
 
     public void aumentarTurno(){
         this.seniority = this.seniority.sumarPaso();
+        this.energia = this.seniority.plusDeEnergia(this.energia);
     }
 
     public Seniority verSeniority(){

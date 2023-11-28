@@ -23,7 +23,7 @@ public class TestEquipamiento {
     }
 
     @Test
-    public void test02SiguienteEquipamientoDeLaCascoEsLaArmadura() {
+    public void test02SiguienteEquipamientoDelCascoEsLaArmadura() {
 
         Casco casco = new Casco();
 

@@ -14,10 +14,9 @@ public class Jugador implements Dado{
         tablero.inicializarMovible(this.movible);
     }
 
-   public void moverMovible(Tablero tablero){
+    public void moverMovible(Tablero tablero){
         tablero.ubicarMovible(this.movible, this.tirarDado());
    }
-
 
     @Override
     public int tirarDado() {
