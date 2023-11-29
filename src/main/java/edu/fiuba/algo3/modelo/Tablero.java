@@ -10,8 +10,10 @@ import edu.fiuba.algo3.modelo.obstaculo.Lesion;
 import edu.fiuba.algo3.modelo.obstaculo.Fiera;
 import edu.fiuba.algo3.modelo.obstaculo.Bacanal;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
 import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.PremioSinEfecto;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.casilla.CasillaSalida;
 import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
@@ -78,7 +80,7 @@ public class Tablero {
             String tipoObstaculo = celdaObject.getString("obstaculo");
             return crearObstaculo(tipoObstaculo);
         }else {
-            return null;
+            return new ObstaculoSinEfecto();
         }
     }
 
@@ -87,7 +89,7 @@ public class Tablero {
             String tipoPremio = celdaObject.getString("premio");
             return crearPremio(tipoPremio);
         }else {
-            return null;
+            return new PremioSinEfecto();
         }
     }
 
@@ -100,7 +102,7 @@ public class Tablero {
             case "Bacanal":
                 return new Bacanal();
             default:
-                return null;
+                return new ObstaculoSinEfecto();
         }
     }
 
@@ -111,7 +113,7 @@ public class Tablero {
             case "Equipamiento":
                 return new Equipamiento();
             default:
-                return null;
+                return new PremioSinEfecto();
         }
     }
     public List<Casilla> getCasillas(){
@@ -146,7 +148,7 @@ public class Tablero {
         movible.mover(unosPasos);
         casillaActual.moverMovible(casillaDestino, movible);
         mapa.put(movible, casillaDestino);
-       // casillaActual.afectarMovible(movible);
+        casillaActual.afectarMovible(movible);
     }
 
     private Casilla crearTipo(String tipoCasilla,Posicion posicion, Premio premio, Obstaculo obstaculo) {
