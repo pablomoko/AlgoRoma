@@ -110,7 +110,7 @@ public class EntregaTest1 {
         Tablero mapa = new Tablero(rutaArchivo);
         mapa.inicializarMovible(gladiador);
 
-        mapa.ubicarMovible(gladiador, 38);
+        mapa.ubicarMovible(gladiador, 37);
         mapa.ubicarMovible(gladiador, 1);
 
         assertEquals(mapa.obtenerCasillaDe(gladiador), mapa.obtenerCasillaDe(19));

@@ -127,26 +127,22 @@ public class Tablero {
 
     public void ubicarMovible(Movible movible, int unosPasos){
 
-        ListIterator<Casilla> iterator = casillas.listIterator();
-        int contador = 0;
         Casilla casillaActual = this.obtenerCasillaDe(movible);
+        ListIterator<Casilla> iterator = casillas.listIterator(casillas.indexOf(casillaActual));
+        iterator.next();
+        int contador = 0;
         Casilla casillaDestino = casillaActual;
         while (iterator.hasNext() && contador < unosPasos) {
             casillaDestino = iterator.next();
             contador++;
         }
 
-/*
         if(!iterator.hasNext() && !movible.estaCompleto()){
-            for (int i=0; i< ((this.casillas.size()-1)/2); i++){
-                casillaDestino = iterator.previous();
-            }
-            casillaActual.moverMovible(casillaDestino, movible);
+            casillaDestino = casillas.listIterator((this.casillas.size())/2).next();
+        }
 
-        }*/
-
-        movible.mover(unosPasos);
         casillaActual.moverMovible(casillaDestino, movible);
+        movible.mover(unosPasos);
         mapa.put(movible, casillaDestino);
         casillaActual.afectarMovible(movible);
     }
