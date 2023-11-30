@@ -18,27 +18,30 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
+// Otros imports según tus necesidades
+
+
 public class GestorArchivos {
-    public static LinkedList <Casilla> generarListaDeCasillasDesdeJSON(String ruta){
+
+    public static LinkedList <Casilla> generarListaDeCasillasDesdeJSON(String contenido){
         LinkedList <Casilla> casillas = new LinkedList<>();
-        try{
-            String contenido = new String(Files.readAllBytes(Paths.get(ruta)));
-            JSONObject rootObject = new JSONObject(contenido);
 
-            JSONObject mapaObject = rootObject.getJSONObject("mapa");
-            int ancho = mapaObject.getInt("ancho");
-            int largo = mapaObject.getInt("largo");
+        JSONObject rootObject = new JSONObject(contenido);
 
-            JSONArray celdasArray = rootObject.getJSONObject("camino").getJSONArray("celdas");
+        JSONObject mapaObject = rootObject.getJSONObject("mapa");
+        int ancho = mapaObject.getInt("ancho");
+        int largo = mapaObject.getInt("largo");
 
-            for (int i = 0; i < celdasArray.length(); i++) {
-                JSONObject celdaObject = celdasArray.getJSONObject(i);
+        JSONArray celdasArray = rootObject.getJSONObject("camino").getJSONArray("celdas");
 
-                Casilla casilla = crearCasilla(celdaObject);
-                casillas.add(casilla);
-            }
-        }catch(IOException e) {
-            System.out.println("ERROR");
+        for (int i = 0; i < celdasArray.length(); i++) {
+            JSONObject celdaObject = celdasArray.getJSONObject(i);
+
+            Casilla casilla = crearCasilla(celdaObject);
+            casillas.add(casilla);
         }
         return casillas;
     }

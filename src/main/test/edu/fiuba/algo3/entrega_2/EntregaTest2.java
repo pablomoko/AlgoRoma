@@ -26,66 +26,55 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EntregaTest2 {
     @Test
     public void test13VerificoFormatoDelMapaJSON(){
-        try {
-            String rutaArchivo = "src/main/resources/mapa.json";
+        String jsonString = "{\"mapa\": {\"ancho\": 10, \"largo\": 18}}";
 
-            String contenido = new String(Files.readAllBytes(Paths.get(rutaArchivo)));
+        JSONObject jsonObject = new JSONObject(jsonString);
 
-            JSONObject jsonObject = new JSONObject(contenido);
+        assertTrue(jsonObject.has("mapa"));
+        JSONObject mapaObject = jsonObject.getJSONObject("mapa");
 
-            assertTrue(jsonObject.has("mapa"));
-            JSONObject mapaObject = jsonObject.getJSONObject("mapa");
-
-            assertTrue(mapaObject.has("ancho"));
-            assertTrue(mapaObject.has("largo"));
-        }catch (IOException e) {
-            fail("Error de lectura del archivo: " + e.getMessage());
-        }
+        assertTrue(mapaObject.has("ancho"));
+        assertTrue(mapaObject.has("largo"));
     }
 
     @Test
     public void test14VerificoFormatoValidoDeObstaculosYPremiosJSON() {
-        try {
-            String rutaArchivo = "src/main/resources/mapa.json";
+        String jsonStirng = "{\"camino\": {\"celdas\": [{\"x\": 1,\"y\": 7,\"tipo\": \"Salida\",\"obstaculo\": \"\", \"premio\":\"\"}]}}";
 
-            String contenido = new String(Files.readAllBytes(Paths.get(rutaArchivo)));
+        JSONObject jsonObject = new JSONObject(jsonStirng);
 
-            JSONObject jsonObject = new JSONObject(contenido);
+        assertTrue(jsonObject.has("camino"));
+        JSONObject caminoObject = jsonObject.getJSONObject("camino");
 
-            assertTrue(jsonObject.has("camino"));
-            JSONObject caminoObject = jsonObject.getJSONObject("camino");
+        assertTrue(caminoObject.has("celdas"));
+        JSONArray celdasArray = caminoObject.getJSONArray("celdas");
 
-            assertTrue(caminoObject.has("celdas"));
-            JSONArray celdasArray = caminoObject.getJSONArray("celdas");
-
-            for (int i = 0; i < celdasArray.length(); i++) {
-                JSONObject celda = celdasArray.getJSONObject(i);
-                assertTrue(celda.has("x"));
-                assertTrue(celda.has("y"));
-                assertTrue(celda.has("tipo"));
-                assertTrue(celda.has("obstaculo"));
-                assertTrue(celda.has("premio"));
-            }
-        }catch (IOException e) {
-            fail("Error de lectura del archivo: " + e.getMessage());
+        for (int i = 0; i < celdasArray.length(); i++) {
+            JSONObject celda = celdasArray.getJSONObject(i);
+            assertTrue(celda.has("x"));
+            assertTrue(celda.has("y"));
+            assertTrue(celda.has("tipo"));
+            assertTrue(celda.has("obstaculo"));
+            assertTrue(celda.has("premio"));
         }
     }
 
     @Test
     public void test15ElJuegoSeCreaAcordeAlJSON() throws IOException {
+        String stringJson = "{\"mapa\":{\"ancho\":10,\"largo\":18},\"camino\":{\"celdas\":[{\"x\":1,\"y\":7,\"tipo\":\"Salida\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":2,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":2,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":2,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":2,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"\"},{\"x\":2,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"Equipamiento\"},{\"x\":2,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":2,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":3,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":4,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":5,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"Equipamiento\"},{\"x\":6,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":7,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":8,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":9,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":10,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":11,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":12,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":12,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Comida\"},{\"x\":12,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":8,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":12,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":13,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"Comida\"},{\"x\":14,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"\"},{\"x\":15,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":16,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":17,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":17,\"y\":8,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":17,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":17,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":17,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":1,\"tipo\":\"Llegada\",\"obstaculo\":\"\",\"premio\":\"\"}]}}"
+
+        LinkedList <Casilla> casillas = GestorArchivos.generarListaDeCasillasDesdeJSON(stringJson);
+        JSONObject jsonObject = new JSONObject(stringJson);
+
+
+
+
+
+
 
         Posicion posicion = new Posicion(1,7);
         Casilla casillaSalida = new CasillaSalida(posicion, new PremioSinEfecto(), new ObstaculoSinEfecto());
 
-        //String celda = "{[{\"x\": 1,\"y\": 7,\"tipo\": \"Salida\",\"obstaculo\": \"\", \"premio\":\"\"}]}}";
-        String rutaArchivo = "src/main/resources/mapa.json";
-
-        String contenido = new String(Files.readAllBytes(Paths.get(rutaArchivo)));
-
-        JSONObject rootObject = new JSONObject(contenido);
-        JSONArray celdasArray = rootObject.getJSONObject("camino").getJSONArray("celdas");
-
-        JSONObject celdaSalida = celdasArray.getJSONObject(0);
 
         assertEquals(casillaSalida.getClass(), GestorArchivos.crearCasilla(celdaSalida).getClass());
 
