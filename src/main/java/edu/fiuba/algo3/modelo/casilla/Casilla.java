@@ -13,11 +13,7 @@ public abstract class Casilla {
     private ArrayList<Movible> movibles;
     private Premio premio;
     private Obstaculo obstaculo;
-/*
-    public Casilla(int unNumeroPosicion) {
-        this.x = unNumeroPosicion;
-        this.movibles = new ArrayList<Movible>();
-    }*/
+
     public Casilla(Posicion posicion, Premio premio, Obstaculo obstaculo) {
         this.posicion = posicion;
         this.premio = premio;

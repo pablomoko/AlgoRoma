@@ -34,17 +34,7 @@ public class GestorArchivos {
             for (int i = 0; i < celdasArray.length(); i++) {
                 JSONObject celdaObject = celdasArray.getJSONObject(i);
 
-                int x = celdaObject.getInt("x");
-                int y = celdaObject.getInt("y");
-                Posicion posicion = new Posicion(x, y);
-                String tipo = celdaObject.getString("tipo");
-
-
-                Obstaculo obstaculo = crearObstaculo(celdaObject);
-                Premio premio = crearPremio(celdaObject);
-
-
-                Casilla casilla = crearTipo(tipo, posicion, premio, obstaculo);
+                Casilla casilla = crearCasilla(celdaObject);
                 casillas.add(casilla);
             }
         }catch(IOException e) {
@@ -52,6 +42,25 @@ public class GestorArchivos {
         }
         return casillas;
     }
+
+    public static Casilla crearCasilla(JSONObject celdaObject){
+
+        int x = celdaObject.getInt("x");
+        int y = celdaObject.getInt("y");
+        Posicion posicion = new Posicion(x, y);
+        String tipo = celdaObject.getString("tipo");
+
+
+        Obstaculo obstaculo = crearObstaculo(celdaObject);
+        Premio premio = crearPremio(celdaObject);
+
+
+        Casilla casilla = crearTipo(tipo, posicion, premio, obstaculo);
+
+        return casilla;
+    }
+
+
 
     private static Obstaculo crearObstaculo(JSONObject celdaObject) {
         if (celdaObject.has("obstaculo")) {

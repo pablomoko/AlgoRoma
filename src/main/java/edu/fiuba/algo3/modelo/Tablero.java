@@ -24,7 +24,7 @@ public class Tablero {
         casillas.get(0).colocarMovible(movible);
     }
 
-    public void ubicarMovible(Movible movible, int unosPasos){
+    public void moverMovible(Movible movible, int unosPasos){
 
         Casilla casillaActual = this.obtenerCasillaDe(movible);
         ListIterator<Casilla> iterator = casillas.listIterator(casillas.indexOf(casillaActual));

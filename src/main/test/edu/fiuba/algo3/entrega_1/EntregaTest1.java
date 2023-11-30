@@ -14,6 +14,9 @@ import edu.fiuba.algo3.modelo.seniority.*;
 import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.modelo.GestorArchivos;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -125,8 +128,8 @@ public class EntregaTest1 {
 
         tablero.inicializarMovible(gladiador);
 
-        tablero.ubicarMovible(gladiador, 37);
-        tablero.ubicarMovible(gladiador, 1);
+        tablero.moverMovible(gladiador, 37);
+        tablero.moverMovible(gladiador, 1);
 
         assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(19));
     }
@@ -162,7 +165,7 @@ public class EntregaTest1 {
     }
 
     @Test
-    public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() {
+    public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() throws IOException {
 
         int turnos = 0;
         boolean terminado = false;
