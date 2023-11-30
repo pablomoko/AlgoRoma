@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
 import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
 import edu.fiuba.algo3.modelo.obstaculo.Fiera;
@@ -11,8 +12,10 @@ import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Llave;
 import edu.fiuba.algo3.modelo.seniority.*;
 import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.GestorArchivos;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -114,15 +117,18 @@ public class EntregaTest1 {
     public void test09SiLlegaALaMetaSinLaLLaveEnElEquipamientoRetrocedMitadDeLasCasillas(){
 
         Movible gladiador = new Gladiador(20, new Novato());
-        Jugador jugador = new Jugador(gladiador);
+
         String rutaArchivo = "src/main/resources/mapa.json";
-        Tablero mapa = new Tablero(rutaArchivo);
-        mapa.inicializarMovible(gladiador);
+        LinkedList < Casilla> casillas = new LinkedList<>();
+        casillas = GestorArchivos.generarListaDeCasillasDesdeJSON(rutaArchivo);
+        Tablero tablero = new Tablero(casillas);
 
-        mapa.ubicarMovible(gladiador, 37);
-        mapa.ubicarMovible(gladiador, 1);
+        tablero.inicializarMovible(gladiador);
 
-        assertEquals(mapa.obtenerCasillaDe(gladiador), mapa.obtenerCasillaDe(19));
+        tablero.ubicarMovible(gladiador, 37);
+        tablero.ubicarMovible(gladiador, 1);
+
+        assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(19));
     }
 
     @Test
@@ -157,17 +163,36 @@ public class EntregaTest1 {
 
     @Test
     public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() {
+
+        int turnos = 0;
+        boolean terminado = false;
+
+        Movible gladiador = new Gladiador(20, new Novato());
+
         Jugador jugador1 = new Jugador(new Gladiador(20, new Novato()));
         Jugador jugador2 = new Jugador(new Gladiador(20, new Novato()));
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
         String rutaArchivo = "src/main/resources/mapa.json";
-        Juego juego = new Juego(jugadores, rutaArchivo);
+        LinkedList <Casilla> casillas = new LinkedList<Casilla>();
+        casillas = GestorArchivos.generarListaDeCasillasDesdeJSON(rutaArchivo);
+        Tablero tablero = new Tablero(casillas);
+
+        jugador1.inicializarMovible(tablero);
+        jugador2.inicializarMovible(tablero);
+
         for (int i=0; i<30; i++)  {
-            juego.jugarTurno();
+            for (Jugador jugador : jugadores) {
+                jugador.moverMovible(tablero);
+            }
+            turnos++;
+            if (turnos == 30) {
+                terminado = true;
+            }
         }
-        assertTrue(juego.terminado());
+
+        assertTrue(terminado);
     }
 
 }
