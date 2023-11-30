@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
+import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
+import edu.fiuba.algo3.modelo.obstaculo.Fiera;
+import edu.fiuba.algo3.modelo.premio.PremioSinEfecto;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
@@ -71,12 +75,16 @@ public class EntregaTest1 {
     public void test06VerificarQueSiTresEquipamientoObtieneEscudoYEspada() {
 
         Gladiador gladiador = new Gladiador();
+        Posicion pos = new Posicion(1,1);
+        CasillaCamino casillaFiera = new CasillaCamino(pos, new PremioSinEfecto(), new Fiera());
+        CasillaCamino casillaEquipamiento = new CasillaCamino(pos, new Equipamiento(), new ObstaculoSinEfecto());
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
 
-        gladiador.equiparse();
-        gladiador.equiparse();
-        Equipamiento actual = gladiador.equiparse(); //aca recibe el escudo y espada, entonces el proximo quedeberia recibir es la llave
+        casillaFiera.afectarMovible(gladiador);
 
-        assertEquals(Llave.class,actual.siguienteEquipamiento().getClass());
+        assertEquals(18,gladiador.calcularEnergia());
 
     }
 
@@ -84,10 +92,11 @@ public class EntregaTest1 {
     public void test07PeleaConFieraYTieneCascoPierde15DeEnergiaSeQuedaCon5() {
 
         Gladiador gladiador = new Gladiador();
+        Posicion pos = new Posicion(1,1);
+        CasillaCamino casillaFiera = new CasillaCamino(pos, new Equipamiento(), new Fiera());
+        casillaFiera.afectarMovible(gladiador);
 
-        gladiador.equiparse();
-
-        assertEquals(5,gladiador.pelearContraFiera());
+        assertEquals(5,gladiador.calcularEnergia());
 
     }
     @Test
@@ -119,13 +128,16 @@ public class EntregaTest1 {
     @Test
     public void test10PeleaConFieraYTieneTodoElEquipamentoNoPierdeEnergia(){
         Gladiador gladiador = new Gladiador();
+        Posicion pos = new Posicion(1,1);
+        CasillaCamino casillaEquipamiento = new CasillaCamino(pos, new Equipamiento(), new ObstaculoSinEfecto());
+        CasillaCamino casillaFiera = new CasillaCamino(pos, new PremioSinEfecto(), new Fiera());
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
 
-        gladiador.equiparse();
-        gladiador.equiparse();
-        gladiador.equiparse();
-        gladiador.equiparse();
-
-        assertEquals(20,gladiador.pelearContraFiera());
+        casillaFiera.afectarMovible(gladiador);
+        assertEquals(20,gladiador.calcularEnergia());
     }
 
     @Test
