@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EntregaTest1 {
     @Test
-    public void test01VerificarQUeJugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() {
+    public void test01VerificaQueJugadorEmpiezaConEnergiaYEquipamientoCorrespondiente() {
 
         Gladiador gladiador = new Gladiador();
 
@@ -33,7 +33,7 @@ public class EntregaTest1 {
 
     }
     @Test
-    public void test02VerificarQeeJugadorSalgaDeLaCasillaInicial(){
+    public void test02VerificaQueJugadorSalgaDeLaCasillaInicial(){
 
         Seniority seniority = new Novato();
         Gladiador gladiador = new Gladiador(20, seniority);
@@ -44,7 +44,7 @@ public class EntregaTest1 {
 
 
     @Test
-    public void test03VerificarQueJugadorSinEnergiaNoPuedaJugarElTurno() {
+    public void test03VerificaQueJugadorSinEnergiaNoPuedaJugarElTurno() {
 
         Seniority seniority = new Novato();
         Gladiador gladiador = new Gladiador(0, seniority);
@@ -55,7 +55,7 @@ public class EntregaTest1 {
 
     }
     @Test
-    public void test04VerificarQueSiRecibeComidaIncremenetaEnergiaEn10() {
+    public void test04VerificaQueSiRecibeComidaIncremenetaEnergiaEn10() {
 
         Gladiador gladiador = new Gladiador();
 
@@ -67,18 +67,18 @@ public class EntregaTest1 {
 
     }
     @Test
-    public void test05VerificarQueSiRecibeEquipamientoPorPrimeraVezObtieneCasco() {
+    public void test05VerificaQueSiRecibeEquipamientoPorPrimeraVezObtieneCasco() {
 
         Gladiador gladiador = new Gladiador();
 
-        Equipamiento actual = gladiador.equiparse(); //aca recibe el casco, entonces el proximo que deberia recibir es la armadura
+        Equipamiento actual = gladiador.equiparse();
 
-        assertEquals(Armadura.class,actual.siguienteEquipamiento().getClass());
+        assertEquals(actual.usar(),15);
 
     }
 
     @Test
-    public void test06VerificarQueSiTresEquipamientoObtieneEscudoYEspada() {
+    public void test06VerificaQueSiTresEquipamientoObtieneEscudoYEspada() {
 
         Gladiador gladiador = new Gladiador();
         Posicion pos = new Posicion(1,1);
@@ -157,10 +157,10 @@ public class EntregaTest1 {
         gladiador.equiparse();
         Equipamiento actual = gladiador.equiparse();
 
-        assertEquals(Llave.class,actual.getClass());
+        assertEquals(actual.usar(),0);
 
         actual = gladiador.equiparse();
-        assertEquals(Llave.class,actual.getClass());
+        assertEquals(actual.usar(),0);
     }
 
     @Test

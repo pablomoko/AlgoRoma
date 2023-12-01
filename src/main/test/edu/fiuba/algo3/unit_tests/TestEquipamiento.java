@@ -27,7 +27,7 @@ public class TestEquipamiento {
 
         Casco casco = new Casco();
 
-        assertEquals(casco.siguienteEquipamiento().getClass(), new Armadura().getClass());
+        assertEquals(casco.siguienteEquipamiento().usar(), 10);
 
     }
 
@@ -46,7 +46,7 @@ public class TestEquipamiento {
 
         Armadura armadura = new Armadura();
 
-        assertEquals(armadura.siguienteEquipamiento().getClass(), new EscYEsp().getClass());
+        assertEquals(armadura.siguienteEquipamiento().usar(), 2);
 
     }
 
@@ -65,7 +65,7 @@ public class TestEquipamiento {
 
         EscYEsp escYEsp = new EscYEsp();
 
-        assertEquals(escYEsp.siguienteEquipamiento().getClass(), new Llave().getClass());
+        assertEquals(escYEsp.siguienteEquipamiento().usar(), 0);
 
     }
 
