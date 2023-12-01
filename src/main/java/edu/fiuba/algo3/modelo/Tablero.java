@@ -24,14 +24,14 @@ public class Tablero {
 
         Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
 
-        if(!mapeador.tieneSiguiente(casillaActual) && !movible.estaCompleto()){
+        if(!mapeador.tieneSiguiente(casillaDestino) && !movible.estaCompleto()){
             casillaDestino = mapeador.obtenerCasillaIntermedia();
         }
 
         casillaActual.moverMovible(casillaDestino, movible);
         movible.mover(unosPasos);
         this.mapeador.ubicarMovible(movible, casillaDestino);
-        casillaActual.afectarMovible(movible);
+        casillaDestino.afectarMovible(movible);
     }
 
     public Casilla obtenerCasillaDe(Movible movible){

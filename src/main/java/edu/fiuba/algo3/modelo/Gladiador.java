@@ -102,5 +102,12 @@ public class Gladiador implements Movible{
         return (this.equipamiento.size() == 4);
     }
 
+    public Equipamiento getEquipamiento() {
+        if (equipamiento.isEmpty()) {
+            return null;
+        }
+        return this.equipamiento.peek();
+    }
+
 
 }
