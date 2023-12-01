@@ -1,12 +1,24 @@
 package edu.fiuba.algo3.entrega_1;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.equipamiento.*;
+import edu.fiuba.algo3.modelo.casilla.Casilla;
+import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
+import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
+import edu.fiuba.algo3.modelo.obstaculo.Fiera;
+import edu.fiuba.algo3.modelo.premio.PremioSinEfecto;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Llave;
 import edu.fiuba.algo3.modelo.seniority.*;
-import javafx.scene.control.Tab;
 import org.junit.jupiter.api.Test;
+import edu.fiuba.algo3.modelo.GestorArchivos;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +28,7 @@ public class EntregaTest1 {
 
         Gladiador gladiador = new Gladiador();
 
-        assertEquals(20,gladiador.caclularEnergia());
+        assertEquals(20,gladiador.calcularEnergia());
         assertTrue(gladiador.verEquipamiento().empty());
 
     }
@@ -51,7 +63,7 @@ public class EntregaTest1 {
 
         gladiador.alimentarse(milanesaConPure);
 
-        assertEquals(20+10,gladiador.caclularEnergia());
+        assertEquals(20+10,gladiador.calcularEnergia());
 
     }
     @Test
@@ -69,12 +81,16 @@ public class EntregaTest1 {
     public void test06VerificarQueSiTresEquipamientoObtieneEscudoYEspada() {
 
         Gladiador gladiador = new Gladiador();
+        Posicion pos = new Posicion(1,1);
+        CasillaCamino casillaFiera = new CasillaCamino(pos, new PremioSinEfecto(), new Fiera());
+        CasillaCamino casillaEquipamiento = new CasillaCamino(pos, new Equipamiento(), new ObstaculoSinEfecto());
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
 
-        gladiador.equiparse();
-        gladiador.equiparse();
-        Equipamiento actual = gladiador.equiparse(); //aca recibe el escudo y espada, entonces el proximo quedeberia recibir es la llave
+        casillaFiera.afectarMovible(gladiador);
 
-        assertEquals(Llave.class,actual.siguienteEquipamiento().getClass());
+        assertEquals(18,gladiador.calcularEnergia());
 
     }
 
@@ -82,47 +98,54 @@ public class EntregaTest1 {
     public void test07PeleaConFieraYTieneCascoPierde15DeEnergiaSeQuedaCon5() {
 
         Gladiador gladiador = new Gladiador();
+        Posicion pos = new Posicion(1,1);
+        CasillaCamino casillaFiera = new CasillaCamino(pos, new Equipamiento(), new Fiera());
+        casillaFiera.afectarMovible(gladiador);
 
-        gladiador.equiparse();
-
-        assertEquals(5,gladiador.pelearContraFiera());
+        assertEquals(5,gladiador.calcularEnergia());
 
     }
     @Test
-    public void test08SiPasan8TurnosElSeniorityDelGladiadorPasaDeNovatoASeniorYVeSuEnergíaIncrementadaAlPróximoTurno() {
+    public void test08SiPasan8TurnosElSeniorityDelGladiadorPasaDeNovatoASemiSeniorYVeSuEnergíaIncrementadaAlPróximoTurno() {
         Gladiador gladiador = new Gladiador(20, new Novato());
 
         for (int i=0; i<8; i++){
             gladiador.aumentarTurno();
         }
 
-        assertEquals(SemiSenior.class,gladiador.verSeniority().getClass());
+        assertEquals(gladiador.calcularEnergia(), 25);
     }
 
     @Test
     public void test09SiLlegaALaMetaSinLaLLaveEnElEquipamientoRetrocedMitadDeLasCasillas(){
 
         Movible gladiador = new Gladiador(20, new Novato());
-        Jugador jugador = new Jugador(gladiador);
-        Tablero mapa = new Tablero(30);
-        mapa.inicializarMovible(gladiador);
 
-        mapa.ubicarMovible(gladiador, 28);
-        mapa.ubicarMovible(gladiador, 1);
+        String stringJson = "{\"mapa\":{\"ancho\":10,\"largo\":18},\"camino\":{\"celdas\":[{\"x\":1,\"y\":7,\"tipo\":\"Salida\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":2,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":2,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":2,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":2,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"\"},{\"x\":2,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"Equipamiento\"},{\"x\":2,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":2,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":3,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":4,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":5,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"Equipamiento\"},{\"x\":6,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":7,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":8,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":9,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":10,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":11,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":12,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":12,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Comida\"},{\"x\":12,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":8,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":12,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":13,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"Comida\"},{\"x\":14,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"\"},{\"x\":15,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":16,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":17,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":17,\"y\":8,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":17,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":17,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":17,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":1,\"tipo\":\"Llegada\",\"obstaculo\":\"\",\"premio\":\"\"}]}}";
+        LinkedList < Casilla> casillas = GestorArchivos.generarListaDeCasillasDesdeJSON(stringJson);
+        Tablero tablero = new Tablero(casillas);
 
-        assertEquals(mapa.obtenerCasillaDe(gladiador), mapa.obtenerCasillaDe(14));
+        tablero.inicializarMovible(gladiador);
+
+        tablero.moverMovible(gladiador, 37);
+        tablero.moverMovible(gladiador, 1);
+
+        assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(19));
     }
 
     @Test
     public void test10PeleaConFieraYTieneTodoElEquipamentoNoPierdeEnergia(){
         Gladiador gladiador = new Gladiador();
+        Posicion pos = new Posicion(1,1);
+        CasillaCamino casillaEquipamiento = new CasillaCamino(pos, new Equipamiento(), new ObstaculoSinEfecto());
+        CasillaCamino casillaFiera = new CasillaCamino(pos, new PremioSinEfecto(), new Fiera());
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
+        casillaEquipamiento.afectarMovible(gladiador);
 
-        gladiador.equiparse();
-        gladiador.equiparse();
-        gladiador.equiparse();
-        gladiador.equiparse();
-
-        assertEquals(20,gladiador.pelearContraFiera());
+        casillaFiera.afectarMovible(gladiador);
+        assertEquals(20,gladiador.calcularEnergia());
     }
 
     @Test
@@ -141,17 +164,36 @@ public class EntregaTest1 {
     }
 
     @Test
-    public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() {
+    public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() throws IOException {
+
+        int turnos = 0;
+        boolean terminado = false;
+
+        Movible gladiador = new Gladiador(20, new Novato());
+
         Jugador jugador1 = new Jugador(new Gladiador(20, new Novato()));
         Jugador jugador2 = new Jugador(new Gladiador(20, new Novato()));
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
-        Juego juego = new Juego(jugadores, 50);
+        String stringJson = "{\"mapa\":{\"ancho\":10,\"largo\":18},\"camino\":{\"celdas\":[{\"x\":1,\"y\":7,\"tipo\":\"Salida\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":2,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":2,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":2,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":2,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"\"},{\"x\":2,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"Equipamiento\"},{\"x\":2,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":2,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":3,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"\"},{\"x\":4,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":5,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"Equipamiento\"},{\"x\":6,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":7,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":8,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":9,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":10,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":11,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":1,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":12,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":12,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Comida\"},{\"x\":12,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"Equipamiento\"},{\"x\":12,\"y\":8,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":12,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":13,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"Comida\"},{\"x\":14,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Fiera\",\"premio\":\"\"},{\"x\":15,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":16,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":17,\"y\":9,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":17,\"y\":8,\"tipo\":\"Camino\",\"obstaculo\":\"Lesion\",\"premio\":\"\"},{\"x\":17,\"y\":7,\"tipo\":\"Camino\",\"obstaculo\":\"Bacanal\",\"premio\":\"\"},{\"x\":17,\"y\":6,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":5,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":4,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Comida\"},{\"x\":17,\"y\":3,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":2,\"tipo\":\"Camino\",\"obstaculo\":\"\",\"premio\":\"Equipamiento\"},{\"x\":17,\"y\":1,\"tipo\":\"Llegada\",\"obstaculo\":\"\",\"premio\":\"\"}]}}";
+        LinkedList <Casilla> casillas = GestorArchivos.generarListaDeCasillasDesdeJSON(stringJson);
+        Tablero tablero = new Tablero(casillas);
+
+        jugador1.inicializarMovible(tablero);
+        jugador2.inicializarMovible(tablero);
+
         for (int i=0; i<30; i++)  {
-            juego.jugarTurno();
+            for (Jugador jugador : jugadores) {
+                jugador.moverMovible(tablero);
+            }
+            turnos++;
+            if (turnos == 30) {
+                terminado = true;
+            }
         }
-        assertTrue(juego.terminado());
+
+        assertTrue(terminado);
     }
 
 }

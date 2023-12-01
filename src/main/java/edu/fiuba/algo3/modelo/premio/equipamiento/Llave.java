@@ -1,8 +1,8 @@
-package edu.fiuba.algo3.modelo.equipamiento;
+package edu.fiuba.algo3.modelo.premio.equipamiento;
 
 import java.util.Stack;
 
-public class Llave implements Equipamiento {
+public class Llave extends Equipamiento {
     public int usar(){
         return (0);
     }

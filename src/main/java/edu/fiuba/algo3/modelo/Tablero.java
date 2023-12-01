@@ -1,63 +1,45 @@
 package edu.fiuba.algo3.modelo;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import edu.fiuba.algo3.modelo.casilla.Casilla;
+import java.util.List;
+
 public class Tablero {
 
-    private ArrayList<Casilla> casillas;
-    private Map<Movible, Integer> mapa;
-
-    public Tablero(int tamanio){
-        this.mapa = new HashMap<>();
-        this.casillas = new ArrayList<Casilla>();
-        for (int i=0; i<tamanio; i++) {
-            this.casillas.add(new Casilla(i));
-        }
+    private Mapeador mapeador;
+    public Tablero(List<Casilla> casillas){
+        this.mapeador = new Mapeador(casillas);
     }
 
-
-    public ArrayList<Casilla> getCasillas(){
-        return this.casillas;
+    public List<Casilla> getCasillas(){
+        return this.mapeador.getCasillas();
     }
 
     public void inicializarMovible(Movible movible){
-        this.mapa.put(movible,0);
-        casillas.get(0).colocarMovible(movible);
+        this.mapeador.inicializarMovible(movible);
     }
 
-    public void ubicarMovible(Movible movible, int unosPasos){
+    public void moverMovible(Movible movible, int unosPasos){
 
-        int nuevaPosicion = unosPasos + this.mapa.get(movible);
-        Casilla casillaDestino;
+        Casilla casillaActual = this.obtenerCasillaDe(movible);
 
+        Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
 
-        if (!(nuevaPosicion > (this.casillas.size()-1))) {
-            int ultimaPosicion = this.casillas.size() - 1;
-            if (nuevaPosicion == ultimaPosicion && !movible.estaCompleto()){
-                casillaDestino = this.casillas.get(ultimaPosicion / 2);
-                this.mapa.put(movible, ultimaPosicion/2);
-            } else {
-                casillaDestino = this.casillas.get(nuevaPosicion);
-                this.mapa.put(movible, nuevaPosicion);
-            }
-
-            casillaDestino.colocarMovible(movible);
-            movible.mover(unosPasos);
-
+        if(!mapeador.tieneSiguiente(casillaDestino) && !movible.estaCompleto()){
+            casillaDestino = mapeador.obtenerCasillaIntermedia();
         }
 
+        casillaActual.moverMovible(casillaDestino, movible);
+        movible.mover(unosPasos);
+        this.mapeador.ubicarMovible(movible, casillaDestino);
+        casillaDestino.afectarMovible(movible);
     }
 
-
     public Casilla obtenerCasillaDe(Movible movible){
-        return this.casillas.get(this.mapa.get(movible));
+        return (this.mapeador.obtenerCasillaDe(movible));
     }
 
     public Casilla obtenerCasillaDe(int posicion){
-        return this.casillas.get(posicion);
+        return this.mapeador.obtenerCasillaDe(posicion);
     }
 
 

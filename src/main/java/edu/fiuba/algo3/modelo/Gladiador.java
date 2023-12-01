@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.equipamiento.*;
+import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
+import edu.fiuba.algo3.modelo.premio.Premio;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
+import edu.fiuba.algo3.modelo.premio.Comida;
+import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import edu.fiuba.algo3.modelo.seniority.*;
 
 import java.util.Stack;
@@ -9,32 +13,34 @@ public class Gladiador implements Movible{
     private Energia energia;
     private Stack<Equipamiento> equipamiento;
 
-    //private int pasos;
-
     private Seniority seniority;
 
     public Gladiador(){
         this.energia = new Energia(20);
         this.equipamiento = new Stack<>();
-        //this.pasos = 0;
         this.seniority = new Novato();
     }
 
     public Gladiador(int energia){
         this.energia = new Energia(energia);
         this.equipamiento = new Stack<>();
-        //this.pasos = 0;
         this.seniority = new Novato();
     }
 
     public Gladiador(int energia, Seniority seniority){
         this.energia = new Energia(energia);
         this.equipamiento = new Stack<>();
-        //this.pasos = 0;
         this.seniority = seniority;
     }
 
-    public int caclularEnergia(){
+    public void vs(Obstaculo obstaculo){
+        obstaculo.afectarGladiador(this);
+    }
+
+    public void obtenerPremio(Premio premio){
+        premio.afectarGladiador(this);
+    }
+    public int calcularEnergia(){
         return (this.energia.calcularEnergia());
     }
 
@@ -61,24 +67,31 @@ public class Gladiador implements Movible{
         return nuevo;
     }
 
-    public int usarEquipamiento() {return equipamiento.peek().usar();}
+    public int usarEquipamiento() {
+        if(equipamiento.isEmpty()){
+            return 20;
+        }else{
+            return equipamiento.peek().usar();
+        }
+    }
     public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
 
-    /*public int verPasos(){
-        return (this.pasos);
-    }*/
+    public void afectarEnergia(int unaCantidad){
+        this.energia.disminuirEnergia(unaCantidad);
+    }
 
     public void mover(int unaCantidad){
         if(energia.calcularEnergia() > 0) {
             this.seniority.sumarPasos(unaCantidad);
-            //this.pasos = (pasos + unaCantidad);
-            energia.disminuirEnergia(1);
+            energia.disminuirEnergia(unaCantidad);
+        }else{
+            this.energia.aumentarEnergia(5);
         }
-
     }
 
     public void aumentarTurno(){
         this.seniority = this.seniority.sumarPaso();
+        this.energia = this.seniority.plusDeEnergia(this.energia);
     }
 
     public Seniority verSeniority(){
@@ -87,6 +100,13 @@ public class Gladiador implements Movible{
 
     public boolean estaCompleto() {
         return (this.equipamiento.size() == 4);
+    }
+
+    public Equipamiento getEquipamiento() {
+        if (equipamiento.isEmpty()) {
+            return null;
+        }
+        return this.equipamiento.peek();
     }
 
 

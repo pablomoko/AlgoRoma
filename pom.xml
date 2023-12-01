@@ -50,7 +50,22 @@
             <artifactId>json</artifactId>
             <version>20231013</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.14.1</version> <!-- Asegúrate de utilizar la versión más reciente disponible -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+   </dependencies>
     <profiles>
         <profile>
             <id>package</id>
