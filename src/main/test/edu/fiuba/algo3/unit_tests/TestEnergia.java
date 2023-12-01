@@ -1,4 +1,4 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.unit_tests;
 
 import edu.fiuba.algo3.modelo.Energia;
 import edu.fiuba.algo3.modelo.premio.Comida;

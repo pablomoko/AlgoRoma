@@ -78,26 +78,16 @@ public class EntregaTest2 {
 
     @Test
     public void test16VerificacionLogger(){
-        //ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        //logger.info("Hola");
-        //String consoleOutput = outputStream.toString().trim();
-       // assertEquals("Hola",outContent);
 
-        // Guarda la salida estándar actual
         PrintStream originalOut = System.out;
 
-        // Crea un nuevo flujo de bytes para capturar la salida
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        // Ejecuta el método que imprime por pantalla el string "hola"
         logger.info("cominedo un panchito");
 
-        // Restaura la salida estándar original
         System.setOut(originalOut);
 
-
-        // Comprueba si la salida coincide con lo esperado
         assertEquals(true, outContent.toString().contains("cominedo un panchito"));
     }
 }

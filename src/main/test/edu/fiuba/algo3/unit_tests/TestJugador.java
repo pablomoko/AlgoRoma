@@ -1,4 +1,4 @@
-package edu.fiuba.algo3;
+package edu.fiuba.algo3.unit_tests;
 
 import edu.fiuba.algo3.modelo.GestorArchivos;
 import edu.fiuba.algo3.modelo.Gladiador;
