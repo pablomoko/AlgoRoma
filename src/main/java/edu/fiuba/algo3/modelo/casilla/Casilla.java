@@ -42,6 +42,10 @@ public abstract class Casilla {
 
     }
 
+    public Posicion getPosicion(){
+        return this.posicion;
+    }
+
     public boolean tieneMovible(Movible unMovible) {
         return (this.movibles.contains(unMovible));
     }
