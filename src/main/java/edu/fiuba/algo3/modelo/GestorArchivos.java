@@ -106,7 +106,7 @@ public class GestorArchivos {
                 return new PremioSinEfecto();
         }
     }
-    private static Casilla crearTipo(String tipoCasilla,Posicion posicion, Premio premio, Obstaculo obstaculo) {
+    private static Casilla crearTipo(String tipoCasilla, Posicion posicion, Premio premio, Obstaculo obstaculo) {
         switch (tipoCasilla) {
             case "Salida":
                 return new CasillaSalida(posicion, premio, obstaculo);

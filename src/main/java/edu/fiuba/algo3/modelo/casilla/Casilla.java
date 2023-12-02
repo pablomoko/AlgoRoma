@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public abstract class Casilla {
 
-    private Posicion posicion;
-    private ArrayList<Movible> movibles;
-    private Premio premio;
-    private Obstaculo obstaculo;
+    protected Posicion posicion;
+    protected ArrayList<Movible> movibles;
+    protected Premio premio;
+    protected Obstaculo obstaculo;
 
     public Casilla(Posicion posicion, Premio premio, Obstaculo obstaculo) {
         this.posicion = posicion;
@@ -45,14 +45,5 @@ public abstract class Casilla {
     public Posicion getPosicion(){
         return this.posicion;
     }
-
-    public boolean tieneMovible(Movible unMovible) {
-        return (this.movibles.contains(unMovible));
-    }
-/*
-    public int getPosicion(){
-        return this.posicion;
-    }*/
-
 
 }

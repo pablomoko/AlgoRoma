@@ -22,6 +22,8 @@ public class Tablero {
 
         Casilla casillaActual = this.obtenerCasillaDe(movible);
 
+        unosPasos = movible.mover(unosPasos);
+
         Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
 
         if(!mapeador.tieneSiguiente(casillaDestino) && !movible.estaCompleto()){
@@ -29,7 +31,7 @@ public class Tablero {
         }
 
         casillaActual.moverMovible(casillaDestino, movible);
-        movible.mover(unosPasos);
+
         this.mapeador.ubicarMovible(movible, casillaDestino);
         casillaDestino.afectarMovible(movible);
     }

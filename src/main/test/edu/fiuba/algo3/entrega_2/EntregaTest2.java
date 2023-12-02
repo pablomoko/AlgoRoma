@@ -84,10 +84,10 @@ public class EntregaTest2 {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        logger.info("cominedo un panchito");
+        logger.info("comiendo un panchito");
 
         System.setOut(originalOut);
 
-        assertEquals(true, outContent.toString().contains("cominedo un panchito"));
+        assertEquals(true, outContent.toString().contains("comiendo un panchito"));
     }
 }
