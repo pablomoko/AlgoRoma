@@ -8,15 +8,11 @@ import edu.fiuba.algo3.modelo.obstaculo.Fiera;
 import edu.fiuba.algo3.modelo.premio.PremioSinEfecto;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Llave;
 import edu.fiuba.algo3.modelo.seniority.*;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.GestorArchivos;
+import edu.fiuba.algo3.modelo.Controlador.GestorArchivos;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 

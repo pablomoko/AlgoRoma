@@ -1,21 +1,14 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
+import edu.fiuba.algo3.modelo.Controlador.GestorArchivos;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
-import edu.fiuba.algo3.modelo.casilla.CasillaSalida;
-import edu.fiuba.algo3.modelo.casilla.CasillaLlegada;
-import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
-import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
-import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
-import edu.fiuba.algo3.modelo.premio.PremioSinEfecto;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.util.LinkedList;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

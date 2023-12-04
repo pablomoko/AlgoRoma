@@ -1,5 +1,6 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.Controlador;
 
+import edu.fiuba.algo3.modelo.Posicion;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
 import edu.fiuba.algo3.modelo.casilla.CasillaLlegada;
