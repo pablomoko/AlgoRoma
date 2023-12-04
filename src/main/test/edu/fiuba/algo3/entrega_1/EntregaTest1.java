@@ -3,6 +3,7 @@ package edu.fiuba.algo3.entrega_1;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
 import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
 import edu.fiuba.algo3.modelo.obstaculo.Fiera;
 import edu.fiuba.algo3.modelo.premio.PremioSinEfecto;
@@ -25,7 +26,7 @@ public class EntregaTest1 {
         Gladiador gladiador = new Gladiador();
 
         assertEquals(20,gladiador.calcularEnergia());
-        assertTrue(gladiador.verEquipamiento().empty());
+        assertEquals(20,gladiador.usarEquipamiento());
 
     }
     @Test
@@ -67,9 +68,9 @@ public class EntregaTest1 {
 
         Gladiador gladiador = new Gladiador();
 
-        Equipamiento actual = gladiador.equiparse();
+        NivelEquipamiento actual = gladiador.equiparse();
 
-        assertEquals(actual.usar(),15);
+        assertEquals(actual.usarEquipamiento(),15);
 
     }
 
@@ -151,12 +152,12 @@ public class EntregaTest1 {
         gladiador.equiparse();
         gladiador.equiparse();
         gladiador.equiparse();
-        Equipamiento actual = gladiador.equiparse();
+        NivelEquipamiento actual = gladiador.equiparse();
 
-        assertEquals(actual.usar(),0);
+        assertEquals(actual.usarEquipamiento(),0);
 
         actual = gladiador.equiparse();
-        assertEquals(actual.usar(),0);
+        assertEquals(actual.usarEquipamiento(),0);
     }
 
     @Test

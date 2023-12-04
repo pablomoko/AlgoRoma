@@ -7,13 +7,4 @@ public class EscYEsp extends Equipamiento {
         return (2);
     }
 
-    public Equipamiento siguienteEquipamiento() {
-        return (new Llave());
-    }
-
-    public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){
-        Equipamiento nuevo = equipamiento.peek().siguienteEquipamiento();
-        equipamiento.push(nuevo);
-        return nuevo;
-    }
 }

@@ -1,5 +1,11 @@
 package edu.fiuba.algo3.unit_tests;
 
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento1;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento2;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento3;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento4;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Llave;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
@@ -25,9 +31,10 @@ public class TestEquipamiento {
     @Test
     public void test02SiguienteEquipamientoDelCascoEsLaArmadura() {
 
-        Casco casco = new Casco();
+        NivelEquipamiento equipamiento = new NivelEquipamiento1();
+        equipamiento = equipamiento.siguienteNivel();
 
-        assertEquals(casco.siguienteEquipamiento().usar(), 10);
+        assertEquals(equipamiento.siguienteNivel().usarEquipamiento(), 10);
 
     }
 
@@ -44,9 +51,12 @@ public class TestEquipamiento {
     @Test
     public void test04SiguienteEquipamientoDeLaArmaduraEsElEscudoYLaEspada() {
 
-        Armadura armadura = new Armadura();
 
-        assertEquals(armadura.siguienteEquipamiento().usar(), 2);
+        NivelEquipamiento equipamiento = new NivelEquipamiento2();
+        equipamiento = equipamiento.siguienteNivel();
+
+        assertEquals(equipamiento.siguienteNivel().usarEquipamiento(), 2);
+
 
     }
 
@@ -63,9 +73,10 @@ public class TestEquipamiento {
     @Test
     public void test06SiguienteEquipamientoDelEscudoYLaEspadaEsLaLLave() {
 
-        EscYEsp escYEsp = new EscYEsp();
+        NivelEquipamiento equipamiento = new NivelEquipamiento3();
+        equipamiento = equipamiento.siguienteNivel();
 
-        assertEquals(escYEsp.siguienteEquipamiento().usar(), 0);
+        assertEquals(equipamiento.siguienteNivel().usarEquipamiento(), 0);
 
     }
 

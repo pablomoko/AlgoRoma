@@ -7,11 +7,4 @@ public class Llave extends Equipamiento {
         return (0);
     }
 
-    public Equipamiento siguienteEquipamiento() {
-        return null;
-    }
-
-    public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){
-        return this;
-    }
 }

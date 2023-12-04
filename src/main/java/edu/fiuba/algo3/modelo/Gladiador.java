@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
@@ -11,25 +13,25 @@ import java.util.Stack;
 
 public class Gladiador implements Movible{
     private Energia energia;
-    private Stack<Equipamiento> equipamiento;
+    private NivelEquipamiento equipamiento;
 
     private Seniority seniority;
 
     public Gladiador(){
         this.energia = new Energia(20);
-        this.equipamiento = new Stack<>();
+        this.equipamiento = new NivelEquipamiento0();
         this.seniority = new Novato();
     }
 
     public Gladiador(int energia){
         this.energia = new Energia(energia);
-        this.equipamiento = new Stack<>();
+        this.equipamiento = new NivelEquipamiento0();
         this.seniority = new Novato();
     }
 
     public Gladiador(int energia, Seniority seniority){
         this.energia = new Energia(energia);
-        this.equipamiento = new Stack<>();
+        this.equipamiento = new NivelEquipamiento0();
         this.seniority = seniority;
     }
 
@@ -48,31 +50,17 @@ public class Gladiador implements Movible{
         return energia.aumentarEnergiaComiendo(unaComida);
     }
 
-    public Stack<Equipamiento> verEquipamiento(){
+    public NivelEquipamiento verEquipamiento(){
         return (this.equipamiento);
     }
 
-    public Equipamiento verSiguienteEquipamiento(){
-        return (this.equipamiento.peek().siguienteEquipamiento());
-    }
-
-    public Equipamiento equiparse(){
-        Equipamiento nuevo;
-        if (equipamiento.isEmpty()){
-            nuevo = new Casco();
-            equipamiento.push(nuevo);
-        }else{
-            nuevo = equipamiento.peek().equiparProximo(equipamiento);
-        }
-        return nuevo;
+    public NivelEquipamiento equiparse(){
+        equipamiento = equipamiento.siguienteNivel();
+        return equipamiento;
     }
 
     public int usarEquipamiento() {
-        if(equipamiento.isEmpty()){
-            return 20;
-        }else{
-            return equipamiento.peek().usar();
-        }
+        return equipamiento.usarEquipamiento();
     }
     public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
 
@@ -101,14 +89,11 @@ public class Gladiador implements Movible{
     }
 
     public boolean estaCompleto() {
-        return (this.equipamiento.size() == 4);
+        return (this.equipamiento.usarEquipamiento() == 0);
     }
 
-    public Equipamiento getEquipamiento() {
-        if (equipamiento.isEmpty()) {
-            return null;
-        }
-        return this.equipamiento.peek();
+    public NivelEquipamiento getEquipamiento() {
+        return equipamiento;
     }
 
 

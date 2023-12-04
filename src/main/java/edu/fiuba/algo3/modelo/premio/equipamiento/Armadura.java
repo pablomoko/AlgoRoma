@@ -7,13 +7,4 @@ public class Armadura extends Equipamiento {
         return (10);
     }
 
-    public Equipamiento siguienteEquipamiento() {
-        return (new EscYEsp());
-    }
-
-    public Equipamiento equiparProximo(Stack<Equipamiento> equipamiento){
-        Equipamiento nuevo = equipamiento.peek().siguienteEquipamiento();
-        equipamiento.push(nuevo);
-        return nuevo;
-    }
 }

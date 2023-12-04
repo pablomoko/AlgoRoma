@@ -3,6 +3,9 @@ package edu.fiuba.algo3.entrega_2;
 import edu.fiuba.algo3.modelo.*;
 import edu.fiuba.algo3.modelo.Controlador.GestorArchivos;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
+import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento1;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -64,9 +67,9 @@ public class EntregaTest2 {
         Tablero tablero = new Tablero(casillas);
         tablero.inicializarMovible(gladiador);
 
-        assertNull(gladiador.getEquipamiento());
+        assertEquals(gladiador.getEquipamiento().getClass(), NivelEquipamiento0.class);
         tablero.moverMovible(gladiador, 1);
-        assertEquals(gladiador.getEquipamiento().getClass(), Casco.class);
+        assertEquals(NivelEquipamiento1.class,gladiador.getEquipamiento().getClass());
     }
 
     @Test
