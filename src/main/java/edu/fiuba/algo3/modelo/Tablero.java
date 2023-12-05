@@ -26,13 +26,8 @@ public class Tablero {
 
         Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
 
-        if(!mapeador.tieneSiguiente(casillaDestino) && !movible.estaCompleto()){
-            casillaDestino = mapeador.obtenerCasillaIntermedia();
-        }
+        casillaActual.moverMovible(casillaDestino, movible, mapeador);
 
-        casillaActual.moverMovible(casillaDestino, movible);
-
-        this.mapeador.ubicarMovible(movible, casillaDestino);
         casillaDestino.afectarMovible(movible);
     }
 
