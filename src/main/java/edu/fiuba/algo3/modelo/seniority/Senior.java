@@ -3,8 +3,13 @@ package edu.fiuba.algo3.modelo.seniority;
 import edu.fiuba.algo3.modelo.Energia;
 
 public class Senior extends Seniority{
-    public Senior() {
-        super(12);
+    public Senior(int pasos) {
+        super(12, pasos);
+    }
+
+    public Seniority sumarTurno(){
+        cantidadTurnos++;
+        return this;
     }
 
     public Energia plusDeEnergia(Energia energia){

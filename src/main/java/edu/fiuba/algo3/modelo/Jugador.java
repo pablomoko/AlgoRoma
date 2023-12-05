@@ -14,7 +14,7 @@ public class Jugador  {
         tablero.inicializarMovible(this.movible);
     }
 
-    public void moverMovible(Tablero tablero,Dado dado){
+    public void moverMovible(Tablero tablero,Tirador dado){
 
         tablero.moverMovible(this.movible, dado.tirarDado());
    }

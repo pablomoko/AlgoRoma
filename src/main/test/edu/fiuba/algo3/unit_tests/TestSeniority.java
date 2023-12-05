@@ -19,7 +19,7 @@ public class TestSeniority {
         Seniority seniority = new Novato();
         Energia energia = new Energia(20);
 
-        seniority = seniority.sumarPasos(9);
+        seniority = seniority.sumarTurnos(9);
         energia = seniority.plusDeEnergia(energia);
 
         assertEquals(energia.calcularEnergia(), 25);
@@ -29,10 +29,10 @@ public class TestSeniority {
     @Test
     public void test02DeSemiSeniorSeAsciendeASeniorSiSeLlegaA12Pasos() {
 
-        Seniority seniority = new SemiSenior();
+        Seniority seniority = new SemiSenior(1);
         Energia energia = new Energia(20);
 
-        seniority = seniority.sumarPasos(4);
+        seniority = seniority.sumarTurnos(4);
         energia = seniority.plusDeEnergia(energia);
 
         assertEquals(energia.calcularEnergia(), 30);
@@ -42,10 +42,10 @@ public class TestSeniority {
     @Test
     public void test03SeniorNoAsciende() {
 
-        Seniority seniority = new Senior();
+        Seniority seniority = new Senior(1);
         Energia energia = new Energia(20);
 
-        seniority = seniority.sumarPasos(10);
+        seniority = seniority.sumarTurnos(10);
         energia = seniority.plusDeEnergia(energia);
 
         assertEquals(energia.calcularEnergia(), 30);

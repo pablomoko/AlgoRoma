@@ -4,22 +4,22 @@ import edu.fiuba.algo3.modelo.Energia;
 
 public class SemiSenior extends Seniority{
 
-    public SemiSenior() {
-        super(8);
+    public SemiSenior(int pasos) {
+        super(8,pasos);
     }
 
-    public Seniority sumarPaso() {
-        this.cantidadPasos++;
-        if (cantidadPasos >= 8){
-            return new Senior();
+    public Seniority sumarTurno() {
+        this.cantidadTurnos++;
+        if (cantidadTurnos >= 12){
+            return new Senior(pasos);
         }
         return this;
     }
 
-    public Seniority sumarPasos(int unaCantidad) {
-        this.cantidadPasos+= unaCantidad;
-        if (cantidadPasos >= 12){
-            return new Senior();
+    public Seniority sumarTurnos(int unaCantidad) {
+        this.cantidadTurnos+= unaCantidad;
+        if (cantidadTurnos >= 12){
+            return new Senior(pasos);
         }
         return this;
     }

@@ -5,21 +5,21 @@ import edu.fiuba.algo3.modelo.Energia;
 public class Novato extends Seniority{
 
     public Novato() {
-        super(0);
+        super(0,0);
     }
 
-    public Seniority sumarPaso() {
-        this.cantidadPasos++;
-        if (cantidadPasos >= 8){
-            return new SemiSenior();
+    public Seniority sumarTurno() {
+        this.cantidadTurnos++;
+        if (cantidadTurnos >= 8){
+            return new SemiSenior(pasos);
         }
         return this;
     }
 
-    public Seniority sumarPasos(int unaCantidad) {
-        this.cantidadPasos+= unaCantidad;
-        if (cantidadPasos >= 8){
-            return new SemiSenior();
+    public Seniority sumarTurnos(int unaCantidad) {
+        this.cantidadTurnos+= unaCantidad;
+        if (cantidadTurnos >= 8){
+            return new SemiSenior(pasos);
         }
         return this;
     }

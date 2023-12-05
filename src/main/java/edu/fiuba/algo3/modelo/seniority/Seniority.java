@@ -3,18 +3,19 @@ package edu.fiuba.algo3.modelo.seniority;
 import edu.fiuba.algo3.modelo.Energia;
 public abstract class Seniority {
 
-    int cantidadPasos = 0;
+    int cantidadTurnos;
 
-    public Seniority(int pasos) {
-        this.cantidadPasos = pasos;
+    int pasos;
+
+    public Seniority(int cantTurnos, int pasos) {
+        this.cantidadTurnos = cantTurnos;
+        this.pasos = pasos;
     }
 
-    public Seniority sumarPaso(){
-        return this;
-    };
+    public abstract Seniority sumarTurno();
 
-    public Seniority sumarPasos(int unaCantidad){
-        this.cantidadPasos = this.cantidadPasos + unaCantidad;
+    public Seniority sumarTurnos(int unaCantidad){
+        this.cantidadTurnos = this.cantidadTurnos + unaCantidad;
         return this;
     };
 
@@ -23,6 +24,6 @@ public abstract class Seniority {
     }
 
     public int verPasos(){
-        return (this.cantidadPasos);
+        return (this.pasos);
     }
 }
