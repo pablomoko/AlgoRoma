@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.Random;
 
-public class Jugador implements Dado{
+public class Jugador  {
 
     private Movible movible;
 
@@ -14,13 +14,9 @@ public class Jugador implements Dado{
         tablero.inicializarMovible(this.movible);
     }
 
-    public void moverMovible(Tablero tablero){
+    public void moverMovible(Tablero tablero,Dado dado){
 
-        tablero.moverMovible(this.movible, this.tirarDado());
+        tablero.moverMovible(this.movible, dado.tirarDado());
    }
 
-    @Override
-    public int tirarDado() {
-        return new Random().nextInt(6 - 1 + 1) + 1;
-    }
 }

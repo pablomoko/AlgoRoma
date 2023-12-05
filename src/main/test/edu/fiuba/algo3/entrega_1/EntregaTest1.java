@@ -166,6 +166,7 @@ public class EntregaTest1 {
         int turnos = 0;
         boolean terminado = false;
 
+        Dado dado = new Dado();
         Jugador jugador1 = new Jugador(new Gladiador(20, new Novato()));
         Jugador jugador2 = new Jugador(new Gladiador(20, new Novato()));
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
@@ -180,7 +181,7 @@ public class EntregaTest1 {
 
         for (int i=0; i<30; i++)  {
             for (Jugador jugador : jugadores) {
-                jugador.moverMovible(tablero);
+                jugador.moverMovible(tablero,dado);
             }
             turnos++;
             if (turnos == 30) {
