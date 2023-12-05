@@ -26,4 +26,9 @@ public abstract class Seniority {
     public int verPasos(){
         return (this.pasos);
     }
+
+    public int sumarPasos(int unaCantidad){
+        pasos += unaCantidad;
+        return pasos;
+    }
 }
