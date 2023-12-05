@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo.Controlador;
+package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Posicion;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
@@ -13,15 +13,7 @@ import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.LinkedList;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
 // Otros imports según tus necesidades
 
 

@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.unit_tests;
 
-import edu.fiuba.algo3.modelo.Controlador.GestorArchivos;
+import edu.fiuba.algo3.controlador.GestorArchivos;
 import edu.fiuba.algo3.modelo.Gladiador;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;

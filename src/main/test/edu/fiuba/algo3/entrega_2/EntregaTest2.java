@@ -1,12 +1,10 @@
 package edu.fiuba.algo3.entrega_2;
 
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.Controlador.GestorArchivos;
+import edu.fiuba.algo3.controlador.GestorArchivos;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
-import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento1;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.json.JSONArray;

@@ -11,7 +11,7 @@ import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
 import edu.fiuba.algo3.modelo.seniority.*;
 import org.junit.jupiter.api.Test;
-import edu.fiuba.algo3.modelo.Controlador.GestorArchivos;
+import edu.fiuba.algo3.controlador.GestorArchivos;
 
 import java.io.IOException;
 import java.util.ArrayList;
