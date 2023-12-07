@@ -5,6 +5,6 @@ public class Lesion extends Obstaculo{
     public Lesion(){};
 
     public void afectarGladiador(Gladiador gladiador){
-
+        //gladiador pierde turno
     }
 }

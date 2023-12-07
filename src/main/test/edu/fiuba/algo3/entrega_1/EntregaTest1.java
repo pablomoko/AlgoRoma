@@ -183,7 +183,7 @@ public class EntregaTest1 {
 
         for (int i=0; i<30; i++)  {
             for (Jugador jugador : jugadores) {
-                jugador.moverMovible(tablero);
+                jugador.moverMovible(tablero, dado.tirarDado());
             }
             turnos++;
             if (turnos == 30) {

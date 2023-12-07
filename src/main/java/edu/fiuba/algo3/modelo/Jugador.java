@@ -16,9 +16,13 @@ public class Jugador  {
         tablero.inicializarMovible(this.movible);
     }
 
-    public void moverMovible(Tablero tablero){
+    public void moverMovible(Tablero tablero, int pasos){
 
-        tablero.moverMovible(this.movible, dado.tirarDado());
+        tablero.moverMovible(this.movible, pasos);
+   }
+
+   public Movible obtenerMovible(){
+        return movible;
    }
 
 }
