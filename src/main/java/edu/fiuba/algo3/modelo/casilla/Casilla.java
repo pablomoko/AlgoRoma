@@ -23,18 +23,15 @@ public abstract class Casilla {
     }
 
 
-    public void colocarMovible(Movible unMovible) {
+    public void colocarMovible(Movible unMovible, Mapeador mapeador) {
         this.movibles.add(unMovible);
+        mapeador.ubicarMovible(unMovible, this);
     }
 
     public void moverMovible(Casilla casillaDestino, Movible unMovible, Mapeador mapeador) {
         if (!this.movibles.isEmpty()) {
-            if (casillaDestino instanceof CasillaLlegada && !unMovible.estaCompleto() ){
-                casillaDestino = mapeador.obtenerCasillaIntermedia();
-            }
             this.movibles.remove(unMovible);
-            casillaDestino.colocarMovible(unMovible);
-            mapeador.ubicarMovible(unMovible, casillaDestino);
+            casillaDestino.colocarMovible(unMovible, mapeador);
         } else {
             throw new IllegalStateException("No hay gladiador en esta casilla");
         }
