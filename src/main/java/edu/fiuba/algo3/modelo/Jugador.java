@@ -5,11 +5,11 @@ import java.util.Random;
 public class Jugador  {
 
     private Movible movible;
-    private Tirador dado;
+    private String nombre;
 
-    public Jugador(Movible movible, Tirador dado){
+    public Jugador(String nombre,Movible movible){
         this.movible = movible;
-        this.dado = dado;
+        this.nombre = nombre;
     }
 
     public void inicializarMovible(Tablero tablero){

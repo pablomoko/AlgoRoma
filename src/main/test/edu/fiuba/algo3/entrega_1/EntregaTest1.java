@@ -167,8 +167,8 @@ public class EntregaTest1 {
         boolean terminado = false;
 
         Tirador dado = new DadoMock(0);
-        Jugador jugador1 = new Jugador(new Gladiador(20, new Novato()), dado);
-        Jugador jugador2 = new Jugador(new Gladiador(20, new Novato()), dado);
+        Jugador jugador1 = new Jugador("jugador1",new Gladiador(20, new Novato()));
+        Jugador jugador2 = new Jugador("jugador2",new Gladiador(20, new Novato()));
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
