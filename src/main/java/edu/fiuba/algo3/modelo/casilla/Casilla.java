@@ -25,13 +25,13 @@ public abstract class Casilla {
 
     public void colocarMovible(Movible unMovible, Mapeador mapeador) {
         this.movibles.add(unMovible);
+        mapeador.ubicarMovible(unMovible, this);
     }
 
     public void moverMovible(Casilla casillaDestino, Movible unMovible, Mapeador mapeador) {
         if (!this.movibles.isEmpty()) {
             this.movibles.remove(unMovible);
             casillaDestino.colocarMovible(unMovible, mapeador);
-            mapeador.ubicarMovible(unMovible, casillaDestino);
         } else {
             throw new IllegalStateException("No hay gladiador en esta casilla");
         }

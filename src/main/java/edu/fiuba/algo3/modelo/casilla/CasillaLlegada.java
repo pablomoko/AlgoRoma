@@ -13,23 +13,14 @@ public class CasillaLlegada extends Casilla{
     }
 
     public void colocarMovible(Movible unMovible, Mapeador mapeador) {
-        if (unMovible.estaCompleto()) {
-            this.movibles.add(unMovible);
+        if (!unMovible.estaCompleto()){
+            mapeador.obtenerCasillaIntermedia().movibles.add(unMovible);
+            mapeador.ubicarMovible(unMovible, mapeador.obtenerCasillaIntermedia());
         }
         else{
-            mapeador.obtenerCasillaIntermedia().movibles.add(unMovible);
+            this.movibles.add(unMovible);
+            mapeador.ubicarMovible(unMovible, this);
         }
     }
-
-    public void moverMovible(Casilla casillaDestino, Movible unMovible,  Mapeador mapeador) {
-        if (!this.movibles.isEmpty()) {
-            casillaDestino.colocarMovible(unMovible, mapeador);
-            this.movibles.remove(unMovible);
-            mapeador.ubicarMovible(unMovible, casillaDestino);
-        } else {
-            throw new IllegalStateException("No hay gladiador en esta casilla");
-        }
-    }
-
     }
 
