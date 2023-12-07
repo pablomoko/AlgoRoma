@@ -10,22 +10,14 @@ public class Energia {
     public int calcularEnergia(){
         return valor;
     }
-    public int aumentarEnergiaComiendo(Comida unaComida){
-        valor = valor + unaComida.caclularValorEnergetico();
-        return valor;
-    }
 
     public Energia aumentarEnergia(int unaCantidad){
         this.valor+= unaCantidad;
         return this;
     }
-    public int gastarEnergiaPeleando(Gladiador gladiador){
-        valor = valor - gladiador.usarEquipamiento();
-        return valor;
-    }
 
-    public int disminuirEnergia(int unValor){
-        valor = valor - unValor;
+    public int disminuirEnergia(int unaCantidad){
+        valor = valor - unaCantidad;
         return valor;
     }
 

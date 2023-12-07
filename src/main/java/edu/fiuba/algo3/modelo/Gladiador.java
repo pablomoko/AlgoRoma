@@ -47,7 +47,8 @@ public class Gladiador implements Movible{
     }
 
     public int alimentarse(Comida unaComida){
-        return energia.aumentarEnergiaComiendo(unaComida);
+        afectarEnergia(-unaComida.caclularValorEnergetico());
+        return energia.calcularEnergia();
     }
 
     public NivelEquipamiento verEquipamiento(){
@@ -62,7 +63,10 @@ public class Gladiador implements Movible{
     public int usarEquipamiento() {
         return equipamiento.usarEquipamiento();
     }
-    public int pelearContraFiera(){ return energia.gastarEnergiaPeleando(this);}
+    public int pelearContraFiera(){
+        afectarEnergia(this.equipamiento.usarEquipamiento());
+        return energia.calcularEnergia();
+    }
 
     public void afectarEnergia(int unaCantidad){
         this.energia.disminuirEnergia(unaCantidad);
