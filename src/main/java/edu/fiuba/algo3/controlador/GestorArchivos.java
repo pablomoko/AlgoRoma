@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Posicion;
+import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
 import edu.fiuba.algo3.modelo.casilla.CasillaLlegada;
@@ -83,7 +84,7 @@ public class GestorArchivos {
             case "Lesion":
                 return new Lesion();
             case "Bacanal":
-                return new Bacanal();
+                return new Bacanal(new Dado());
             default:
                 return new ObstaculoSinEfecto();
         }

@@ -5,6 +5,7 @@ import edu.fiuba.algo3.controlador.GestorArchivos;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento1;
+import edu.fiuba.algo3.vista.logger;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.json.JSONArray;

@@ -2,6 +2,7 @@ package edu.fiuba.algo3.unit_tests;
 
 import edu.fiuba.algo3.controlador.GestorArchivos;
 import edu.fiuba.algo3.modelo.Gladiador;
+import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
@@ -17,9 +18,9 @@ public class TestJugador {
 
     @Test
     public void test01SeInicializaUnMovibleAlPrincipioDelTablero() {
-
+        Dado dado = new Dado();
         Gladiador gladiador = new Gladiador(20, new Novato());
-        Jugador jugador = new Jugador(gladiador);
+        Jugador jugador = new Jugador(gladiador, dado);
 
 
 

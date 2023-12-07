@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.vista;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
