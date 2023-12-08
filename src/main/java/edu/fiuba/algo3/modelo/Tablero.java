@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import java.util.List;
 
-public class Tablero {
+public class Tablero  {
 
     private Mapeador mapeador;
 
@@ -41,7 +41,7 @@ public class Tablero {
     }
 
     // public void jugarPartida(){
-     
+
     //}
 
 

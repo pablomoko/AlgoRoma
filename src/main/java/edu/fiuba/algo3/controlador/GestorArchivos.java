@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.modelo.Movible;
 import edu.fiuba.algo3.modelo.Posicion;
 import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
@@ -14,8 +15,9 @@ import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.LinkedList;
-
+import java.util.Map;
 
 
 public class GestorArchivos {
@@ -24,10 +26,6 @@ public class GestorArchivos {
         LinkedList <Casilla> casillas = new LinkedList<>();
 
         JSONObject rootObject = new JSONObject(contenido);
-
-        JSONObject mapaObject = rootObject.getJSONObject("mapa");
-        int ancho = mapaObject.getInt("ancho");
-        int largo = mapaObject.getInt("largo");
 
         JSONArray celdasArray = rootObject.getJSONObject("camino").getJSONArray("celdas");
 
@@ -38,6 +36,19 @@ public class GestorArchivos {
             casillas.add(casilla);
         }
         return casillas;
+    }
+    public static Map <String,Integer> generarDimesiones(String contenido){
+        JSONObject rootObject = new JSONObject(contenido);
+
+        JSONObject mapaObject = rootObject.getJSONObject("mapa");
+        int ancho = mapaObject.getInt("ancho");
+        int largo = mapaObject.getInt("largo");
+
+        Map <String,Integer> dimensiones = new HashMap<>();
+        dimensiones.put("ancho",ancho);
+        dimensiones.put("largo",largo);
+
+        return dimensiones;
     }
 
     public static Casilla crearCasilla(JSONObject celdaObject){
