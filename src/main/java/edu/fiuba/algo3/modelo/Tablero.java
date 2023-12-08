@@ -26,7 +26,7 @@ public class Tablero {
 
         Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
 
-        casillaActual.moverMovible(casillaDestino, movible, mapeador);
+        casillaActual.moverMovible(casillaDestino, movible, this.mapeador);
 
         casillaDestino.afectarMovible(movible);
     }

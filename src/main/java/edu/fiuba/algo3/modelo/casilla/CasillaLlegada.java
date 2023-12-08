@@ -16,13 +16,11 @@ public class CasillaLlegada extends Casilla{
         if (!unMovible.estaCompleto()){
             mapeador.obtenerCasillaIntermedia().movibles.add(unMovible);
             mapeador.ubicarMovible(unMovible, mapeador.obtenerCasillaIntermedia());
-
         }
         else{
             this.movibles.add(unMovible);
             mapeador.ubicarMovible(unMovible, this);
         }
     }
+    }
 
-
-}

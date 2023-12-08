@@ -127,6 +127,7 @@ public class EntregaTest1 {
         tablero.moverMovible(gladiador, 37);
         tablero.moverMovible(gladiador, 1);
 
+        assertFalse(gladiador.estaCompleto());
         assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(19));
     }
 
