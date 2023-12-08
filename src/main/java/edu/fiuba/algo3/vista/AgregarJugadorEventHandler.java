@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,24 +16,33 @@ public class AgregarJugadorEventHandler implements EventHandler<ActionEvent> {
 
     private Label label;
 
+    private TextField nombreJugador;
 
-    public AgregarJugadorEventHandler(Stage stage, int cantidadJugadores, Label label) {
+
+    public AgregarJugadorEventHandler(Stage stage, int cantidadJugadores, Label label, TextField nombreJugador) {
         this.stage = stage;
         this.cantidadJugadores = cantidadJugadores;
         this.label = label;
+        this.nombreJugador = nombreJugador;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (cantidadJugadores < 6 ) {
-            ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, this.cantidadJugadores+1, this.label);
-            label.setText("Se ha agregado correctamente el jugador ingresado");
-            label.setTextFill(Color.DARKGREEN);
-            Scene proximaEscena = new Scene(contenedorJugadores, 800, 700);
-            stage.setScene(proximaEscena);
-        }else{
-            label.setText("Se ha llegado al limite de jugadores");
+        if (this.nombreJugador.getText().length() < 4) {
+            label.setText("El nombre debe contener como minimo 4 caracteres");
             label.setTextFill(Color.DARKBLUE);
+        }else {
+            if (cantidadJugadores < 6) {
+                ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, this.cantidadJugadores + 1, this.label);
+                label.setText("Se ha agregado correctamente el jugador ingresado");
+                label.setTextFill(Color.DARKGREEN);
+                Scene proximaEscena = new Scene(contenedorJugadores, 800, 700);
+                stage.setScene(proximaEscena);
+                stage.setFullScreen(true);
+            } else {
+                label.setText("Se ha llegado al limite de jugadores");
+                label.setTextFill(Color.DARKBLUE);
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ public class Pantallita extends Application {
         Scene escenaInicial = new Scene(contenedorInicial, 800, 700);
 
         stage.setScene(escenaInicial);
+        stage.setFullScreenExitHint("");
         stage.show();
     }
 }
