@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 
 public class Pantallita extends Application {
 
@@ -16,11 +17,12 @@ public class Pantallita extends Application {
 
         stage.setTitle("Pantallita");
         Label label = new Label();
+        GestorFlujoDeJuego gestorFlujoDeJuego = new GestorFlujoDeJuego();
 
-        ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, 0, label);
+        ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, 0, label, gestorFlujoDeJuego);
         Scene escenaJugadores = new Scene(contenedorJugadores, 800, 700);
 
-        ContenedorInicial contenedorInicial = new ContenedorInicial(stage, escenaJugadores);
+        ContenedorInicial contenedorInicial = new ContenedorInicial(stage, escenaJugadores, gestorFlujoDeJuego);
         Scene escenaInicial = new Scene(contenedorInicial, 800, 700);
 
         stage.setScene(escenaInicial);
