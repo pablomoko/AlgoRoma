@@ -6,10 +6,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 public class BotonEmpezarEventHandler implements EventHandler<ActionEvent> {
-
-    Stage stage;
-    Scene proximaEscena;
-
+    private Stage stage;
+    private Scene proximaEscena;
     public BotonEmpezarEventHandler(Stage stage, Scene proximaEscena){
         this.stage = stage;
         this.proximaEscena = proximaEscena;
@@ -18,5 +16,6 @@ public class BotonEmpezarEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         stage.setScene(proximaEscena);
+        stage.setFullScreen(true);
     }
 }
