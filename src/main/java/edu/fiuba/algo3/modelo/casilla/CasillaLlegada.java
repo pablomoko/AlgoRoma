@@ -19,8 +19,9 @@ public class CasillaLlegada extends Casilla{
         }
         else{
             this.movibles.add(unMovible);
-            mapeador.ubicarMovible(unMovible, this);
+            mapeador.ubicarMovible(unMovible.ganador(), this);
+
         }
     }
-    }
+}
 

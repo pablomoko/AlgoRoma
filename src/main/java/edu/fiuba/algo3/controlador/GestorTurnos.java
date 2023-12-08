@@ -8,13 +8,13 @@ import java.util.List;
 public class GestorTurnos<T> {
     private ArrayList<T> listaDeTurnos;
     private int indiceTurnoActual;
-    private int rondaActual;
+    private int rondasMaximas;
     private int jugadorQueIniciaRonda;
 
-    public GestorTurnos() {
+    public GestorTurnos(int rondasMaximas) {
         this.listaDeTurnos = new ArrayList<>();
         this.indiceTurnoActual = 0;
-        this.rondaActual = 0;
+        this.rondasMaximas = rondasMaximas;
         this.jugadorQueIniciaRonda = 0;
     }
 
@@ -36,14 +36,24 @@ public class GestorTurnos<T> {
     }
 
     public void avanzarTurno() {
-        if (!listaDeTurnos.isEmpty()) {
+
+        if (!listaDeTurnos.isEmpty() && rondasMaximas!=0) {
             indiceTurnoActual = (indiceTurnoActual + 1) % listaDeTurnos.size();
         }
         if (indiceTurnoActual == jugadorQueIniciaRonda) {
-            rondaActual++;
+            if (rondasMaximas == 0){
+                throw new IllegalArgumentException("Ya se supero la cantidad de rondas maximas");
+            }
+            rondasMaximas--;
         }
     }
+    public void avanzarTurnos(int numeroDeTurnos) {
 
 
+
+        for (int i=0; i< numeroDeTurnos;i++){
+            this.avanzarTurno();
+        }
+    }
 
 }
