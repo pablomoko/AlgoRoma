@@ -12,10 +12,10 @@ import edu.fiuba.algo3.modelo.seniority.*;
 import java.util.Stack;
 
 public class Gladiador implements Movible{
-    private Energia energia;
-    private NivelEquipamiento equipamiento;
-
-    private Seniority seniority;
+    protected Energia energia;
+    protected NivelEquipamiento equipamiento;
+    protected Seniority seniority;
+    protected EsGanador esGanador;
 
     public Gladiador(){
         this.energia = new Energia(20);
@@ -33,6 +33,7 @@ public class Gladiador implements Movible{
         this.energia = new Energia(energia);
         this.equipamiento = new NivelEquipamiento0();
         this.seniority = seniority;
+        this.esGanador = new EsGanador(false);
     }
 
     public void vs(Obstaculo obstaculo){
@@ -101,5 +102,9 @@ public class Gladiador implements Movible{
         return equipamiento;
     }
 
+    public Gladiador ganador(){
+        this.esGanador.setEsGanador();
+        return this;
+    }
 
 }

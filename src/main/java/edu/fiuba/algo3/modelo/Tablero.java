@@ -6,19 +6,20 @@ import java.util.List;
 public class Tablero {
 
     private Mapeador mapeador;
-    public Tablero(List<Casilla> casillas){
+
+    public Tablero(List<Casilla> casillas) {
         this.mapeador = new Mapeador(casillas);
     }
 
-    public List<Casilla> getCasillas(){
+    public List<Casilla> getCasillas() {
         return this.mapeador.getCasillas();
     }
 
-    public void inicializarMovible(Movible movible){
+    public void inicializarMovible(Movible movible) {
         this.mapeador.inicializarMovible(movible);
     }
 
-    public void moverMovible(Movible movible, int unosPasos){
+    public void moverMovible(Movible movible, int unosPasos) {
 
         Casilla casillaActual = this.obtenerCasillaDe(movible);
 
@@ -31,15 +32,17 @@ public class Tablero {
         casillaDestino.afectarMovible(movible);
     }
 
-    public Casilla obtenerCasillaDe(Movible movible){
+    public Casilla obtenerCasillaDe(Movible movible) {
         return (this.mapeador.obtenerCasillaDe(movible));
     }
 
-    public Casilla obtenerCasillaDe(int posicion){
+    public Casilla obtenerCasillaDe(int posicion) {
         return this.mapeador.obtenerCasillaDe(posicion);
     }
 
-
+    // public void jugarPartida(){
+     
+    //}
 
 
 }

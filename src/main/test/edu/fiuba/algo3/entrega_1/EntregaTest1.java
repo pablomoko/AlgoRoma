@@ -1,8 +1,8 @@
 package edu.fiuba.algo3.entrega_1;
 
+import edu.fiuba.algo3.controlador.GestorTurnos;
 import edu.fiuba.algo3.modelo.*;
-import edu.fiuba.algo3.modelo.casilla.Casilla;
-import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
+import edu.fiuba.algo3.modelo.casilla.*;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
 import edu.fiuba.algo3.modelo.obstaculo.ObstaculoSinEfecto;
 import edu.fiuba.algo3.modelo.obstaculo.Fiera;
@@ -164,12 +164,11 @@ public class EntregaTest1 {
     @Test
     public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() throws IOException {
 
-        int turnos = 0;
-        boolean terminado = false;
+        GestorTurnos<Jugador> gestorTurnos = new GestorTurnos<>(30);
 
-        Tirador dado = new DadoMock(0);
         Jugador jugador1 = new Jugador("jugador1",new Gladiador(20, new Novato()));
         Jugador jugador2 = new Jugador("jugador2",new Gladiador(20, new Novato()));
+
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
@@ -180,19 +179,15 @@ public class EntregaTest1 {
         jugador1.inicializarMovible(tablero);
         jugador2.inicializarMovible(tablero);
 
+        gestorTurnos.agregarTurno(jugador1);
+        gestorTurnos.agregarTurno(jugador2);
+        gestorTurnos.rondaCero(0);
+        gestorTurnos.avanzarTurnos(60); //30 * 2 (cantidad turnos max por jugador)
 
+        assertThrows(IllegalArgumentException.class, gestorTurnos::avanzarTurno, "Ya se superó la cantidad de rondas máximas");
+        assertNotEquals(tablero.obtenerCasillaDe(jugador1.obtenerMovible()).getClass(), CasillaLlegada.class);
+        assertNotEquals(tablero.obtenerCasillaDe(jugador2.obtenerMovible()).getClass(), CasillaLlegada.class);
 
-        for (int i=0; i<30; i++)  {
-            for (Jugador jugador : jugadores) {
-                jugador.moverMovible(tablero, dado.tirarDado());
-            }
-            turnos++;
-            if (turnos == 30) {
-                terminado = true;
-            }
-        }
-
-        assertTrue(terminado);
     }
 
 }

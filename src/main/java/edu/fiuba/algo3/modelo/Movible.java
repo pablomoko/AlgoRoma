@@ -9,4 +9,6 @@ public interface Movible {
 
     public void vs(Obstaculo obstaculo);
     public void obtenerPremio(Premio premio);
+
+    public Gladiador ganador();
 }
