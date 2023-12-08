@@ -40,8 +40,8 @@ public class GestorFlujoDeJuego {
             throw new IllegalArgumentException("La cantidad de jugadores debe ser mayor a 2");
         }
     };
-    public Jugador jugadorInicial() { // EN LA VISTA 3 AGREGAR BOTON TIRAR DADO PARA VER QUE JUGADOR EMPIEZA (BOTON) | TIRAR DADO |
-        int numeroJugadorInicial = dado.tirarDado(jugadores.cantidadTurnos());
+    public Jugador jugadorInicial(int numeroJugadorInicial) { // EN LA VISTA 3 AGREGAR BOTON TIRAR DADO PARA VER QUE JUGADOR EMPIEZA (BOTON) | TIRAR DADO |
+        jugadores.rondaCero(numeroJugadorInicial);
         for (int i = 0 ; i< numeroJugadorInicial ;i++){
             jugadores.avanzarTurno();
         }
@@ -52,7 +52,6 @@ public class GestorFlujoDeJuego {
         unJugador.moverMovible(tablero,unosPasos);
 //se muestran todos los mensajes obstaculos premios etc
         jugadores.avanzarTurno();
-
 
     }
 
@@ -67,7 +66,7 @@ public class GestorFlujoDeJuego {
 
 
     private void saltarTurno(){
-
+    jugadores.avanzarTurno();
     }
 
     private Tablero inicialiarTablero(String stringJson){

@@ -8,10 +8,14 @@ import java.util.List;
 public class GestorTurnos<T> {
     private ArrayList<T> listaDeTurnos;
     private int indiceTurnoActual;
+    private int rondaActual;
+    private int jugadorQueIniciaRonda;
 
     public GestorTurnos() {
         this.listaDeTurnos = new ArrayList<>();
         this.indiceTurnoActual = 0;
+        this.rondaActual = 0;
+        this.jugadorQueIniciaRonda = 0;
     }
 
     public void agregarTurno(T turno) {
@@ -27,10 +31,16 @@ public class GestorTurnos<T> {
         }
         return listaDeTurnos.get(indiceTurnoActual);
     }
+    public void rondaCero(int numeroJugadorInicial){
+        jugadorQueIniciaRonda = numeroJugadorInicial;
+    }
 
     public void avanzarTurno() {
         if (!listaDeTurnos.isEmpty()) {
             indiceTurnoActual = (indiceTurnoActual + 1) % listaDeTurnos.size();
+        }
+        if (indiceTurnoActual == jugadorQueIniciaRonda) {
+            rondaActual++;
         }
     }
 
