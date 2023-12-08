@@ -1,25 +1,18 @@
-package edu.fiuba.algo3.interfazGrafica;
-
-import javafx.application.Application;
+package edu.fiuba.algo3.vista;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
 
-public class Pantallita extends Application {
+public class ContenedorInicial extends VBox{
+    Stage stage;
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public ContenedorInicial(Stage stage, Scene proximaEscena){
 
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("Pantallita");
+        this.stage = stage;
 
         Label titulo = new Label();
         titulo.setText("AlgoRoma");
@@ -32,7 +25,6 @@ public class Pantallita extends Application {
         Label cantidadJugadores = new Label();
         cantidadJugadores.setText("2 jugadores");
         cantidadJugadores.setStyle("-fx-font: 36 arial; -fx-text-fill: GoldenRod");
-
 
         Button botonDerecha = new Button();
         botonDerecha.setText(">");
@@ -48,13 +40,13 @@ public class Pantallita extends Application {
         contenedorHorizontal.setSpacing(0);
         contenedorHorizontal.setAlignment(Pos.CENTER);
 
-        VBox contenedorPrincipal = new VBox(titulo, contenedorHorizontal, botonJugar);
-        contenedorPrincipal.setSpacing(80);
-        contenedorPrincipal.setAlignment(Pos.CENTER);
-        contenedorPrincipal.setStyle("-fx-background-color: DarkRed;");
+        this.getChildren().addAll(titulo, contenedorHorizontal, botonJugar);
 
-        Scene scene = new Scene(contenedorPrincipal, 800, 700);
-        stage.setScene(scene);
-        stage.show();
+        this.setSpacing(80);
+        this.setAlignment(Pos.CENTER);
+        this.setStyle("-fx-background-color: DarkRed;");
+
+        BotonEmpezarEventHandler botonEmpezarEventHandler = new BotonEmpezarEventHandler(stage, proximaEscena);
+
     }
 }
