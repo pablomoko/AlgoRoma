@@ -40,6 +40,10 @@ public class GestorFlujoDeJuego {
             throw new IllegalArgumentException("La cantidad de jugadores debe ser mayor a 2");
         }
     };
+
+    //tirar dado para ver que jugador es en inicial
+    //usar metodo tirarDado(cantidadJugadores)
+
     public Jugador jugadorInicial(int numeroJugadorInicial) { // EN LA VISTA 3 AGREGAR BOTON TIRAR DADO PARA VER QUE JUGADOR EMPIEZA (BOTON) | TIRAR DADO |
         jugadores.rondaCero(numeroJugadorInicial);
         for (int i = 0 ; i< numeroJugadorInicial ;i++){
@@ -47,15 +51,22 @@ public class GestorFlujoDeJuego {
         }
         return jugadores.obtenerTurnoActual();
     }
+    //tirar dado de 6 caras |BOTON| para que el primer jugador(el que sale del metodo anterior) camine unos pasos
+    //pasarle el jugador y los pasos al metodo de abajo
     public void jugarTurno(Jugador unJugador, int unosPasos){ // LOGICA PARA JUGAR UN TURNO
 
         unJugador.moverMovible(tablero,unosPasos);
 //se muestran todos los mensajes obstaculos premios etc
-        jugadores.avanzarTurno();
 
     }
+//luego de jugar el primer turno se presiona el boton |AVANZAR TURNO| y se le pide al nuevo jugador que
+    //tire el dado nuevamente
+    public Jugador avanzarTurno(){
+        jugadores.avanzarTurno();
+        return jugadores.obtenerTurnoActual();
+    }
 
-
+    //aca se tira el dado y se entra en loop constante hasta las 30 rondas
     public int tirarDado(){ //ESTE BOTON APARECE SIEMPRE EN TODAS LAS PANTALLAS DURANTE EL JUEGO, LUEGO SE LE PASA LO QUE DEVUELVE A jugarTurno O PRENDAS
         return dado.tirarDado();
     }
@@ -64,15 +75,5 @@ public class GestorFlujoDeJuego {
         return dado.tirarDado(numeroCaras);
     }
 
-
-    private void saltarTurno(){
-    jugadores.avanzarTurno();
-    }
-
-    private Tablero inicialiarTablero(String stringJson){
-        LinkedList <Casilla> casillas = GestorArchivos.generarListaDeCasillasDesdeJSON(stringJson);
-
-        return new Tablero(casillas);
-    };
 
 }
