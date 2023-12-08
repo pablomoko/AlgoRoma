@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.vista;
+import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,12 +9,10 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 public class ContenedorInicial extends VBox{
-        Stage stage;
 
-        public ContenedorInicial(Stage stage, Scene proximaEscena){
+        public ContenedorInicial(Stage stage, Scene proximaEscena, GestorFlujoDeJuego gestorFlujoDeJuego){
 
-                this.stage = stage;
-                Image fondoPantalla = new Image("file:src/main/java/edu/fiuba/algo3/vista/fondoJuego.jpg");
+                Image fondoPantalla = new Image("file:src/main/resources/fondoJuego.jpg");
                 BackgroundImage imagenFondoPantalla = new BackgroundImage(fondoPantalla, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
                 this.setBackground(new Background(imagenFondoPantalla));
                 Label titulo = new Label();
@@ -28,7 +27,7 @@ public class ContenedorInicial extends VBox{
                 this.setSpacing(80);
                 this.setAlignment(Pos.CENTER);
 
-                BotonEmpezarEventHandler botonEmpezarEventHandler = new BotonEmpezarEventHandler(stage, proximaEscena);
+                EmpezarEventHandler botonEmpezarEventHandler = new EmpezarEventHandler(stage, proximaEscena);
                 botonEmpezar.setOnAction(botonEmpezarEventHandler);
 
                 this.getChildren().addAll(titulo, botonEmpezar);

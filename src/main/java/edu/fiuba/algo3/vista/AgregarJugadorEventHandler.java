@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
@@ -18,12 +19,15 @@ public class AgregarJugadorEventHandler implements EventHandler<ActionEvent> {
 
     private TextField nombreJugador;
 
+    private GestorFlujoDeJuego gestorFlujoDeJuego;
 
-    public AgregarJugadorEventHandler(Stage stage, int cantidadJugadores, Label label, TextField nombreJugador) {
+
+    public AgregarJugadorEventHandler(Stage stage, int cantidadJugadores, Label label, TextField nombreJugador, GestorFlujoDeJuego gestorFlujoDeJuego) {
         this.stage = stage;
         this.cantidadJugadores = cantidadJugadores;
         this.label = label;
         this.nombreJugador = nombreJugador;
+        this.gestorFlujoDeJuego = gestorFlujoDeJuego;
     }
 
     @Override
@@ -33,7 +37,7 @@ public class AgregarJugadorEventHandler implements EventHandler<ActionEvent> {
             label.setTextFill(Color.DARKBLUE);
         }else {
             if (cantidadJugadores < 6) {
-                ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, this.cantidadJugadores + 1, this.label);
+                ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, this.cantidadJugadores + 1, this.label, this.gestorFlujoDeJuego);
                 label.setText("Se ha agregado correctamente el jugador ingresado");
                 label.setTextFill(Color.DARKGREEN);
                 Scene proximaEscena = new Scene(contenedorJugadores, 800, 700);
