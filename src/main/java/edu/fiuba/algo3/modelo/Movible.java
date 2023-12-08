@@ -11,4 +11,6 @@ public interface Movible {
     public void obtenerPremio(Premio premio);
 
     public Gladiador ganador();
+
+    public boolean sosGanador();
 }

@@ -107,4 +107,8 @@ public class Gladiador implements Movible{
         return this;
     }
 
+    public boolean sosGanador(){
+        return (esGanador.estado());
+    }
+
 }

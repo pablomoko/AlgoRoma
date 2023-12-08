@@ -25,4 +25,8 @@ public class Jugador  {
         return movible;
    }
 
+   public boolean sosGanador(){
+        return (movible.sosGanador());
+   }
+
 }

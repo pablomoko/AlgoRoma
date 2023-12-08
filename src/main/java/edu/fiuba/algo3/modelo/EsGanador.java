@@ -11,4 +11,8 @@ public class EsGanador {
         this.esGanador = true;
     }
 
+    public boolean estado(){
+        return this.esGanador;
+    }
+
 }
