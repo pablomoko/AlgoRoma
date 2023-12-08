@@ -22,7 +22,7 @@ public class Mapeador {
 
     public void inicializarMovible(Movible movible){
         this.mapa.put(movible, this.obtenerCasillaDe(0));
-        casillas.get(0).colocarMovible(movible);
+        casillas.get(0).colocarMovible(movible, this);
     }
 
     public Casilla obtenerCasillaDestino(Casilla casillaActual, int unosPasos){

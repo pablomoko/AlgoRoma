@@ -6,10 +6,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 public class BotonEmpezarEventHandler implements EventHandler<ActionEvent> {
-
     private Stage stage;
     private Scene proximaEscena;
-
     public BotonEmpezarEventHandler(Stage stage, Scene proximaEscena){
         this.stage = stage;
         this.proximaEscena = proximaEscena;

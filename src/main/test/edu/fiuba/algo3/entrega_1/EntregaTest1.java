@@ -127,6 +127,7 @@ public class EntregaTest1 {
         tablero.moverMovible(gladiador, 37);
         tablero.moverMovible(gladiador, 1);
 
+        assertFalse(gladiador.estaCompleto());
         assertEquals(tablero.obtenerCasillaDe(gladiador), tablero.obtenerCasillaDe(19));
     }
 
@@ -167,8 +168,8 @@ public class EntregaTest1 {
         boolean terminado = false;
 
         Tirador dado = new DadoMock(0);
-        Jugador jugador1 = new Jugador(new Gladiador(20, new Novato()));
-        Jugador jugador2 = new Jugador(new Gladiador(20, new Novato()));
+        Jugador jugador1 = new Jugador("jugador1",new Gladiador(20, new Novato()));
+        Jugador jugador2 = new Jugador("jugador2",new Gladiador(20, new Novato()));
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
         jugadores.add(jugador1);
         jugadores.add(jugador2);
@@ -183,7 +184,7 @@ public class EntregaTest1 {
 
         for (int i=0; i<30; i++)  {
             for (Jugador jugador : jugadores) {
-                jugador.moverMovible(tablero,dado);
+                jugador.moverMovible(tablero, dado.tirarDado());
             }
             turnos++;
             if (turnos == 30) {
