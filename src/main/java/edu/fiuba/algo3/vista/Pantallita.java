@@ -17,12 +17,11 @@ public class Pantallita extends Application {
 
         stage.setTitle("Pantallita");
         Label label = new Label();
-        GestorFlujoDeJuego gestorFlujoDeJuego = new GestorFlujoDeJuego();
 
-        ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, 0, label, gestorFlujoDeJuego);
+        ContenedorJugadores contenedorJugadores = new ContenedorJugadores(stage, label);
         Scene escenaJugadores = new Scene(contenedorJugadores, 800, 700);
 
-        ContenedorInicial contenedorInicial = new ContenedorInicial(stage, escenaJugadores, gestorFlujoDeJuego);
+        ContenedorInicial contenedorInicial = new ContenedorInicial(stage, escenaJugadores);
         Scene escenaInicial = new Scene(contenedorInicial, 800, 700);
 
         stage.setScene(escenaInicial);

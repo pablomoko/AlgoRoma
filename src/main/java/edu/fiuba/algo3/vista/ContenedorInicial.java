@@ -1,5 +1,5 @@
 package edu.fiuba.algo3.vista;
-import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
+import edu.fiuba.algo3.controlador.EmpezarEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 
 public class ContenedorInicial extends VBox{
 
-        public ContenedorInicial(Stage stage, Scene proximaEscena, GestorFlujoDeJuego gestorFlujoDeJuego){
+        public ContenedorInicial(Stage stage, Scene proximaEscena){
 
                 Image fondoPantalla = new Image("file:src/main/resources/fondoJuego.jpg");
                 BackgroundImage imagenFondoPantalla = new BackgroundImage(fondoPantalla, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));

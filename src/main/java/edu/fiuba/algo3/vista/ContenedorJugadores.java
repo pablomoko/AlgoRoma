@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
+import edu.fiuba.algo3.controlador.AgregarJugadorEventHandler;
+import edu.fiuba.algo3.controlador.ContinuarEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +13,7 @@ import javafx.scene.control.TextField;
 
 public class ContenedorJugadores extends VBox {
 
-    public ContenedorJugadores(Stage stage, int cantidadJugadores, Label label, GestorFlujoDeJuego gestorFlujoDeJuego){
+    public ContenedorJugadores(Stage stage, Label label){
 
         Label titulo = new Label();
         titulo.setText("Inicializar Jugadores");
@@ -42,13 +43,10 @@ public class ContenedorJugadores extends VBox {
         this.setSpacing(80);
         this.setAlignment(Pos.CENTER);
 
-        AgregarJugadorEventHandler agregarJugadorEventHandler = new AgregarJugadorEventHandler(stage, cantidadJugadores, label, texto, gestorFlujoDeJuego);
+        AgregarJugadorEventHandler agregarJugadorEventHandler = new AgregarJugadorEventHandler(label, texto);
         botonAgregar.setOnAction(agregarJugadorEventHandler);
 
-        ContenedorDefinirTurno contenedorDefinirTurno = new ContenedorDefinirTurno(stage, cantidadJugadores, gestorFlujoDeJuego);
-
-        Scene escenaDefinirTurno = new Scene(contenedorDefinirTurno, 800, 700);
-        ContinuarEventHandler continuarEventHandler = new ContinuarEventHandler(stage, escenaDefinirTurno, cantidadJugadores, label);
+        ContinuarEventHandler continuarEventHandler = new ContinuarEventHandler(stage, agregarJugadorEventHandler.getJugadores(), label);
         botonContinuar.setOnAction(continuarEventHandler);
 
         this.getChildren().addAll(titulo, contenedorHorizontal, label, botonContinuar);

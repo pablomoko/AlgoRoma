@@ -47,13 +47,16 @@ public class GestorTurnos<T> {
             rondasMaximas--;
         }
     }
+
     public void avanzarTurnos(int numeroDeTurnos) {
 
-
-
-        for (int i=0; i< numeroDeTurnos;i++){
+        for (int i=0; i< numeroDeTurnos; i++){
             this.avanzarTurno();
         }
+    }
+
+    public ArrayList<T> getListaDeTurnos(){
+        return this.listaDeTurnos;
     }
 
 }
