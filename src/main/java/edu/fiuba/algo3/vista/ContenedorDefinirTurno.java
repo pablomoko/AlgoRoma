@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.GestorTurnos;
 import edu.fiuba.algo3.controlador.JugarEventHandler;
 import edu.fiuba.algo3.controlador.TirarDadoOrdenadorEventHandler;
 import edu.fiuba.algo3.modelo.Jugador;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class ContenedorDefinirTurno extends VBox {
 
-    public ContenedorDefinirTurno(Stage stage, ArrayList<Jugador> jugadores) {
+    public ContenedorDefinirTurno(Stage stage, GestorTurnos<Jugador> jugadores) {
 
         Image fondoPantalla = new Image("file:src/main/resources/fondoJuego.jpg");
         BackgroundImage imagenFondoPantalla = new BackgroundImage(fondoPantalla, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
@@ -23,11 +24,7 @@ public class ContenedorDefinirTurno extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
 
-        Button botonDado = new Button();
-        botonDado.setPrefSize(100, 100);
-        Image dado = new Image("file:src/main/resources/dado_1.jpg");
-        BackgroundImage imagenFondoBoton = new BackgroundImage(dado, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-        botonDado.setBackground(new Background(imagenFondoBoton));
+        Button botonDado = new BotonDado();
 
         Label textoInformativo = new Label();
         textoInformativo.setText("El resultado del dado define que jugador empieza");
@@ -44,7 +41,7 @@ public class ContenedorDefinirTurno extends VBox {
         botonJugar.setStyle("-fx-font: 36 arial; -fx-background-color: DarkRed; -fx-text-fill: GoldenRod");
         botonJugar.setOnAction(jugarEventHandler);
 
-        TirarDadoOrdenadorEventHandler botonTirarDadoOrdenadorEventHandler = new TirarDadoOrdenadorEventHandler(this, botonJugar, jugadores.size(), botonDado);
+        TirarDadoOrdenadorEventHandler botonTirarDadoOrdenadorEventHandler = new TirarDadoOrdenadorEventHandler(this, botonJugar, jugadores.cantidadTurnos(), botonDado);
         botonDado.setOnAction(botonTirarDadoOrdenadorEventHandler);
         this.getChildren().addAll(textoInformativo, textoTirarDado, botonDado);
     }

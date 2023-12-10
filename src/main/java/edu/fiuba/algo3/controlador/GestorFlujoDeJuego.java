@@ -41,12 +41,7 @@ public class GestorFlujoDeJuego {
     }
     //tirar dado de 6 caras |BOTON| para que el primer jugador(el que sale del metodo anterior) camine unos pasos
     //pasarle el jugador y los pasos al metodo de abajo
-    public void jugarTurno(Jugador unJugador, int unosPasos){ // LOGICA PARA JUGAR UN TURNO
 
-        //unJugador.moverMovible(tablero,unosPasos);
-//se muestran todos los mensajes obstaculos premios etc
-
-    }
 //luego de jugar el primer turno se presiona el boton |AVANZAR TURNO| y se le pide al nuevo jugador que
     //tire el dado nuevamente
     public Jugador avanzarTurno(){

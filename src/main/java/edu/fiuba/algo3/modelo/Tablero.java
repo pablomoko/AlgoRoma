@@ -4,7 +4,7 @@ import edu.fiuba.algo3.modelo.casilla.Casilla;
 import java.util.List;
 import java.util.Observable;
 
-public class Tablero  extends Observable {
+public class Tablero extends Observable {
 
     private Mapeador mapeador;
 
@@ -40,8 +40,6 @@ public class Tablero  extends Observable {
     public Casilla obtenerCasillaDe(int posicion) {
         return this.mapeador.obtenerCasillaDe(posicion);
     }
-
-
 
     // public void jugarPartida(){
 

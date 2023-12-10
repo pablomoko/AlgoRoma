@@ -48,4 +48,12 @@ public abstract class Casilla {
         return this.posicion;
     }
 
+    public Premio getPremio() {
+        return this.premio;
+    }
+
+    public Obstaculo getObstaculo() {
+        return this.obstaculo;
+    }
+
 }

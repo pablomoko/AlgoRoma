@@ -37,8 +37,8 @@ public class AgregarJugadorEventHandler implements EventHandler<ActionEvent> {
 
     }
 
-    public ArrayList<Jugador> getJugadores(){
-        return this.jugadores.getListaDeTurnos();
+    public GestorTurnos<Jugador> getGestorTurnos(){
+        return this.jugadores;
     }
 
     public void agregarJugador(String nombre){ //EN LA VISTA 2 SE VAN AGREGANDO JUGADORES (BOTON LADO IZQ) |AGREGAR JUGADOR| |NOMBRE|

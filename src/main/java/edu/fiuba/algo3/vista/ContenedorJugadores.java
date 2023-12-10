@@ -46,7 +46,7 @@ public class ContenedorJugadores extends VBox {
         AgregarJugadorEventHandler agregarJugadorEventHandler = new AgregarJugadorEventHandler(label, texto);
         botonAgregar.setOnAction(agregarJugadorEventHandler);
 
-        ContinuarEventHandler continuarEventHandler = new ContinuarEventHandler(stage, agregarJugadorEventHandler.getJugadores(), label);
+        ContinuarEventHandler continuarEventHandler = new ContinuarEventHandler(stage, agregarJugadorEventHandler.getGestorTurnos(), label);
         botonContinuar.setOnAction(continuarEventHandler);
 
         this.getChildren().addAll(titulo, contenedorHorizontal, label, botonContinuar);

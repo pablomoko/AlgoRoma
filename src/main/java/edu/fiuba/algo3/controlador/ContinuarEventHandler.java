@@ -16,11 +16,11 @@ public class ContinuarEventHandler implements EventHandler<ActionEvent> {
     private Stage stage;
 
 
-    private ArrayList<Jugador> jugadores;
+    private GestorTurnos<Jugador> jugadores;
 
     private Label label;
 
-    public ContinuarEventHandler(Stage stage, ArrayList<Jugador> jugadores, Label label){
+    public ContinuarEventHandler(Stage stage, GestorTurnos<Jugador> jugadores, Label label){
         this.stage = stage;
         this.jugadores = jugadores;
         this.label = label;
@@ -28,7 +28,7 @@ public class ContinuarEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (this.jugadores.size() >= 2) {
+        if (this.jugadores.cantidadTurnos() >= 2) {
             ContenedorDefinirTurno contenedorDefinirTurno = new ContenedorDefinirTurno(stage, jugadores);
             Scene escenaDefinirTurno = new Scene(contenedorDefinirTurno, 800, 700);
             stage.setScene(escenaDefinirTurno);
