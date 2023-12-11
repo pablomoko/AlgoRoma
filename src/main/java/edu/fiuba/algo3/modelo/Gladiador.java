@@ -127,4 +127,8 @@ public class Gladiador implements Movible{
         estadoLesion = new EstaLesionado();
     }
 
+    public void habilitarMovimiento(){
+        estadoLesion = new NoEstaLesionado();
+    }
+
 }

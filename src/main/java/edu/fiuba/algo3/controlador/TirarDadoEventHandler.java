@@ -34,10 +34,10 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
             int unosPasos = this.dado.tirarDado();
             jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
         }else{
-            jugadores.avanzarTurno();
             //mensaje lesionado
         }
         jugadores.obtenerTurnoActual().notifyObservers();
+        jugadores.obtenerTurnoActual().obtenerMovible().habilitarMovimiento(); //habilita el movimiento para el proximo turno (saca lesion)
         jugadores.avanzarTurno();
     }
 }

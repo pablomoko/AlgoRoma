@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
+import edu.fiuba.algo3.modelo.estadoLesion.NoEstaLesionado;
 import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 
@@ -15,4 +16,6 @@ public interface Movible {
     public boolean sosGanador();
 
     public boolean estaLesionado();
+
+    public void habilitarMovimiento();
 }
