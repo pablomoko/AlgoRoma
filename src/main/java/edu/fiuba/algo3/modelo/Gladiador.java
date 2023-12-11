@@ -1,15 +1,17 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.estadoGanador.EsGanador;
+import edu.fiuba.algo3.modelo.estadoGanador.NoEsGanador;
+import edu.fiuba.algo3.modelo.estadoLesion.EstaLesionado;
+import edu.fiuba.algo3.modelo.estadoLesion.NoEstaLesionado;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 import edu.fiuba.algo3.modelo.premio.Premio;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import edu.fiuba.algo3.modelo.seniority.*;
-
-import java.util.Stack;
+import edu.fiuba.algo3.modelo.estadoGanador.EstadoGanador;
+import edu.fiuba.algo3.modelo.estadoLesion.EstadoLesion;
 
 public class Gladiador implements Movible{
     protected Energia energia;
@@ -106,9 +108,12 @@ public class Gladiador implements Movible{
         this.esGanador.setEsGanador();
         return this;
     }
-
+    public Gladiador perdedor(){
+        estadoGanador = new NoEsGanador();
+        return this;
+    }
     public boolean sosGanador(){
-        return (esGanador.estado());
+        return (estadoGanador.estado());
     }
 
 }

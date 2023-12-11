@@ -39,6 +39,7 @@ public abstract class Casilla {
     }
 
     public void afectarMovible(Movible movible){
+
         movible.obtenerPremio(this.premio);
         movible.vs(this.obstaculo);
 
