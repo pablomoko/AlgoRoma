@@ -32,4 +32,8 @@ public class Jugador extends Observable {
         return (movible.sosGanador());
    }
 
+   public boolean movibleLesionado(){
+        return (movible.estaLesionado());
+   }
+
 }

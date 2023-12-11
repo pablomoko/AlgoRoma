@@ -13,4 +13,6 @@ public interface Movible {
     public Gladiador ganador();
 
     public boolean sosGanador();
+
+    public boolean estaLesionado();
 }

@@ -14,10 +14,12 @@ import edu.fiuba.algo3.modelo.estadoGanador.EstadoGanador;
 import edu.fiuba.algo3.modelo.estadoLesion.EstadoLesion;
 
 public class Gladiador implements Movible{
-    protected Energia energia;
-    protected NivelEquipamiento equipamiento;
-    protected Seniority seniority;
-    protected EsGanador esGanador;
+    private Energia energia;
+    private NivelEquipamiento equipamiento;
+    private Seniority seniority;
+    private EstadoGanador estadoGanador;
+    private EstadoLesion estadoLesion;
+
 
     public Gladiador(){
         this.energia = new Energia(20);
@@ -35,7 +37,8 @@ public class Gladiador implements Movible{
         this.energia = new Energia(energia);
         this.equipamiento = new NivelEquipamiento0();
         this.seniority = seniority;
-        this.esGanador = new EsGanador(false);
+        this.estadoGanador = new NoEsGanador();
+        this.estadoLesion = new NoEstaLesionado();
     }
 
     public void vs(Obstaculo obstaculo){
@@ -105,7 +108,7 @@ public class Gladiador implements Movible{
     }
 
     public Gladiador ganador(){
-        this.esGanador.setEsGanador();
+        estadoGanador = new EsGanador();
         return this;
     }
     public Gladiador perdedor(){
@@ -114,6 +117,14 @@ public class Gladiador implements Movible{
     }
     public boolean sosGanador(){
         return (estadoGanador.estado());
+    }
+
+    public boolean estaLesionado(){
+        return (estadoLesion.estado());
+    }
+
+    public void lesionarse(){
+        estadoLesion = new EstaLesionado();
     }
 
 }

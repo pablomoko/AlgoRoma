@@ -41,10 +41,5 @@ public class Tablero extends Observable {
         return this.mapeador.obtenerCasillaDe(posicion);
     }
 
-    // public void jugarPartida(){
-
-    //}
-
-
 }
 

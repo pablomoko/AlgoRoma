@@ -30,8 +30,12 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        int unosPasos = this.dado.tirarDado();
-        jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
+        if(!jugadores.obtenerTurnoActual().movibleLesionado()){
+            int unosPasos = this.dado.tirarDado();
+            jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
+        }else{
+            //mensaje lesionado
+        }
         jugadores.obtenerTurnoActual().notifyObservers();
         jugadores.avanzarTurno();
     }
