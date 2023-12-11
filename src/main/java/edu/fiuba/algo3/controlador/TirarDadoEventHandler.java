@@ -34,6 +34,7 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
             int unosPasos = this.dado.tirarDado();
             jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
         }else{
+            jugadores.avanzarTurno();
             //mensaje lesionado
         }
         jugadores.obtenerTurnoActual().notifyObservers();
