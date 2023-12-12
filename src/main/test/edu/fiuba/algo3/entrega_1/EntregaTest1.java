@@ -164,7 +164,7 @@ public class EntregaTest1 {
     @Test
     public void test12SiPasanTreintaTurnosYNadieLlegoALaMetaSeTerminaElJuego() throws IOException {
 
-        GestorTurnos<Jugador> gestorTurnos = new GestorTurnos<>(30);
+        GestorTurnos gestorTurnos = new GestorTurnos(30);
 
         Jugador jugador1 = new Jugador("jugador1",new Gladiador(20, new Novato()));
         Jugador jugador2 = new Jugador("jugador2",new Gladiador(20, new Novato()));

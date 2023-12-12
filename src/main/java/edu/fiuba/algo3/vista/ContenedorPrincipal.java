@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.GestorTurnos;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
@@ -18,10 +19,12 @@ public class ContenedorPrincipal extends VBox implements Observer {
 
     private ContenedorEstado contenedorEstado;
 
-    public ContenedorPrincipal(Stage stage, int ancho, int alto, Tablero tablero) {
+    public ContenedorPrincipal(Stage stage, int ancho, int alto, GestorTurnos gestorTurnos, Tablero tablero) {
         stage.setFullScreen(true);
+        this.setPrefWidth(stage.getWidth());
+        this.setPrefHeight(stage.getHeight());
         this.contenedorTablero = new ContenedorTablero(stage, ancho, alto, tablero);
-        this.contenedorEstado = new ContenedorEstado(stage, alto);
+        this.contenedorEstado = new ContenedorEstado(stage, alto, gestorTurnos, tablero);
         this.getChildren().addAll(contenedorTablero, contenedorEstado);
     }
 

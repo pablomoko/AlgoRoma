@@ -5,27 +5,30 @@ import edu.fiuba.algo3.modelo.Jugador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorTurnos<T> {
-    private ArrayList<T> listaDeTurnos;
+public class GestorTurnos {
+    private ArrayList<Jugador> listaDeTurnos;
     private int indiceTurnoActual;
     private int rondasMaximas;
     private int jugadorQueIniciaRonda;
+
+    private int rondaActual;
 
     public GestorTurnos(int rondasMaximas) {
         this.listaDeTurnos = new ArrayList<>();
         this.indiceTurnoActual = 0;
         this.rondasMaximas = rondasMaximas;
+        this.rondaActual = 1;
         this.jugadorQueIniciaRonda = 0;
     }
 
-    public void agregarTurno(T turno) {
+    public void agregarTurno(Jugador turno) {
         listaDeTurnos.add(turno);
     }
     public int cantidadTurnos() {
         return listaDeTurnos.size();
     }
 
-    public T obtenerTurnoActual() {
+    public Jugador obtenerTurnoActual() {
         if (listaDeTurnos.isEmpty()) {
             return null;
         }
@@ -37,15 +40,16 @@ public class GestorTurnos<T> {
 
     public void avanzarTurno() {
 
-        if (!listaDeTurnos.isEmpty() && rondasMaximas!=0) {
+        if (!listaDeTurnos.isEmpty() && rondaActual!=rondasMaximas) {
             indiceTurnoActual = (indiceTurnoActual + 1) % listaDeTurnos.size();
         }
         if (indiceTurnoActual == jugadorQueIniciaRonda) {
-            if (rondasMaximas == 0){
+            if (rondaActual == rondasMaximas + 1){
                 throw new IllegalArgumentException("Ya se supero la cantidad de rondas maximas");
             }
-            rondasMaximas--;
+            rondaActual++;
         }
+        this.obtenerTurnoActual().notifyObservers();
     }
 
     public void avanzarTurnos(int numeroDeTurnos) {
@@ -55,8 +59,19 @@ public class GestorTurnos<T> {
         }
     }
 
-    public ArrayList<T> getListaDeTurnos(){
+    public ArrayList<Jugador> getListaDeTurnos(){
         return this.listaDeTurnos;
+    }
+
+    public int obtenerRondaActual() {
+        return this.rondaActual;
+    }
+
+    public void jugadorInicial(int numeroJugadorInicial) { // EN LA VISTA 3 AGREGAR BOTON TIRAR DADO PARA VER QUE JUGADOR EMPIEZA (BOTON) | TIRAR DADO |
+        for (int i = 0 ; i< numeroJugadorInicial ;i++){
+            this.avanzarTurno();
+        }
+        this.rondaCero(numeroJugadorInicial);
     }
 
 }

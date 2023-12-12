@@ -24,9 +24,9 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
 
     private ContenedorPrincipal contenedorPrincipal;
 
-    private GestorTurnos<Jugador> jugadores;
+    private GestorTurnos jugadores;
 
-    public JugarEventHandler(Stage stage, GestorTurnos<Jugador> jugadores) {
+    public JugarEventHandler(Stage stage, GestorTurnos jugadores) {
         this.stage = stage;
         this.jugadores = jugadores;
 
@@ -35,7 +35,7 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
         this.tablero = new Tablero(casillas);
 
         Map<String,Integer> dimensiones = GestorArchivos.generarDimesiones(stringJson);
-        this.contenedorPrincipal = new ContenedorPrincipal(stage, dimensiones.get("ancho"), dimensiones.get("largo"), tablero);
+        this.contenedorPrincipal = new ContenedorPrincipal(stage, dimensiones.get("ancho"), dimensiones.get("largo"), jugadores, tablero);
 
         for (Jugador jugador: jugadores.getListaDeTurnos()) {
             jugador.inicializarMovible(this.tablero);

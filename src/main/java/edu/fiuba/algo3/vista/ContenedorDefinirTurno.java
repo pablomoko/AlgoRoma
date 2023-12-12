@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ContenedorDefinirTurno extends VBox {
 
-    public ContenedorDefinirTurno(Stage stage, GestorTurnos<Jugador> jugadores) {
+    public ContenedorDefinirTurno(Stage stage, GestorTurnos jugadores) {
 
         Image fondoPantalla = new Image("file:src/main/resources/fondoJuego.jpg");
         BackgroundImage imagenFondoPantalla = new BackgroundImage(fondoPantalla, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
@@ -41,7 +41,7 @@ public class ContenedorDefinirTurno extends VBox {
         botonJugar.setStyle("-fx-font: 36 arial; -fx-background-color: DarkRed; -fx-text-fill: GoldenRod");
         botonJugar.setOnAction(jugarEventHandler);
 
-        TirarDadoOrdenadorEventHandler botonTirarDadoOrdenadorEventHandler = new TirarDadoOrdenadorEventHandler(this, botonJugar, jugadores.cantidadTurnos(), botonDado);
+        TirarDadoOrdenadorEventHandler botonTirarDadoOrdenadorEventHandler = new TirarDadoOrdenadorEventHandler(this, botonJugar, jugadores.cantidadTurnos(), botonDado, jugadores);
         botonDado.setOnAction(botonTirarDadoOrdenadorEventHandler);
         this.getChildren().addAll(textoInformativo, textoTirarDado, botonDado);
     }

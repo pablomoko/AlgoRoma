@@ -36,4 +36,6 @@ public class Jugador extends Observable {
         return (movible.estaLesionado());
    }
 
+   public String obtenerNombre() {return this.nombre;}
+
 }

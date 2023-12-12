@@ -16,11 +16,11 @@ public class ContinuarEventHandler implements EventHandler<ActionEvent> {
     private Stage stage;
 
 
-    private GestorTurnos<Jugador> jugadores;
+    private GestorTurnos jugadores;
 
     private Label label;
 
-    public ContinuarEventHandler(Stage stage, GestorTurnos<Jugador> jugadores, Label label){
+    public ContinuarEventHandler(Stage stage, GestorTurnos jugadores, Label label){
         this.stage = stage;
         this.jugadores = jugadores;
         this.label = label;

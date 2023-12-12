@@ -14,13 +14,13 @@ import java.util.ListIterator;
 
 
 public class GestorFlujoDeJuego {
-    private GestorTurnos<Jugador> jugadores;
+    private GestorTurnos jugadores;
 
     public static final int RONDAS_MAXIMAS = 30;
 
 
     public GestorFlujoDeJuego(ContenedorTablero vista){ //ESTO DEBERIA LLAMARSE AL INICIALIZAR LA VISTA 1 (PRESENTACION DEL JUEGO)
-        jugadores = new GestorTurnos<Jugador>(RONDAS_MAXIMAS);
+        jugadores = new GestorTurnos(RONDAS_MAXIMAS);
     }
     public void iniciarJuego(){//EN LA VISTA 2  (BOTON LADO DER) |INICIAR JUEGO|  --- si no hay 2 jugadores, se tienen que cargar mas
         if (jugadores.cantidadTurnos() < 2){

@@ -20,7 +20,7 @@ public class EntregaTest3 {
 
     @Test
     public void test19SeVerificaQueUnGladidadorGanaLaPartida() {
-        GestorTurnos<Jugador> gestorTurnos = new GestorTurnos<>(30);
+        GestorTurnos gestorTurnos = new GestorTurnos(30);
 
         Jugador jugador1 = new Jugador("jugador1", new Gladiador(10000, new Novato()));
         Jugador jugador2 = new Jugador("jugador2", new Gladiador(20, new Novato()));
@@ -54,7 +54,7 @@ public class EntregaTest3 {
 
     @Test
     public void test20SeVerificaQueNingunGladidadorGanaLaPartida() {
-        GestorTurnos<Jugador> gestorTurnos = new GestorTurnos<>(30);
+        GestorTurnos gestorTurnos = new GestorTurnos(30);
 
         Jugador jugador1 = new Jugador("jugador1", new Gladiador(10000, new Novato()));
         Jugador jugador2 = new Jugador("jugador2", new Gladiador(20, new Novato()));
@@ -87,7 +87,7 @@ public class EntregaTest3 {
 
     @Test
     public void test21SeVerificaLesion() {
-        GestorTurnos<Jugador> gestorTurnos = new GestorTurnos<>(30);
+        GestorTurnos gestorTurnos = new GestorTurnos(30);
 
         Jugador jugador1 = new Jugador("jugador1", new Gladiador(10000, new Novato()));
         Jugador jugador2 = new Jugador("jugador2", new Gladiador(20, new Novato()));

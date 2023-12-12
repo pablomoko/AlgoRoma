@@ -26,18 +26,18 @@ public class AgregarJugadorEventHandler implements EventHandler<ActionEvent> {
 
     private TextField nombreJugador;
 
-    private GestorTurnos<Jugador> jugadores;
+    private GestorTurnos jugadores;
 
     public static final int RONDAS_MAXIMAS = 30;
 
     public AgregarJugadorEventHandler(Label label, TextField nombreJugador) {
         this.label = label;
         this.nombreJugador = nombreJugador;
-        jugadores = new GestorTurnos<Jugador>(RONDAS_MAXIMAS);
+        jugadores = new GestorTurnos(RONDAS_MAXIMAS);
 
     }
 
-    public GestorTurnos<Jugador> getGestorTurnos(){
+    public GestorTurnos getGestorTurnos(){
         return this.jugadores;
     }
 

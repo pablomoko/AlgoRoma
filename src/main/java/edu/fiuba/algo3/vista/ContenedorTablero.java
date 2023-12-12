@@ -39,26 +39,15 @@ public class ContenedorTablero extends HBox implements Observer {
         for (int i=1; i<=alto; i++) {
             for (int j=1; j <= ancho; j++) {
                 HBox casillero = new HBox();
-                casillero.setPrefWidth(stage.getWidth() / alto);
-                casillero.setPrefHeight(stage.getHeight() / (alto/1.4));
-                casillero.setPadding(new Insets(10));
+                casillero.setPrefWidth((stage.getWidth()) / alto);
+                casillero.setPrefHeight((stage.getHeight()) / (alto/2.4));
                 casillero.setBorder(new Border(borde));
                 casillero.setStyle("-fx-background-color: DarkRed");
                 this.mapa.add(casillero, i, j);
             }
         }
 
-        for (Casilla casilla: tablero.getCasillas()) {
-
-            HBox casillero = new HBox();
-            casillero.setMinWidth(stage.getWidth() / alto);
-            casillero.setMinHeight(stage.getHeight() / (alto/1.4));
-            casillero.setPadding(new Insets(10));
-            casillero.setBorder(new Border(borde));
-            casillero.setStyle("-fx-background-color: DarkGreen");
-
-            this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
-        }
+        this.dibujarCasillasVacias();
 
         this.mapa.setAlignment(Pos.TOP_CENTER);
        /* Image fondoPantalla = new Image("file:src/main/resources/campoDeBatalla.jpg");
@@ -73,14 +62,30 @@ public class ContenedorTablero extends HBox implements Observer {
         this.getChildren().add(mapa);
     }
 
+    public void dibujarCasillasVacias() {
+        BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
+        for (Casilla casilla: this.tablero.getCasillas()) {
+
+            HBox casillero = new HBox();
+            casillero.setMinWidth(this.stage.getWidth() / this.alto);
+            casillero.setMinHeight(this.stage.getHeight() / (this.alto/1.4));
+            casillero.setPadding(new Insets(10));
+            casillero.setBorder(new Border(borde));
+            casillero.setStyle("-fx-background-color: DarkGreen");
+
+            this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
+        }
+    }
+
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("ASDASDASDAASDASDASD");
         //Jugador jugador = (Jugador) o;
         if (o.getClass() == Jugador.class) {
             Jugador jugador = (Jugador) o;
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
             jugador.obtenerMovible();
+
+            this.dibujarCasillasVacias();
 
             BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
             HBox casillero = new HBox();
