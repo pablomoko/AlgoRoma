@@ -1,21 +1,25 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.estadoGanador.EsGanador;
+import edu.fiuba.algo3.modelo.estadoGanador.NoEsGanador;
+import edu.fiuba.algo3.modelo.estadoLesion.EstaLesionado;
+import edu.fiuba.algo3.modelo.estadoLesion.NoEstaLesionado;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento;
 import edu.fiuba.algo3.modelo.nivelEquipamiento.NivelEquipamiento0;
 import edu.fiuba.algo3.modelo.obstaculo.Obstaculo;
 import edu.fiuba.algo3.modelo.premio.Premio;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Equipamiento;
 import edu.fiuba.algo3.modelo.premio.Comida;
-import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import edu.fiuba.algo3.modelo.seniority.*;
-
-import java.util.Stack;
+import edu.fiuba.algo3.modelo.estadoGanador.EstadoGanador;
+import edu.fiuba.algo3.modelo.estadoLesion.EstadoLesion;
 
 public class Gladiador implements Movible{
-    protected Energia energia;
-    protected NivelEquipamiento equipamiento;
-    protected Seniority seniority;
-    protected EsGanador esGanador;
+    private Energia energia;
+    private NivelEquipamiento equipamiento;
+    private Seniority seniority;
+    private EstadoGanador estadoGanador;
+    private EstadoLesion estadoLesion;
+
 
     public Gladiador(){
         this.energia = new Energia(20);
@@ -33,7 +37,8 @@ public class Gladiador implements Movible{
         this.energia = new Energia(energia);
         this.equipamiento = new NivelEquipamiento0();
         this.seniority = seniority;
-        this.esGanador = new EsGanador(false);
+        this.estadoGanador = new NoEsGanador();
+        this.estadoLesion = new NoEstaLesionado();
     }
 
     public void vs(Obstaculo obstaculo){
@@ -52,10 +57,6 @@ public class Gladiador implements Movible{
         return energia.calcularEnergia();
     }
 
-    public NivelEquipamiento verEquipamiento(){
-        return (this.equipamiento);
-    }
-
     public NivelEquipamiento equiparse(){
         equipamiento = equipamiento.siguienteNivel();
         return equipamiento;
@@ -71,6 +72,8 @@ public class Gladiador implements Movible{
 
     public void afectarEnergia(int unaCantidad){
         this.energia.disminuirEnergia(unaCantidad);
+        //this.verificarEnergiaValida();
+
     }
 
     public int mover(int unaCantidad){
@@ -80,8 +83,14 @@ public class Gladiador implements Movible{
             energia.disminuirEnergia(unaCantidad);
             return unaCantidad;
         }else{
-            this.energia.aumentarEnergia(5);
             return 0;
+        }
+    }
+
+    public void verificarEnergiaValida(){
+        if(energia.calcularEnergia() <= 0){
+            this.lesionarse();
+            this.energia.aumentarEnergia(5);
         }
     }
 
@@ -103,12 +112,27 @@ public class Gladiador implements Movible{
     }
 
     public Gladiador ganador(){
-        this.esGanador.setEsGanador();
+        estadoGanador = new EsGanador();
         return this;
     }
-
+    public Gladiador perdedor(){
+        estadoGanador = new NoEsGanador();
+        return this;
+    }
     public boolean sosGanador(){
-        return (esGanador.estado());
+        return (estadoGanador.estado());
+    }
+
+    public boolean estaLesionado(){
+        return (estadoLesion.estado());
+    }
+
+    public void lesionarse(){
+        estadoLesion = new EstaLesionado();
+    }
+
+    public void habilitarMovimiento(){
+        estadoLesion = new NoEstaLesionado();
     }
 
 }

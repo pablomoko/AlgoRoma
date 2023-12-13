@@ -2,10 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
+import java.util.*;
 
 public class Mapeador {
     private List<Casilla> casillas;
@@ -59,4 +56,5 @@ public class Mapeador {
     public Casilla obtenerCasillaDe(int posicion){
         return this.casillas.get(posicion);
     }
+
 }

@@ -39,6 +39,7 @@ public abstract class Casilla {
     }
 
     public void afectarMovible(Movible movible){
+
         movible.obtenerPremio(this.premio);
         movible.vs(this.obstaculo);
 
@@ -46,6 +47,14 @@ public abstract class Casilla {
 
     public Posicion getPosicion(){
         return this.posicion;
+    }
+
+    public Premio getPremio() {
+        return this.premio;
+    }
+
+    public Obstaculo getObstaculo() {
+        return this.obstaculo;
     }
 
 }

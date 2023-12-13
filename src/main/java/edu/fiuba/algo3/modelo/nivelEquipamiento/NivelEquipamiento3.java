@@ -16,4 +16,8 @@ public class NivelEquipamiento3 extends NivelEquipamiento{
     public NivelEquipamiento siguienteNivel(){
         return new NivelEquipamiento4();
     }
+
+    public String getNombre(){
+        return equipamiento.getClass().getSimpleName();
+    }
 }

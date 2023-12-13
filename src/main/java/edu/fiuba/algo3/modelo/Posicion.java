@@ -17,4 +17,8 @@ public class Posicion {
     public int getY(){
         return this.y;
     }
+
+    public boolean esIgualA(int x, int y){
+        return (this.x == x && this.y == y);
+    }
 }

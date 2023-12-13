@@ -35,6 +35,7 @@ public class GestorArchivos {
             Casilla casilla = crearCasilla(celdaObject);
             casillas.add(casilla);
         }
+
         return casillas;
     }
     public static Map <String,Integer> generarDimesiones(String contenido){

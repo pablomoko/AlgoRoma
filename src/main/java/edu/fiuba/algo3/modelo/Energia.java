@@ -17,7 +17,7 @@ public class Energia {
     }
 
     public int disminuirEnergia(int unaCantidad){
-        valor = valor - unaCantidad;
+        this.valor = this.valor - unaCantidad;
         return valor;
     }
 

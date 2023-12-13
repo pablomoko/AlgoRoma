@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.vista;
+package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 import javafx.event.ActionEvent;
