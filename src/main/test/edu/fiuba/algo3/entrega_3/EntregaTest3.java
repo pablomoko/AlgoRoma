@@ -41,10 +41,15 @@ public class EntregaTest3 {
         gestorTurnos.avanzarTurnos(60); //30 * 2 (cantidad turnos max por jugador)
 
         jugador1.moverMovible(tablero, 1);
+        System.out.println(jugador1.obtenerMovible().calcularEnergia());
         jugador1.moverMovible(tablero, 4);
+        System.out.println(jugador1.obtenerMovible().calcularEnergia());
         jugador1.moverMovible(tablero, 4);
+        System.out.println(jugador1.obtenerMovible().calcularEnergia());
         jugador1.moverMovible(tablero, 1);
+        System.out.println(jugador1.obtenerMovible().calcularEnergia());
         jugador1.moverMovible(tablero, 28);
+        System.out.println(jugador1.obtenerMovible().calcularEnergia());
 
         assertTrue(jugador1.sosGanador());
         assertFalse(jugador2.sosGanador());

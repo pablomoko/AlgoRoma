@@ -83,7 +83,6 @@ public class ContenedorTablero extends HBox implements Observer {
         if (o.getClass() == Jugador.class) {
             Jugador jugador = (Jugador) o;
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
-            jugador.obtenerMovible();
 
             this.dibujarCasillasVacias();
 

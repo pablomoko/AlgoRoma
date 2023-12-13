@@ -10,4 +10,8 @@ public class NivelEquipamiento0 extends NivelEquipamiento{
     public NivelEquipamiento siguienteNivel(){
         return new NivelEquipamiento1();
     }
+
+    public String getNombre(){
+        return "Sin Equipamiento";
+    }
 }

@@ -37,14 +37,14 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
         Map<String,Integer> dimensiones = GestorArchivos.generarDimesiones(stringJson);
         this.contenedorPrincipal = new ContenedorPrincipal(stage, dimensiones.get("ancho"), dimensiones.get("largo"), jugadores, tablero);
 
-        for (Jugador jugador: jugadores.getListaDeTurnos()) {
+        for (Jugador jugador: this.jugadores.getListaDeTurnos()) {
             jugador.inicializarMovible(this.tablero);
             jugador.addObserver(this.contenedorPrincipal);
         }
 
         this.proximaEscena = new Scene(this.contenedorPrincipal, 800, 700);
 
-        this.tablero.notifyObservers(contenedorPrincipal);
+        //this.tablero.notifyObservers(contenedorPrincipal);
     }
 
 

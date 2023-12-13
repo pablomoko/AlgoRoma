@@ -30,6 +30,7 @@ public class ContenedorPrincipal extends VBox implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        System.out.println("PANCHO");
         if (o.getClass() == Jugador.class) {
             this.contenedorTablero.update(o, arg);
             this.contenedorEstado.update(o, arg);

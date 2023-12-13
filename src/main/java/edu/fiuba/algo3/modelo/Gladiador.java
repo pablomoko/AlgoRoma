@@ -57,10 +57,6 @@ public class Gladiador implements Movible{
         return energia.calcularEnergia();
     }
 
-    public NivelEquipamiento verEquipamiento(){
-        return (this.equipamiento);
-    }
-
     public NivelEquipamiento equiparse(){
         equipamiento = equipamiento.siguienteNivel();
         return equipamiento;

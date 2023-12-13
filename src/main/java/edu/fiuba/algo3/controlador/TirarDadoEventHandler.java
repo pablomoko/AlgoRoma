@@ -36,9 +36,10 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
         Image dado = new Image(String.format("file:src/main/resources/dado_%x.jpg", unosPasos));
         BackgroundImage imagenFondoBoton = new BackgroundImage(dado, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
         this.botonDado.setBackground(new Background(imagenFondoBoton));
-        if(!jugadores.obtenerTurnoActual().movibleLesionado()){
-            jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
-            jugadores.obtenerTurnoActual().notifyObservers();
+        if(!this.jugadores.obtenerTurnoActual().movibleLesionado()){
+            this.jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
+            this.jugadores.obtenerTurnoActual().notifyObservers();
+            System.out.println("Se Mueve");
         }else{
             //mensaje lesionado
         }

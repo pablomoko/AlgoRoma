@@ -25,6 +25,7 @@ public class Jugador extends Observable {
    }
 
    public Movible obtenerMovible(){
+        setChanged();
         return movible;
    }
 

@@ -24,7 +24,7 @@ public class ContenedorEstado extends VBox implements Observer {
 
     private ContenedorTitulo contenedorTitulo;
 
-    private VBox contenedorEstadoJugador;
+    private ContenedorEstadoJugador contenedorEstadoJugador;
 
     private GestorTurnos gestorTurnos;
 
@@ -38,30 +38,21 @@ public class ContenedorEstado extends VBox implements Observer {
         Button botonDado = new BotonDado();
         botonDado.setOnAction(new TirarDadoEventHandler(stage, botonDado, gestorTurnos, tablero));
 
-        Label energia = new Label();
-        energia.setText("Energia");
-        energia.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
-        Label equipamiento = new Label();
-        equipamiento.setText("Equipamiento");
-        equipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
-        Label seniority = new Label();
-        seniority.setText("Seniority");
-        seniority.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.contenedorTitulo = new ContenedorTitulo();
+        contenedorTitulo.setAlignment(Pos.CENTER);
 
         Button botonContinuar = new Button();
+        botonContinuar.setText("Siguiente Turno");
         SiguienteTurnoEventHandler siguienteTurnoEventHandler = new SiguienteTurnoEventHandler(gestorTurnos);
         botonContinuar.setOnAction(siguienteTurnoEventHandler);
 
-        this.contenedorEstadoJugador = new VBox(energia, equipamiento, seniority);
+        this.contenedorEstadoJugador = new ContenedorEstadoJugador();
         contenedorEstadoJugador.setAlignment(Pos.CENTER);
 
         HBox contenedorDadoYJugador = new HBox(botonDado, contenedorEstadoJugador, botonContinuar);
-        contenedorDadoYJugador.setAlignment(Pos.BASELINE_LEFT);
-        contenedorDadoYJugador.setPadding(new Insets(40));
-        contenedorDadoYJugador.setSpacing(500);
-
-        this.contenedorTitulo = new ContenedorTitulo();
-        contenedorTitulo.setAlignment(Pos.CENTER);
+        contenedorDadoYJugador.setAlignment(Pos.CENTER);
+        contenedorDadoYJugador.setPadding(new Insets(20));
+        contenedorDadoYJugador.setSpacing(250);
 
         this.getChildren().addAll(contenedorTitulo, contenedorDadoYJugador);
         this.setAlignment(Pos.TOP_CENTER);
@@ -71,6 +62,9 @@ public class ContenedorEstado extends VBox implements Observer {
         Jugador jugador = (Jugador) o;
         this.contenedorTitulo.setNombreJugador(jugador.obtenerNombre());
         this.contenedorTitulo.setNumeroRonda(this.gestorTurnos.obtenerRondaActual());
-        System.out.println(jugador.obtenerNombre());
+
+        this.contenedorEstadoJugador.setValorEnergia(jugador.obtenerMovible().calcularEnergia());
+        this.contenedorEstadoJugador.setValorEquipamiento(jugador.obtenerMovible().getEquipamiento().getNombre());
+        this.contenedorEstadoJugador.setValorSeniority(jugador.obtenerMovible().verSeniority().getClass().getSimpleName());
     }
 }

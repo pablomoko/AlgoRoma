@@ -6,4 +6,6 @@ public abstract class NivelEquipamiento {
 
     public abstract NivelEquipamiento siguienteNivel();
 
+    public abstract String getNombre();
+
 }

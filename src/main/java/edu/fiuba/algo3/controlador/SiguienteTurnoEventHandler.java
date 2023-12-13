@@ -15,6 +15,7 @@ public class SiguienteTurnoEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
 
         this.gestorTurnos.avanzarTurno();
+        this.gestorTurnos.obtenerTurnoActual().notifyObservers();
         System.out.println("Se Continua");
 
     }
