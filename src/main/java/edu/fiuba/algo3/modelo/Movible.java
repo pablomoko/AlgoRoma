@@ -27,4 +27,6 @@ public interface Movible {
 
     public Seniority verSeniority();
 
+    public void verificarEnergiaValida();
+
 }

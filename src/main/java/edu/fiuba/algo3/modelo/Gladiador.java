@@ -72,6 +72,8 @@ public class Gladiador implements Movible{
 
     public void afectarEnergia(int unaCantidad){
         this.energia.disminuirEnergia(unaCantidad);
+        //this.verificarEnergiaValida();
+
     }
 
     public int mover(int unaCantidad){
@@ -81,8 +83,14 @@ public class Gladiador implements Movible{
             energia.disminuirEnergia(unaCantidad);
             return unaCantidad;
         }else{
-            this.energia.aumentarEnergia(5);
             return 0;
+        }
+    }
+
+    public void verificarEnergiaValida(){
+        if(energia.calcularEnergia() <= 0){
+            this.lesionarse();
+            this.energia.aumentarEnergia(5);
         }
     }
 

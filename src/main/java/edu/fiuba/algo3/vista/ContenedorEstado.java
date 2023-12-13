@@ -66,5 +66,7 @@ public class ContenedorEstado extends VBox implements Observer {
         this.contenedorEstadoJugador.setValorEnergia(jugador.obtenerMovible().calcularEnergia());
         this.contenedorEstadoJugador.setValorEquipamiento(jugador.obtenerMovible().getEquipamiento().getNombre());
         this.contenedorEstadoJugador.setValorSeniority(jugador.obtenerMovible().verSeniority().getClass().getSimpleName());
+
+        jugador.obtenerMovible().verificarEnergiaValida();
     }
 }

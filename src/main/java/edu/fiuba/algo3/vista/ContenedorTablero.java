@@ -97,7 +97,7 @@ public class ContenedorTablero extends HBox implements Observer {
             HBox contenedorGladiador = new HBox();
             contenedorGladiador.setPrefWidth(50);
             contenedorGladiador.setPrefHeight(50);
-            Image imagenGladiador = new Image("file:src/main/resources/Gladiador.jpg");
+            Image imagenGladiador = new Image("file:src/main/resources/GladiadorAmarillo.jpg");
             BackgroundImage fondoImagenGladiador = new BackgroundImage(imagenGladiador, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
             contenedorGladiador.setBackground(new Background(fondoImagenGladiador));
             contenedorGladiador.setAlignment(Pos.CENTER);

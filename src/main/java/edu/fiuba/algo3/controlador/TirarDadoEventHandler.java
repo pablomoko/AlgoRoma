@@ -38,11 +38,11 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
         this.botonDado.setBackground(new Background(imagenFondoBoton));
         if(!this.jugadores.obtenerTurnoActual().movibleLesionado()){
             this.jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
-            this.jugadores.obtenerTurnoActual().notifyObservers();
-            System.out.println("Se Mueve");
+
         }else{
             //mensaje lesionado
+            jugadores.obtenerTurnoActual().obtenerMovible().habilitarMovimiento(); //habilita el movimiento para el proximo turno (saca lesion)
         }
-        jugadores.obtenerTurnoActual().obtenerMovible().habilitarMovimiento(); //habilita el movimiento para el proximo turno (saca lesion)
+        this.jugadores.obtenerTurnoActual().notifyObservers();
     }
 }

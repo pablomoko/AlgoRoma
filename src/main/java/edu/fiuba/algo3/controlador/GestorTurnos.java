@@ -49,8 +49,6 @@ public class GestorTurnos {
             }
             rondaActual++;
         }
-        //this.obtenerTurnoActual().notifyObservers();
-        //System.out.println(this.obtenerTurnoActual().obtenerNombre());
     }
 
     public void avanzarTurnos(int numeroDeTurnos) {

@@ -26,11 +26,14 @@ public class Tablero extends Observable {
 
         unosPasos = movible.mover(unosPasos);
 
-        Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
+        if(unosPasos > 0) {
 
-        casillaActual.moverMovible(casillaDestino, movible, this.mapeador);
+            Casilla casillaDestino = this.mapeador.obtenerCasillaDestino(casillaActual, unosPasos);
 
-        casillaDestino.afectarMovible(movible);
+            casillaActual.moverMovible(casillaDestino, movible, this.mapeador);
+
+            casillaDestino.afectarMovible(movible);
+        }
     }
 
     public Casilla obtenerCasillaDe(Movible movible) {
