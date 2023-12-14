@@ -1,17 +1,12 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Dado;
-import edu.fiuba.algo3.modelo.Jugador;
-import edu.fiuba.algo3.modelo.Tablero;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.vista.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 
 public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
 

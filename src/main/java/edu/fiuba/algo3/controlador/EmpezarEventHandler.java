@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;

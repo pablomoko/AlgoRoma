@@ -3,6 +3,7 @@ package edu.fiuba.algo3.controlador;
 import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.vista.BotonDado;
+import edu.fiuba.algo3.vista.LabelStyle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -42,9 +43,7 @@ public class TirarDadoOrdenadorEventHandler implements EventHandler<ActionEvent>
         this.botonDado.setBackground(new Background(imagenFondoBoton));
         this.botonDado.setDisable(true);
 
-        Label textoJugadorInicial = new Label();
-        textoJugadorInicial.setText(String.format("Inicia el jugador %d", resultado));
-        textoJugadorInicial.setStyle("-fx-font: 48 italics; -fx-text-fill: GoldenRod");
+        LabelStyle textoJugadorInicial = new LabelStyle(String.format("Inicia el jugador %d", resultado));
         this.vBox.getChildren().add(textoJugadorInicial);
         this.vBox.getChildren().add(botonJugar);
     }

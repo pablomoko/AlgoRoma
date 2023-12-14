@@ -36,12 +36,6 @@ public class Mapeador {
         return casillaDestino;
     }
 
-    public boolean tieneSiguiente(Casilla casilla){
-        ListIterator<Casilla> iterator = casillas.listIterator(casillas.indexOf(casilla));
-        iterator.next();
-        return iterator.hasNext();
-    }
-
     public void ubicarMovible(Movible movible, Casilla casilla){
         mapa.put(movible, casilla);
     }

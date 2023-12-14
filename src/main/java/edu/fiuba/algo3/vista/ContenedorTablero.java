@@ -28,6 +28,8 @@ public class ContenedorTablero extends HBox implements Observer {
 
     private GridPane mapa;
 
+    private ContenedorCasillero casilleroGladiador;
+
     private GestorTurnos gestorTurnos;
 
     public ContenedorTablero(Stage stage, int ancho, int alto, Tablero tablero, GestorTurnos gestorTurnos) {
@@ -38,12 +40,11 @@ public class ContenedorTablero extends HBox implements Observer {
         this.mapa = new GridPane();
         this.gestorTurnos = gestorTurnos;
 
-        BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
 
         for (int i=1; i<=this.alto; i++) {
             for (int j=1; j <= this.ancho; j++) {
                 ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
-                casillero.setStyle("-fx-background-color: DarkRed");
+                casillero.setStyle("-fx-background-color: #318607");
                 this.mapa.add(casillero, i, j);
             }
         }
@@ -51,14 +52,6 @@ public class ContenedorTablero extends HBox implements Observer {
         this.dibujarCasillasVacias();
 
         this.mapa.setAlignment(Pos.TOP_CENTER);
-       /* Image fondoPantalla = new Image("file:src/main/resources/campoDeBatalla.jpg");
-        BackgroundImage imagenFondoPantalla = new BackgroundImage(
-                fondoPantalla,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(tablero.getWidth(), tablero.getHeight(), true, true, true, false));
-        tablero.setBackground(new Background(imagenFondoPantalla));*/
 
         this.getChildren().add(mapa);
     }
@@ -70,7 +63,7 @@ public class ContenedorTablero extends HBox implements Observer {
         for (Casilla casilla: this.tablero.getCasillas()) {
 
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
-            casillero.setStyle("-fx-background-color: DarkGreen");
+            casillero.setStyle("-fx-background-color: #67350b");
 
             this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
         }
@@ -123,11 +116,9 @@ public class ContenedorTablero extends HBox implements Observer {
                 contenedorObstaculo.setBackground(new Background(fondoImagenLesion));
         }
 
-
         contenedorPremio.setAlignment(Pos.CENTER_LEFT);
         contenedorObstaculo.setAlignment(Pos.CENTER_RIGHT);
         casillero.getChildren().addAll(contenedorPremio, contenedorObstaculo);
-
 
         this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
         }
@@ -140,14 +131,15 @@ public class ContenedorTablero extends HBox implements Observer {
             Jugador jugador = (Jugador) o;
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
 
-           this.dibujarCasillasVacias();
+            this.dibujarCasillasVacias();
 
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
-            casillero.setStyle("-fx-background-color: DarkGreen");
+            this.casilleroGladiador = casillero;
+            casilleroGladiador.setStyle("-fx-background-color: #67350b");
 
             ContenedorGladiador contenedorGladiador = new ContenedorGladiador(this.gestorTurnos);
 
-            casillero.getChildren().add(contenedorGladiador);
+            casilleroGladiador.getChildren().add(contenedorGladiador);
 
             this.mapa.add(casillero, casillaJugador.getPosicion().getX(), casillaJugador.getPosicion().getY());
         }

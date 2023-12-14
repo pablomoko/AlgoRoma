@@ -16,4 +16,8 @@ public class ContenedorGladiador extends HBox {
         this.setBackground(new Background(fondoImagenGladiador));
         this.setAlignment(Pos.CENTER);
     }
+
+    public void eliminarFondo(){
+
+    }
 }

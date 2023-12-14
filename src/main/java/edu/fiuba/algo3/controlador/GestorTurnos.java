@@ -36,12 +36,13 @@ public class GestorTurnos {
     }
     public void rondaCero(int numeroJugadorInicial){
         jugadorQueIniciaRonda = numeroJugadorInicial;
+        this.rondaActual = 1;
     }
 
     public void avanzarTurno() {
 
 
-        if (!listaDeTurnos.isEmpty() && rondaActual!=rondasMaximas) {
+        if (!listaDeTurnos.isEmpty() && rondaActual!=(rondasMaximas+1)) {
             indiceTurnoActual = (indiceTurnoActual + 1) % listaDeTurnos.size();
         }
 
@@ -50,6 +51,10 @@ public class GestorTurnos {
                 throw new IllegalArgumentException("Ya se supero la cantidad de rondas maximas");
             }
             rondaActual++;
+            System.out.println("Avanza Turno");
+            System.out.println(this.obtenerTurnoActual().obtenerNombre());
+
+
         }
 
     }
@@ -82,7 +87,8 @@ public class GestorTurnos {
 
     public boolean hayEmpate(){
 
-        return (rondaActual == rondasMaximas + 1);
+        System.out.println(rondaActual);
+        return ((rondaActual == rondasMaximas + 1) && (this.listaDeTurnos.indexOf(this.obtenerTurnoActual()) == this.jugadorQueIniciaRonda));
 
     }
 

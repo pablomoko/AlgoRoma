@@ -17,6 +17,10 @@ public class ContenedorTableroYEstado extends VBox implements Observer {
         this.getChildren().addAll(contenedorTablero, contenedorEstado);
     }
 
+    public ContenedorTablero getContenedorTablero(){
+        return this.contenedorTablero;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         this.contenedorEstado.update(o, arg);

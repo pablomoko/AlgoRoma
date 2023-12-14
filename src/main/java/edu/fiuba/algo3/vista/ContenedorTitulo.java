@@ -12,10 +12,10 @@ public class ContenedorTitulo extends HBox {
     public ContenedorTitulo() {
         this.nombreJugador = new Label();
         this.nombreJugador.setText("Jugador");
-        this.nombreJugador.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.nombreJugador.setStyle("-fx-font: 24 italics; -fx-text-fill: #FFB347; -fx-alignment: center");
         this.numeroRonda = new Label();
         this.numeroRonda.setText("(Ronda)");
-        this.numeroRonda.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.numeroRonda.setStyle("-fx-font: 24 italics; -fx-text-fill: #FFB347; -fx-alignment: center");
         this.setSpacing(5);
         this.getChildren().addAll(this.nombreJugador, this.numeroRonda);
     }

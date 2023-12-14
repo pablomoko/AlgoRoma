@@ -66,18 +66,17 @@ public class ContenedorMensaje extends VBox implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println(unosPasos);
-        System.out.println(o.getClass());
+
         if (o.getClass() == CasillaCamino.class) {
             if(unosPasos != 0) {
                 Casilla casilla = (Casilla) o;
                 Obstaculo obstaculo = casilla.getObstaculo();
-                System.out.println(casilla.getObstaculo().getClass().getSimpleName());
+
                 String nombreObstaculo = casilla.getObstaculo().getClass().getSimpleName();
 
                 if (nombreObstaculo.equals("Fiera")) {
                     this.mensajeObstaculo.setText("Te encontraste a una Fiera. Te cagó a palos.");
-                    System.out.println(this.gestorTurnos.obtenerTurnoActual().obtenerMovible().getEquipamiento().usarEquipamiento());
+
                     int energiaPerdida = this.gestorTurnos.obtenerTurnoActual().obtenerMovible().getEquipamiento().usarEquipamiento() + 1;
                     this.mensajeEnergiaPerdida.setText(String.format("Perdiste %d puntos de energia.", energiaPerdida));
                 } else if (nombreObstaculo.equals("Lesion")) {
