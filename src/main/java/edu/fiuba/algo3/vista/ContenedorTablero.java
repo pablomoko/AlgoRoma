@@ -72,6 +72,7 @@ public class ContenedorTablero extends HBox implements Observer {
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             casillero.setStyle("-fx-background-color: DarkGreen");
 
+            this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
         }
     }
 
