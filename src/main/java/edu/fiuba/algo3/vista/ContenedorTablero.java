@@ -48,7 +48,7 @@ public class ContenedorTablero extends HBox implements Observer {
             }
         }
 
-        this.dibujarCasillasVacias();
+        this.dibujarCasillas();
 
         this.mapa.setAlignment(Pos.TOP_CENTER);
        /* Image fondoPantalla = new Image("file:src/main/resources/campoDeBatalla.jpg");
@@ -63,7 +63,7 @@ public class ContenedorTablero extends HBox implements Observer {
         this.getChildren().add(mapa);
     }
 
-    public void dibujarCasillasVacias() {
+    public void dibujarCasillas() {
         BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
         for (Casilla casilla: this.tablero.getCasillas()) {
 
@@ -127,8 +127,6 @@ public class ContenedorTablero extends HBox implements Observer {
         if (o.getClass() == Jugador.class) {
             Jugador jugador = (Jugador) o;
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
-
-            this.dibujarCasillasVacias();
 
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             casillero.setStyle("-fx-background-color: DarkGreen");
