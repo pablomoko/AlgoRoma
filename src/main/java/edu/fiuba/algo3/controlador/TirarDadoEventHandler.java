@@ -21,6 +21,8 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
 
     private ContenedorPrincipal contenedorPrincipal;
 
+
+
     public TirarDadoEventHandler(BotonDado botonDado, ContenedorPrincipal contenedorPrincipal) {
         this.botonDado = botonDado;
         this.dado = new Dado();
@@ -34,12 +36,12 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
         ContenedorMensaje contenedorMensaje;
         this.botonDado.setBackground(new Background(imagenFondoBoton));
         if(!this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().movibleLesionado()){
-            contenedorMensaje = new ContenedorMensaje(unosPasos, this.contenedorPrincipal.getGestorTurnos());
+            contenedorMensaje = new ContenedorMensaje(unosPasos, this.contenedorPrincipal.getGestorTurnos(), contenedorPrincipal.getStage());
             this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().moverMovible(this.contenedorPrincipal.getTablero(), unosPasos);
 
         }else{
             this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().obtenerMovible().habilitarMovimiento();
-            contenedorMensaje = new ContenedorMensaje(0, this.contenedorPrincipal.getGestorTurnos());
+            contenedorMensaje = new ContenedorMensaje(0, this.contenedorPrincipal.getGestorTurnos(), contenedorPrincipal.getStage());
         }
         this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().notifyObservers();
 

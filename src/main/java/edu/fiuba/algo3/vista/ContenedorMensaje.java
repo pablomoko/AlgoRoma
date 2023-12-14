@@ -6,11 +6,14 @@ import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.modelo.casilla.CasillaCamino;
+import edu.fiuba.algo3.modelo.casilla.CasillaLlegada;
 import edu.fiuba.algo3.modelo.obstaculo.*;
 import edu.fiuba.algo3.modelo.premio.Premio;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -27,9 +30,12 @@ public class ContenedorMensaje extends VBox implements Observer {
 
     private GestorTurnos gestorTurnos;
 
-    public ContenedorMensaje(int unosPasos, GestorTurnos gestorTurnos) {
+    private Stage stage;
+
+    public ContenedorMensaje(int unosPasos, GestorTurnos gestorTurnos, Stage stage) {
         this.unosPasos = unosPasos;
         this.gestorTurnos = gestorTurnos;
+        this.stage = stage;
 
         this.mensajeObstaculo = new Label();
         this.mensajeObstaculo.setText("Obstaculo: -");
@@ -50,7 +56,7 @@ public class ContenedorMensaje extends VBox implements Observer {
         this.botonDado = new BotonDado();
 
         this.setMaxHeight(400);
-        this.setMaxWidth(600);
+        this.setMaxWidth(650);
         this.setStyle("-fx-background-color: GoldenRod");
         this.setAlignment(Pos.CENTER);
 
@@ -62,43 +68,51 @@ public class ContenedorMensaje extends VBox implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println(unosPasos);
         System.out.println(o.getClass());
-        if (o.getClass() == CasillaCamino.class && unosPasos != 0) {
-            Casilla casilla = (Casilla) o;
-            Obstaculo obstaculo = casilla.getObstaculo();
-            System.out.println(casilla.getObstaculo().getClass().getSimpleName());
-            switch (casilla.getObstaculo().getClass().getSimpleName()) {
-                case "Bacanal":
-                    this.mensajeObstaculo.setText("Fuiste a un Bacanal, estas en pedo. Tira el dado para saber cuantas copas tomaste.");
+        if (o.getClass() == CasillaCamino.class) {
+            if(unosPasos != 0) {
+                Casilla casilla = (Casilla) o;
+                Obstaculo obstaculo = casilla.getObstaculo();
+                System.out.println(casilla.getObstaculo().getClass().getSimpleName());
+                String nombreObstaculo = casilla.getObstaculo().getClass().getSimpleName();
+
+                if (nombreObstaculo.equals("Fiera")) {
+                    this.mensajeObstaculo.setText("Te encontraste a una Fiera. Te cagó a palos.");
+                    System.out.println(this.gestorTurnos.obtenerTurnoActual().obtenerMovible().getEquipamiento().usarEquipamiento());
+                    int energiaPerdida = this.gestorTurnos.obtenerTurnoActual().obtenerMovible().getEquipamiento().usarEquipamiento() + 1;
+                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste %d puntos de energia.", energiaPerdida));
+                } else if (nombreObstaculo.equals("Lesion")) {
+                    this.mensajeObstaculo.setText("Te rompiste todo pibe, la proxima no jugas.");
+                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste 1 puntos de energia."));
+                } else if (nombreObstaculo.equals("Bacanal")) {
+                    this.mensajeObstaculo.setText("Fuiste a un Bacanal, estas en pedo. Cuantas copas tomaste?.");
                     this.getChildren().add(this.botonDado);
                     Bacanal bacanal = (Bacanal) obstaculo;
                     TirarDadoBacanalEventHandler tirarDadoBacanalEventHandler = new TirarDadoBacanalEventHandler(botonDado, bacanal.getResultadoDado(), this);
                     this.botonDado.setOnAction(tirarDadoBacanalEventHandler);
-                case "Fiera":
-                    this.mensajeObstaculo.setText("Te encontraste a una Fiera. Te cagó a palos.");
-                    int energiaPerdida = this.gestorTurnos.obtenerTurnoActual().obtenerMovible().getEquipamiento().usarEquipamiento() + this.unosPasos;
-                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste %d puntos de energia.", energiaPerdida));
-                case "Lesion":
-                    this.mensajeObstaculo.setText("Te rompiste todo pibe, la proxima no jugas.");
-                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste %d puntos de energia.", this.unosPasos));
-                default:
-                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste %d puntos de energia.", this.unosPasos));
-            }
+                } else {
+                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste 1 puntos de energia."));
 
-            Premio premio = casilla.getPremio();
+                }
 
-            switch (casilla.getPremio().getClass().getSimpleName()) {
-                case "Comida":
+
+                Premio premio = casilla.getPremio();
+                String nombrePremio = casilla.getPremio().getClass().getSimpleName();
+
+                if (nombrePremio.equals("Comida")) {
                     this.mensajePremio.setText("Te encontraste un super panchito!!");
                     this.mensajeEnergiaGanada.setText("Ganaste 15 puntos de energia");
-                case "Equipamiento":
-
+                } else if (nombrePremio.equals("Equipamiento")) {
                     this.mensajePremio.setText(String.format("Encontraste un loot. Subis tu nivel de equipamiento"));
-
-                default:
-                    this.mensajeEnergiaPerdida.setText(String.format("Perdiste %d puntos de energia.", this.unosPasos));
+                }
+            }else {
+                this.mensajeEnergiaGanada.setText("No te podias mover.");
             }
-        }else {
-            this.mensajeEnergiaGanada.setText("No te podias mover. Ganaste 5 de energia");
+
+        }else if(o.getClass() == CasillaLlegada.class){
+            ContenedorJugadorGanador contenedorJugadorGanador = new ContenedorJugadorGanador(this.gestorTurnos.obtenerTurnoActual());
+            Scene escenaGanador = new Scene(contenedorJugadorGanador, 800, 700);
+            stage.setScene(escenaGanador);
+            stage.setFullScreen(true);
         }
     }
 

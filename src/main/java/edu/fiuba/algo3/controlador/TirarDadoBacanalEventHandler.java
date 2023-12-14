@@ -28,6 +28,6 @@ public class TirarDadoBacanalEventHandler implements EventHandler<ActionEvent> {
         Image dado = new Image(String.format("file:src/main/resources/dado_%x.jpg", this.resultadoDado));
         BackgroundImage imagenFondoBoton = new BackgroundImage(dado, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
         this.botonDado.setBackground(new Background(imagenFondoBoton));
-        this.contenedorMensaje.setMensajeEnergiaPerdida(String.format("Perdiste %d puntos de energia.", resultadoDado * 4 + this.contenedorMensaje.getUnosPasos()));
+        this.contenedorMensaje.setMensajeEnergiaPerdida(String.format("Perdiste %d puntos de energia.", resultadoDado * 4 + 1));
     }
 }

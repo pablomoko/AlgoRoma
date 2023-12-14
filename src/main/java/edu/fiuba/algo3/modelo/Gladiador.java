@@ -78,9 +78,9 @@ public class Gladiador implements Movible{
 
     public int mover(int unaCantidad){
         this.aumentarTurno();
-        if(energia.calcularEnergia() >= unaCantidad) {
+        if(energia.calcularEnergia() > 0) {
             this.seniority.sumarPasos(unaCantidad);
-            energia.disminuirEnergia(unaCantidad);
+            energia.disminuirEnergia(1);
             return unaCantidad;
         }else{
             return 0;

@@ -4,6 +4,7 @@ import edu.fiuba.algo3.controlador.GestorTurnos;
 import edu.fiuba.algo3.controlador.TirarDadoEventHandler;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -19,9 +20,12 @@ public class ContenedorPrincipal extends StackPane implements Observer {
 
     private Tablero tablero;
 
+    private Stage stage;
+
     public ContenedorPrincipal(Stage stage, int ancho, int alto, GestorTurnos gestorTurnos, Tablero tablero) {
         this.gestorTurnos = gestorTurnos;
         this.tablero = tablero;
+        this.stage = stage;
         stage.setFullScreen(true);
         this.setPrefWidth(stage.getWidth());
         this.setPrefHeight(stage.getHeight());
@@ -39,13 +43,6 @@ public class ContenedorPrincipal extends StackPane implements Observer {
         this.getChildren().add(this.contenedorTableroYEstado);
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        if (o.getClass() == Jugador.class) {
-            this.contenedorTableroYEstado.update(o, arg);
-        }
-    }
-
     public GestorTurnos getGestorTurnos() {
         return this.gestorTurnos;
     }
@@ -57,4 +54,22 @@ public class ContenedorPrincipal extends StackPane implements Observer {
     public ContenedorTableroYEstado getContenedorTableroYEstado() {
         return this.contenedorTableroYEstado;
     }
+
+    public Stage getStage(){
+        return this.stage;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o.getClass() == Jugador.class) {
+            if(this.gestorTurnos.hayEmpate()){
+                ContenedorEmpate contenedorEmpate = new ContenedorEmpate();
+                Scene escenaGanador = new Scene(contenedorEmpate, 800, 700);
+                stage.setScene(escenaGanador);
+                stage.setFullScreen(true);
+            }
+            this.contenedorTableroYEstado.update(o, arg);
+        }
+    }
+
 }
