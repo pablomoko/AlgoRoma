@@ -48,7 +48,7 @@ public class ContenedorTablero extends HBox implements Observer {
             }
         }
 
-        this.dibujarCasillas();
+        this.dibujarCasillasVacias();
 
         this.mapa.setAlignment(Pos.TOP_CENTER);
        /* Image fondoPantalla = new Image("file:src/main/resources/campoDeBatalla.jpg");
@@ -63,13 +63,23 @@ public class ContenedorTablero extends HBox implements Observer {
         this.getChildren().add(mapa);
     }
 
-    public void dibujarCasillas() {
+
+
+    public void dibujarCasillasVacias() {
         BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
         for (Casilla casilla: this.tablero.getCasillas()) {
 
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             casillero.setStyle("-fx-background-color: DarkGreen");
 
+        }
+    }
+
+
+    public void dibujasPremiosYObstaculos(){
+
+        for (Casilla casilla: this.tablero.getCasillas()) {
+            ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             String nombrePremio = casilla.getPremio().getClass().getSimpleName();
             String nombreObstaculo =casilla.getObstaculo().getClass().getSimpleName();
 
@@ -110,23 +120,26 @@ public class ContenedorTablero extends HBox implements Observer {
                 Image imagenLesion = new Image("file:src/main/resources/lesion.jpg");
                 BackgroundImage fondoImagenLesion = new BackgroundImage(imagenLesion, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
                 contenedorObstaculo.setBackground(new Background(fondoImagenLesion));
-            }
+        }
 
 
-            contenedorPremio.setAlignment(Pos.CENTER_LEFT);
-            contenedorObstaculo.setAlignment(Pos.CENTER_RIGHT);
-            casillero.getChildren().addAll(contenedorPremio, contenedorObstaculo);
+        contenedorPremio.setAlignment(Pos.CENTER_LEFT);
+        contenedorObstaculo.setAlignment(Pos.CENTER_RIGHT);
+        casillero.getChildren().addAll(contenedorPremio, contenedorObstaculo);
 
 
-            this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
+        this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
         }
     }
+
 
     @Override
     public void update(Observable o, Object arg) {
         if (o.getClass() == Jugador.class) {
             Jugador jugador = (Jugador) o;
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
+
+           this.dibujarCasillasVacias();
 
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             casillero.setStyle("-fx-background-color: DarkGreen");
