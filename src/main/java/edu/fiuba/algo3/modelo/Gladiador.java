@@ -48,6 +48,7 @@ public class Gladiador implements Movible{
     public void obtenerPremio(Premio premio){
         premio.afectarGladiador(this);
     }
+
     public int calcularEnergia(){
         return (this.energia.calcularEnergia());
     }
@@ -65,10 +66,6 @@ public class Gladiador implements Movible{
     public int usarEquipamiento() {
         return equipamiento.usarEquipamiento();
     }
-    public int pelearContraFiera(){
-        afectarEnergia(this.equipamiento.usarEquipamiento());
-        return energia.calcularEnergia();
-    }
 
     public void afectarEnergia(int unaCantidad){
         this.energia.disminuirEnergia(unaCantidad);
@@ -78,9 +75,9 @@ public class Gladiador implements Movible{
 
     public int mover(int unaCantidad){
         this.aumentarTurno();
-        if(energia.calcularEnergia() >= unaCantidad) {
+        if(energia.calcularEnergia() > 0) {
             this.seniority.sumarPasos(unaCantidad);
-            energia.disminuirEnergia(unaCantidad);
+            energia.disminuirEnergia(1);
             return unaCantidad;
         }else{
             return 0;

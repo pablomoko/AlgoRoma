@@ -24,15 +24,11 @@ public class ContenedorDefinirTurno extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
 
-        Button botonDado = new BotonDado();
+        BotonDado botonDado = new BotonDado();
 
-        Label textoInformativo = new Label();
-        textoInformativo.setText("El resultado del dado define que jugador empieza");
-        textoInformativo.setStyle("-fx-font: 48 italics; -fx-text-fill: GoldenRod");
+        LabelStyle textoInformativo = new LabelStyle("El resultado del dado define que jugador empieza");
 
-        Label textoTirarDado = new Label();
-        textoTirarDado.setText("Haz click en el dado");
-        textoTirarDado.setStyle("-fx-font: 48 italics; -fx-text-fill: GoldenRod");
+        LabelStyle textoTirarDado = new LabelStyle("Haz click en el dado");
 
         JugarEventHandler jugarEventHandler = new JugarEventHandler(stage, jugadores);
 

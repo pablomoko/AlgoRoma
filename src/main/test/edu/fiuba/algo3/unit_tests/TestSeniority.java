@@ -14,12 +14,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestSeniority {
 
     @Test
-    public void test01DeNovatoSeAsciendeASemiSeniorSiSeLlegaAOchoPasos() {
+    public void test01SeniorityNovatoNoTienePlusEnergia() {
 
         Seniority seniority = new Novato();
         Energia energia = new Energia(20);
 
-        seniority = seniority.sumarTurnos(9);
+        energia = seniority.plusDeEnergia(energia);
+
+        assertEquals(energia.calcularEnergia(), 20);
+
+    }
+
+    @Test
+    public void test02DeNovatoSeAsciendeASemiSeniorSiSeLlegaAOchoTurnos() {
+
+        Seniority seniority = new Novato();
+        Energia energia = new Energia(20);
+
+        seniority = seniority.sumarTurnos(8);
         energia = seniority.plusDeEnergia(energia);
 
         assertEquals(energia.calcularEnergia(), 25);
@@ -27,7 +39,7 @@ public class TestSeniority {
     }
 
     @Test
-    public void test02DeSemiSeniorSeAsciendeASeniorSiSeLlegaA12Pasos() {
+    public void test02DeSemiSeniorSeAsciendeASeniorSiSeLlegaA12Turnos() {
 
         Seniority seniority = new SemiSenior(1);
         Energia energia = new Energia(20);

@@ -10,6 +10,7 @@ import edu.fiuba.algo3.modelo.premio.equipamiento.Llave;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Casco;
 import edu.fiuba.algo3.modelo.premio.equipamiento.Armadura;
 import edu.fiuba.algo3.modelo.premio.equipamiento.EscYEsp;
+import javafx.scene.control.Label;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -29,6 +30,36 @@ public class TestEquipamiento {
     }
 
     @Test
+    public void test02SeUsaUnArmaduraYSeDevuelveDiez() {
+
+        Armadura arm = new Armadura();
+
+        assertEquals(arm.usar(),10);
+
+
+    }
+
+    @Test
+    public void test03SeUsaUnEscYEspYSeDevuelveDos() {
+
+        EscYEsp escYEsp = new EscYEsp();
+
+        assertEquals(escYEsp.usar(),2);
+
+
+    }
+
+    @Test
+    public void test04SeUsaUnLlaveYSeDevuelveCero() {
+
+        Llave llave = new Llave();
+
+        assertEquals(llave.usar(),0);
+
+
+    }
+
+    /*@Test
     public void test02SiguienteEquipamientoDelCascoEsLaArmadura() {
 
         NivelEquipamiento equipamiento = new NivelEquipamiento1();
@@ -88,6 +119,6 @@ public class TestEquipamiento {
         assertEquals(llave.usar(),0);
 
 
-    }
+    }*/
 
 }

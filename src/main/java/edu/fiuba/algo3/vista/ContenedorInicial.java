@@ -15,9 +15,8 @@ public class ContenedorInicial extends VBox{
                 Image fondoPantalla = new Image("file:src/main/resources/fondoJuego.jpg");
                 BackgroundImage imagenFondoPantalla = new BackgroundImage(fondoPantalla, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
                 this.setBackground(new Background(imagenFondoPantalla));
-                Label titulo = new Label();
-                titulo.setText("AlgoRoma");
-                titulo.setStyle("-fx-font: 48 italics; -fx-text-fill: GoldenRod");
+
+                LabelStyle titulo = new LabelStyle("AlgoRoma");
 
                 Button botonEmpezar = new Button();
                 botonEmpezar.setText("Empezar");

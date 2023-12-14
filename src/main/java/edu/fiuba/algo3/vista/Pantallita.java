@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
-import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 
 public class Pantallita extends Application {
 

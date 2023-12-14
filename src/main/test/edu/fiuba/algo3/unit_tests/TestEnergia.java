@@ -8,6 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestEnergia {
 
+    @Test
+    public void test01EnergiaSeCreaCorrectamenteConEnergia() {
+
+        Energia energia = new Energia(20);
+
+        assertEquals(energia.calcularEnergia(), 20);
+
+    }
 
     @Test
     public void test02SeDisminuyeLaEnergiaSegunElValorIndicado() {
@@ -15,6 +23,15 @@ public class TestEnergia {
         Energia energia = new Energia(20);
 
         assertEquals(energia.disminuirEnergia(6), 14);
+
+    }
+
+    @Test
+    public void test03SeAumentaLaEnergiaSegunElValorIndicado() {
+
+        Energia energia = new Energia(20);
+
+        assertEquals(energia.aumentarEnergia(6).calcularEnergia(), 26);
 
     }
 }

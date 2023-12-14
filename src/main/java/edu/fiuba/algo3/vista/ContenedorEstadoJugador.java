@@ -16,30 +16,30 @@ public class ContenedorEstadoJugador extends VBox {
 
         Label energia = new Label();
         energia.setText("Energia: ");
-        energia.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        energia.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
 
         this.valorEnergia = new Label();
-        this.valorEnergia.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.valorEnergia.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
 
         HBox contenedorEnergia = new HBox(energia, this.valorEnergia);
         contenedorEnergia.setSpacing(20);
 
         Label equipamiento = new Label();
         equipamiento.setText("Equipamiento: ");
-        equipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        equipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
 
         this.valorEquipamiento = new Label();
-        this.valorEquipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.valorEquipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
 
         HBox contenedorEquipamiento = new HBox(equipamiento, this.valorEquipamiento);
         contenedorEquipamiento.setSpacing(20);
 
         Label seniority = new Label();
         seniority.setText("Seniority: ");
-        seniority.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        seniority.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
 
         this.valorSeniority = new Label();
-        this.valorSeniority.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.valorSeniority.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
 
         HBox contenedorSeniority = new HBox(seniority, this.valorSeniority);
         contenedorSeniority.setSpacing(20);

@@ -25,7 +25,7 @@ public class Novato extends Seniority{
     }
 
     public Energia plusDeEnergia(Energia energia){
-        return energia.aumentarEnergia(0);
+        return energia;
     }
 
 }

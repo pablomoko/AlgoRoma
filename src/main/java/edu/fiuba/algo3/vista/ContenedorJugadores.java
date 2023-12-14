@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.AgregarJugadorEventHandler;
 import edu.fiuba.algo3.controlador.ContinuarEventHandler;
+import edu.fiuba.algo3.controlador.TextoEventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,22 +16,23 @@ public class ContenedorJugadores extends VBox {
 
     public ContenedorJugadores(Stage stage, Label label){
 
-        Label titulo = new Label();
-        titulo.setText("Inicializar Jugadores");
-        titulo.setStyle("-fx-font: 48 italics; -fx-text-fill: GoldenRod");
+        LabelStyle titulo = new LabelStyle("Inicializar Jugadores");
 
         Image fondoPantalla = new Image("file:src/main/resources/fondoJuego.jpg");
         BackgroundImage imagenFondoPantalla = new BackgroundImage(fondoPantalla, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
         this.setBackground(new Background(imagenFondoPantalla));
 
         TextField texto = new TextField();
-        texto.setPromptText("Ingrese el nombre del jugador");
-        texto.setPrefSize(200, 50);
-        texto.setStyle("-fx-font: 24 arial; -fx-background-color: RED");
+        texto.setPromptText("Ingrese nombre");
+        texto.setPrefSize(250, 50);
+        texto.setStyle("-fx-font: 24 arial; -fx-background-color: GoldenRod; -fx-text-fill: DarkRed");
 
         Button botonAgregar = new Button();
         botonAgregar.setText("Agregar");
         botonAgregar.setStyle("-fx-font: 36 arial; -fx-background-color: DarkRed; -fx-text-fill: GoldenRod");
+
+        TextoEventHandler textoEventHandler = new TextoEventHandler(botonAgregar);
+        texto.setOnKeyPressed(textoEventHandler);
 
         HBox contenedorHorizontal = new HBox(texto, botonAgregar);
         contenedorHorizontal.setAlignment(Pos.CENTER);
