@@ -42,10 +42,7 @@ public class ContenedorTablero extends HBox implements Observer {
 
         for (int i=1; i<=this.alto; i++) {
             for (int j=1; j <= this.ancho; j++) {
-                HBox casillero = new HBox();
-                casillero.setPrefWidth((stage.getWidth()) / alto);
-                casillero.setPrefHeight((stage.getHeight()) / (alto/2.4));
-                casillero.setBorder(new Border(borde));
+                ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
                 casillero.setStyle("-fx-background-color: DarkRed");
                 this.mapa.add(casillero, i, j);
             }
@@ -70,11 +67,7 @@ public class ContenedorTablero extends HBox implements Observer {
         BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
         for (Casilla casilla: this.tablero.getCasillas()) {
 
-            HBox casillero = new HBox();
-            casillero.setMinWidth(this.stage.getWidth() / this.alto);
-            casillero.setMinHeight(this.stage.getHeight() / (this.alto/1.4));
-            casillero.setPadding(new Insets(10));
-            casillero.setBorder(new Border(borde));
+            ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             casillero.setStyle("-fx-background-color: DarkGreen");
 
             String nombrePremio = casilla.getPremio().getClass().getSimpleName();
@@ -131,28 +124,17 @@ public class ContenedorTablero extends HBox implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        //Jugador jugador = (Jugador) o;
         if (o.getClass() == Jugador.class) {
             Jugador jugador = (Jugador) o;
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
 
             this.dibujarCasillasVacias();
 
-            BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
-            HBox casillero = new HBox();
-            casillero.setMinWidth(stage.getWidth() / alto);
-            casillero.setMinHeight(stage.getHeight() / (alto/1.4));
-            casillero.setPadding(new Insets(10));
-            casillero.setBorder(new Border(borde));
+            ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             casillero.setStyle("-fx-background-color: DarkGreen");
 
-            HBox contenedorGladiador = new HBox();
-            contenedorGladiador.setPrefWidth(50);
-            contenedorGladiador.setPrefHeight(50);
-            Image imagenGladiador = new Image(String.format("file:src/main/resources/Gladiador%d.jpg", this.gestorTurnos.obtenerNumeroJugadorActual()));
-            BackgroundImage fondoImagenGladiador = new BackgroundImage(imagenGladiador, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-            contenedorGladiador.setBackground(new Background(fondoImagenGladiador));
-            contenedorGladiador.setAlignment(Pos.CENTER);
+            ContenedorGladiador contenedorGladiador = new ContenedorGladiador(this.gestorTurnos);
+
             casillero.getChildren().add(contenedorGladiador);
 
             this.mapa.add(casillero, casillaJugador.getPosicion().getX(), casillaJugador.getPosicion().getY());
