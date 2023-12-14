@@ -78,16 +78,51 @@ public class ContenedorTablero extends HBox implements Observer {
             casillero.setStyle("-fx-background-color: DarkGreen");
 
             String nombrePremio = casilla.getPremio().getClass().getSimpleName();
+            String nombreObstaculo =casilla.getObstaculo().getClass().getSimpleName();
+
+            HBox contenedorPremio = new HBox();
+            contenedorPremio.setPrefWidth(50);
+            contenedorPremio.setPrefHeight(50);
+
+            HBox contenedorObstaculo = new HBox();
+            contenedorObstaculo.setPrefWidth(50);
+            contenedorObstaculo.setPrefHeight(50);
+
             if (nombrePremio.equals("Comida")){
-                HBox contenedorPancho = new HBox();
-                contenedorPancho.setPrefWidth(50);
-                contenedorPancho.setPrefHeight(50);
                 Image imagenPancho = new Image("file:src/main/resources/superpancho.jpg");
                 BackgroundImage fondoImagenPancho = new BackgroundImage(imagenPancho, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-                contenedorPancho.setBackground(new Background(fondoImagenPancho));
-                contenedorPancho.setAlignment(Pos.CENTER);
-                casillero.getChildren().add(contenedorPancho);
+                contenedorPremio.setBackground(new Background(fondoImagenPancho));
+
             }
+
+            if (nombrePremio.equals("Equipamiento")){
+                Image imagenLoot = new Image("file:src/main/resources/loot.jpg");
+                BackgroundImage fondoImagenLoot = new BackgroundImage(imagenLoot, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
+                contenedorPremio.setBackground(new Background(fondoImagenLoot));
+            }
+
+            if (nombreObstaculo.equals("Fiera")){
+                Image imagenFiera = new Image("file:src/main/resources/fiera.jpg");
+                BackgroundImage fondoImagenFiera = new BackgroundImage(imagenFiera, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
+                contenedorObstaculo.setBackground(new Background(fondoImagenFiera));
+            }
+
+            if (nombreObstaculo.equals("Bacanal")){
+                Image imagenVino = new Image("file:src/main/resources/vino.jpg");
+                BackgroundImage fondoImagenVino = new BackgroundImage(imagenVino, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
+                contenedorObstaculo.setBackground(new Background(fondoImagenVino));
+            }
+
+            if (nombreObstaculo.equals("Lesion")){
+                Image imagenLesion = new Image("file:src/main/resources/lesion.jpg");
+                BackgroundImage fondoImagenLesion = new BackgroundImage(imagenLesion, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
+                contenedorObstaculo.setBackground(new Background(fondoImagenLesion));
+            }
+
+
+            contenedorPremio.setAlignment(Pos.CENTER_LEFT);
+            contenedorObstaculo.setAlignment(Pos.CENTER_RIGHT);
+            casillero.getChildren().addAll(contenedorPremio, contenedorObstaculo);
 
 
             this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
