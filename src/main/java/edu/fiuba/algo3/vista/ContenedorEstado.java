@@ -28,22 +28,21 @@ public class ContenedorEstado extends VBox implements Observer {
 
     private GestorTurnos gestorTurnos;
 
+    private ContenedorPrincipal contenedorPrincipal;
 
-    public ContenedorEstado(Stage stage, int alto, GestorTurnos gestorTurnos, Tablero tablero) {
+
+    public ContenedorEstado(Stage stage, int alto, GestorTurnos gestorTurnos, Tablero tablero, BotonDado botonDado, ContenedorPrincipal contenedorPrincipal) {
         this.setPrefWidth(stage.getWidth());
         this.setPrefHeight(stage.getHeight() - (stage.getHeight() / (alto/1.4)) * 200);
         this.setStyle("-fx-background-color: GoldenRod");
         this.gestorTurnos = gestorTurnos;
-
-        Button botonDado = new BotonDado();
-        botonDado.setOnAction(new TirarDadoEventHandler(stage, botonDado, gestorTurnos, tablero));
 
         this.contenedorTitulo = new ContenedorTitulo();
         contenedorTitulo.setAlignment(Pos.CENTER);
 
         Button botonContinuar = new Button();
         botonContinuar.setText("Siguiente Turno");
-        SiguienteTurnoEventHandler siguienteTurnoEventHandler = new SiguienteTurnoEventHandler(gestorTurnos);
+        SiguienteTurnoEventHandler siguienteTurnoEventHandler = new SiguienteTurnoEventHandler(gestorTurnos, contenedorPrincipal);
         botonContinuar.setOnAction(siguienteTurnoEventHandler);
 
         this.contenedorEstadoJugador = new ContenedorEstadoJugador();

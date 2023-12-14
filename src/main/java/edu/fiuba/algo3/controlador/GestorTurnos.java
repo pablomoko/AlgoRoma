@@ -73,4 +73,8 @@ public class GestorTurnos {
         this.rondaCero(numeroJugadorInicial);
     }
 
+    public int obtenerNumeroJugadorActual() {
+        return this.listaDeTurnos.indexOf(this.obtenerTurnoActual()) + 1;
+    }
+
 }

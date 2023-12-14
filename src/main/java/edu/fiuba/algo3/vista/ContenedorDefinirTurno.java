@@ -24,7 +24,7 @@ public class ContenedorDefinirTurno extends VBox {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
 
-        Button botonDado = new BotonDado();
+        BotonDado botonDado = new BotonDado();
 
         Label textoInformativo = new Label();
         textoInformativo.setText("El resultado del dado define que jugador empieza");

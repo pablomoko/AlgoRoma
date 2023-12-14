@@ -5,10 +5,18 @@ import edu.fiuba.algo3.modelo.Tirador;
 
 public class Bacanal extends Obstaculo   {
     private Tirador dado;
+
+    private int resultadoDado;
     public Bacanal(Tirador dado){
         this.dado = dado;
     }
     public void afectarGladiador(Gladiador gladiador){
-        gladiador.afectarEnergia(dado.tirarDado() * 4);
+        int resultadoDado = dado.tirarDado();
+        this.resultadoDado = resultadoDado;
+        gladiador.afectarEnergia(resultadoDado * 4);
+    }
+
+    public int getResultadoDado() {
+        return this.resultadoDado;
     }
 }

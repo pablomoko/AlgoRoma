@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.GestorTurnos;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
 import edu.fiuba.algo3.modelo.casilla.Casilla;
@@ -27,17 +28,20 @@ public class ContenedorTablero extends HBox implements Observer {
 
     private GridPane mapa;
 
-    public ContenedorTablero(Stage stage, int ancho, int alto, Tablero tablero) {
+    private GestorTurnos gestorTurnos;
+
+    public ContenedorTablero(Stage stage, int ancho, int alto, Tablero tablero, GestorTurnos gestorTurnos) {
         this.stage = stage;
         this.alto = alto;
         this.ancho = ancho;
         this.tablero = tablero;
         this.mapa = new GridPane();
+        this.gestorTurnos = gestorTurnos;
 
         BorderStroke borde = new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT);
 
-        for (int i=1; i<=alto; i++) {
-            for (int j=1; j <= ancho; j++) {
+        for (int i=1; i<=this.alto; i++) {
+            for (int j=1; j <= this.ancho; j++) {
                 HBox casillero = new HBox();
                 casillero.setPrefWidth((stage.getWidth()) / alto);
                 casillero.setPrefHeight((stage.getHeight()) / (alto/2.4));
@@ -97,7 +101,7 @@ public class ContenedorTablero extends HBox implements Observer {
             HBox contenedorGladiador = new HBox();
             contenedorGladiador.setPrefWidth(50);
             contenedorGladiador.setPrefHeight(50);
-            Image imagenGladiador = new Image("file:src/main/resources/GladiadorAmarillo.jpg");
+            Image imagenGladiador = new Image(String.format("file:src/main/resources/Gladiador%d.jpg", this.gestorTurnos.obtenerNumeroJugadorActual()));
             BackgroundImage fondoImagenGladiador = new BackgroundImage(imagenGladiador, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
             contenedorGladiador.setBackground(new Background(fondoImagenGladiador));
             contenedorGladiador.setAlignment(Pos.CENTER);

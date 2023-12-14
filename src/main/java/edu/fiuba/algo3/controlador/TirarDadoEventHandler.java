@@ -3,6 +3,8 @@ package edu.fiuba.algo3.controlador;
 import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
+import edu.fiuba.algo3.modelo.casilla.Casilla;
+import edu.fiuba.algo3.vista.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -13,36 +15,37 @@ import edu.fiuba.algo3.controlador.GestorFlujoDeJuego;
 
 public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
 
-    private Stage stage;
-
-    private Button botonDado;
+    private BotonDado botonDado;
 
     private Dado dado;
 
-    private GestorTurnos jugadores;
+    private ContenedorPrincipal contenedorPrincipal;
 
-    private Tablero tablero;
-
-    public TirarDadoEventHandler(Stage stage, Button botonDado, GestorTurnos jugadores, Tablero tablero) {
-        this.stage = stage;
+    public TirarDadoEventHandler(BotonDado botonDado, ContenedorPrincipal contenedorPrincipal) {
         this.botonDado = botonDado;
         this.dado = new Dado();
-        this.jugadores = jugadores;
-        this.tablero = tablero;
+        this.contenedorPrincipal = contenedorPrincipal;
     }
     @Override
     public void handle(ActionEvent actionEvent) {
         int unosPasos = this.dado.tirarDado();
         Image dado = new Image(String.format("file:src/main/resources/dado_%x.jpg", unosPasos));
         BackgroundImage imagenFondoBoton = new BackgroundImage(dado, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
+        ContenedorMensaje contenedorMensaje;
         this.botonDado.setBackground(new Background(imagenFondoBoton));
-        if(!this.jugadores.obtenerTurnoActual().movibleLesionado()){
-            this.jugadores.obtenerTurnoActual().moverMovible(this.tablero, unosPasos);
+        if(!this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().movibleLesionado()){
+            contenedorMensaje = new ContenedorMensaje(unosPasos, this.contenedorPrincipal.getGestorTurnos());
+            this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().moverMovible(this.contenedorPrincipal.getTablero(), unosPasos);
 
         }else{
-            //mensaje lesionado
-            jugadores.obtenerTurnoActual().obtenerMovible().habilitarMovimiento(); //habilita el movimiento para el proximo turno (saca lesion)
+            this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().obtenerMovible().habilitarMovimiento();
+            contenedorMensaje = new ContenedorMensaje(0, this.contenedorPrincipal.getGestorTurnos());
         }
-        this.jugadores.obtenerTurnoActual().notifyObservers();
+        this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().notifyObservers();
+
+        this.contenedorPrincipal.getChildren().add(contenedorMensaje);
+        Casilla casillaJugador = this.contenedorPrincipal.getTablero().obtenerCasillaDe(this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().obtenerMovible());
+        casillaJugador.addObserver(contenedorMensaje);
+        casillaJugador.notifyObservers();
     }
 }

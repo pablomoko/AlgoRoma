@@ -7,8 +7,9 @@ import edu.fiuba.algo3.modelo.premio.Premio;
 import edu.fiuba.algo3.modelo.Posicion;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public abstract class Casilla {
+public abstract class Casilla extends Observable {
 
     protected Posicion posicion;
     protected ArrayList<Movible> movibles;
@@ -26,6 +27,7 @@ public abstract class Casilla {
     public void colocarMovible(Movible unMovible, Mapeador mapeador) {
         this.movibles.add(unMovible);
         mapeador.ubicarMovible(unMovible, this);
+        this.setChanged();
     }
 
     public void moverMovible(Casilla casillaDestino, Movible unMovible, Mapeador mapeador) {
@@ -35,6 +37,7 @@ public abstract class Casilla {
         } else {
             throw new IllegalStateException("No hay gladiador en esta casilla");
         }
+        this.setChanged();
 
     }
 
@@ -42,6 +45,7 @@ public abstract class Casilla {
 
         movible.obtenerPremio(this.premio);
         movible.vs(this.obstaculo);
+        this.setChanged();
 
     }
 
@@ -50,10 +54,12 @@ public abstract class Casilla {
     }
 
     public Premio getPremio() {
+        this.setChanged();
         return this.premio;
     }
 
     public Obstaculo getObstaculo() {
+        this.setChanged();
         return this.obstaculo;
     }
 

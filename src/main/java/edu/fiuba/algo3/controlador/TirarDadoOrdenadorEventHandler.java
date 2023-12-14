@@ -2,6 +2,7 @@ package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Dado;
 import edu.fiuba.algo3.modelo.Jugador;
+import edu.fiuba.algo3.vista.BotonDado;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,14 +17,14 @@ public class TirarDadoOrdenadorEventHandler implements EventHandler<ActionEvent>
 
     private int cantidadJugadores;
 
-    private Button botonDado;
+    private BotonDado botonDado;
 
     private Button botonJugar;
 
     private GestorTurnos gestorTurnos;
 
 
-    public TirarDadoOrdenadorEventHandler(VBox vBox, Button botonJugar, int cantidadJugadores, Button botonDado, GestorTurnos gestorTurnos) {
+    public TirarDadoOrdenadorEventHandler(VBox vBox, Button botonJugar, int cantidadJugadores, BotonDado botonDado, GestorTurnos gestorTurnos) {
         this.vBox = vBox;
         this.botonJugar = botonJugar;
         this.cantidadJugadores = cantidadJugadores;
