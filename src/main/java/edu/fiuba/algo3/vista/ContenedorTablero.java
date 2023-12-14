@@ -77,6 +77,19 @@ public class ContenedorTablero extends HBox implements Observer {
             casillero.setBorder(new Border(borde));
             casillero.setStyle("-fx-background-color: DarkGreen");
 
+            String nombrePremio = casilla.getPremio().getClass().getSimpleName();
+            if (nombrePremio.equals("Comida")){
+                HBox contenedorPancho = new HBox();
+                contenedorPancho.setPrefWidth(50);
+                contenedorPancho.setPrefHeight(50);
+                Image imagenPancho = new Image("file:src/main/resources/superpancho.jpg");
+                BackgroundImage fondoImagenPancho = new BackgroundImage(imagenPancho, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
+                contenedorPancho.setBackground(new Background(fondoImagenPancho));
+                contenedorPancho.setAlignment(Pos.CENTER);
+                casillero.getChildren().add(contenedorPancho);
+            }
+
+
             this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
         }
     }
