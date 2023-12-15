@@ -6,40 +6,31 @@ import javafx.scene.layout.VBox;
 
 public class ContenedorEstadoJugador extends VBox {
 
-    private Label valorEnergia;
+    private LabelPlayerStyle valorEnergia;
 
-    private Label valorEquipamiento;
+    private LabelPlayerStyle valorEquipamiento;
 
-    private Label valorSeniority;
+    private LabelPlayerStyle valorSeniority;
 
     public ContenedorEstadoJugador(){
 
-        Label energia = new Label();
-        energia.setText("Energia: ");
-        energia.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
+        LabelPlayerStyle energia = new LabelPlayerStyle("Energia: ");
 
-        this.valorEnergia = new Label();
-        this.valorEnergia.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
+        this.valorEnergia = new LabelPlayerStyle();
 
         HBox contenedorEnergia = new HBox(energia, this.valorEnergia);
         contenedorEnergia.setSpacing(20);
 
-        Label equipamiento = new Label();
-        equipamiento.setText("Equipamiento: ");
-        equipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
+        LabelPlayerStyle equipamiento = new LabelPlayerStyle("Equipamiento: ");
 
-        this.valorEquipamiento = new Label();
-        this.valorEquipamiento.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
+        this.valorEquipamiento = new LabelPlayerStyle();
 
         HBox contenedorEquipamiento = new HBox(equipamiento, this.valorEquipamiento);
         contenedorEquipamiento.setSpacing(20);
 
-        Label seniority = new Label();
-        seniority.setText("Seniority: ");
-        seniority.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
+        LabelPlayerStyle seniority = new LabelPlayerStyle("Seniority: ");
 
-        this.valorSeniority = new Label();
-        this.valorSeniority.setStyle("-fx-font: 24 italics; -fx-text-fill: #BAB86C; -fx-alignment: center");
+        this.valorSeniority = new LabelPlayerStyle();
 
         HBox contenedorSeniority = new HBox(seniority, this.valorSeniority);
         contenedorSeniority.setSpacing(20);

@@ -20,7 +20,6 @@ import java.util.Observer;
 
 public class ContenedorEstado extends VBox implements Observer {
 
-    private Stage stage;
 
     private ContenedorTitulo contenedorTitulo;
 
@@ -28,24 +27,14 @@ public class ContenedorEstado extends VBox implements Observer {
 
     private GestorTurnos gestorTurnos;
 
-    private ContenedorPrincipal contenedorPrincipal;
 
-
-    public ContenedorEstado(Stage stage, int alto, GestorTurnos gestorTurnos, Tablero tablero, BotonDado botonDado, ContenedorPrincipal contenedorPrincipal) {
+    public ContenedorEstado(Stage stage, int alto, GestorTurnos gestorTurnos, BotonDado botonDado, Button botonContinuar) {
         this.setPrefWidth(stage.getWidth());
         this.setPrefHeight(stage.getHeight() - (stage.getHeight() / (alto/1.4)) * 200);
         this.setStyle("-fx-background-color: DarkOliveGreen");
         this.gestorTurnos = gestorTurnos;
-
         this.contenedorTitulo = new ContenedorTitulo();
         contenedorTitulo.setAlignment(Pos.CENTER);
-
-        Button botonContinuar = new Button();
-        botonContinuar.setText("Siguiente Turno");
-        SiguienteTurnoEventHandler siguienteTurnoEventHandler = new SiguienteTurnoEventHandler(gestorTurnos, contenedorPrincipal);
-        botonContinuar.setOnAction(siguienteTurnoEventHandler);
-        botonContinuar.setPrefSize(220, 30);
-        botonContinuar.setStyle("-fx-font: 20 arial; -fx-background-color: #67350b; -fx-text-fill: #FFB347");
 
         this.contenedorEstadoJugador = new ContenedorEstadoJugador();
         contenedorEstadoJugador.setAlignment(Pos.CENTER);
@@ -58,6 +47,7 @@ public class ContenedorEstado extends VBox implements Observer {
         this.getChildren().addAll(contenedorTitulo, contenedorDadoYJugador);
         this.setAlignment(Pos.TOP_CENTER);
     }
+
     @Override
     public void update(Observable o, Object arg) {
         Jugador jugador = (Jugador) o;
