@@ -14,6 +14,9 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 Corrector: **{Joaquien Pandolfi, Santiago Valdez}**
 
+## Informe TP2
+link: https://www.overleaf.com/read/wsmbctmcjvvm#4fd623
+
 ## Aplicación
 
 La versión más reciente de la aplicación puede encontrarse en la pestaña [releases](https://github.com/fiuba/algo3_proyecto_base_tp2/releases/latest) y ejecutarse en Linux, Windows o Mac de esta forma:
