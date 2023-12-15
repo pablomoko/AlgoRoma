@@ -78,46 +78,46 @@ public class ContenedorTablero extends HBox implements Observer {
             String nombreObstaculo =casilla.getObstaculo().getClass().getSimpleName();
 
             HBox contenedorPremio = new HBox();
-            contenedorPremio.setPrefWidth(50);
-            contenedorPremio.setPrefHeight(50);
+            contenedorPremio.setPrefWidth(100);
+            contenedorPremio.setPrefHeight(65);
 
             HBox contenedorObstaculo = new HBox();
-            contenedorObstaculo.setPrefWidth(50);
-            contenedorObstaculo.setPrefHeight(50);
+            contenedorObstaculo.setPrefWidth(100);
+            contenedorObstaculo.setPrefHeight(65);
 
             if (nombrePremio.equals("Comida")){
-                Image imagenPancho = new Image("file:src/main/resources/superpancho.jpg");
-                BackgroundImage fondoImagenPancho = new BackgroundImage(imagenPancho, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-                contenedorPremio.setBackground(new Background(fondoImagenPancho));
+                Label label = new Label("Pancho");
+                label.setStyle("-fx-text-fill: LightBlue; -fx-font-weight: BOLD");
+                contenedorPremio.getChildren().add(label);
 
             }
 
             if (nombrePremio.equals("Equipamiento")){
-                Image imagenLoot = new Image("file:src/main/resources/loot.jpg");
-                BackgroundImage fondoImagenLoot = new BackgroundImage(imagenLoot, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-                contenedorPremio.setBackground(new Background(fondoImagenLoot));
+                Label label = new Label("Loot");
+                label.setStyle("-fx-text-fill: LightBlue; -fx-font-weight: BOLD");
+                contenedorPremio.getChildren().add(label);
             }
 
             if (nombreObstaculo.equals("Fiera")){
-                Image imagenFiera = new Image("file:src/main/resources/fiera.jpg");
-                BackgroundImage fondoImagenFiera = new BackgroundImage(imagenFiera, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-                contenedorObstaculo.setBackground(new Background(fondoImagenFiera));
+                Label label = new Label("Fiera");
+                label.setStyle("-fx-text-fill: Red; -fx-font-weight: BOLD");
+                contenedorObstaculo.getChildren().add(label);
             }
 
             if (nombreObstaculo.equals("Bacanal")){
-                Image imagenVino = new Image("file:src/main/resources/vino.jpg");
-                BackgroundImage fondoImagenVino = new BackgroundImage(imagenVino, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-                contenedorObstaculo.setBackground(new Background(fondoImagenVino));
+                Label label = new Label("Vino");
+                label.setStyle("-fx-text-fill: Red; -fx-font-weight: BOLD");
+                contenedorObstaculo.getChildren().add(label);
             }
 
             if (nombreObstaculo.equals("Lesion")){
-                Image imagenLesion = new Image("file:src/main/resources/lesion.jpg");
-                BackgroundImage fondoImagenLesion = new BackgroundImage(imagenLesion, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, new BackgroundSize(5, 5, true, true, true, false));
-                contenedorObstaculo.setBackground(new Background(fondoImagenLesion));
+                Label label = new Label("Lesion");
+                label.setStyle("-fx-text-fill: Red; -fx-font-weight: BOLD");
+                contenedorObstaculo.getChildren().add(label);
         }
 
-        contenedorPremio.setAlignment(Pos.CENTER_LEFT);
-        contenedorObstaculo.setAlignment(Pos.CENTER_RIGHT);
+        contenedorPremio.setAlignment(Pos.TOP_CENTER);
+        contenedorObstaculo.setAlignment(Pos.BOTTOM_CENTER);
         casillero.getChildren().addAll(contenedorPremio, contenedorObstaculo);
 
         this.mapa.add(casillero, casilla.getPosicion().getX(), casilla.getPosicion().getY());
@@ -132,6 +132,7 @@ public class ContenedorTablero extends HBox implements Observer {
             Casilla casillaJugador = tablero.obtenerCasillaDe(jugador.obtenerMovible());
 
             this.dibujarCasillasVacias();
+            this.dibujasPremiosYObstaculos();
 
             ContenedorCasillero casillero = new ContenedorCasillero(this.stage, this.alto);
             this.casilleroGladiador = casillero;

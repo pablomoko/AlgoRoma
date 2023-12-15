@@ -51,9 +51,6 @@ public class GestorTurnos {
                 throw new IllegalArgumentException("Ya se supero la cantidad de rondas maximas");
             }
             rondaActual++;
-            System.out.println("Avanza Turno");
-            System.out.println(this.obtenerTurnoActual().obtenerNombre());
-
 
         }
 
@@ -87,7 +84,6 @@ public class GestorTurnos {
 
     public boolean hayEmpate(){
 
-        System.out.println(rondaActual);
         return ((rondaActual == rondasMaximas + 1) && (this.listaDeTurnos.indexOf(this.obtenerTurnoActual()) == this.jugadorQueIniciaRonda));
 
     }
