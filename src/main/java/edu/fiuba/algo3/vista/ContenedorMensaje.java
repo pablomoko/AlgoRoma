@@ -19,11 +19,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class ContenedorMensaje extends VBox implements Observer {
-    private Label mensajeObstaculo;
-    private Label mensajePremio;
-    private Label mensajeEnergiaPerdida;
+    private LabelPlayerStyle mensajeObstaculo;
+    private LabelPlayerStyle mensajePremio;
+    private LabelPlayerStyle mensajeEnergiaPerdida;
 
-    private Label mensajeEnergiaGanada;
+    private LabelPlayerStyle mensajeEnergiaGanada;
     private BotonDado botonDado;
 
     private int unosPasos;
@@ -37,27 +37,19 @@ public class ContenedorMensaje extends VBox implements Observer {
         this.gestorTurnos = gestorTurnos;
         this.stage = stage;
 
-        this.mensajeObstaculo = new Label();
-        this.mensajeObstaculo.setText("Obstaculo: -");
-        this.mensajeObstaculo.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.mensajeObstaculo = new LabelPlayerStyle("Obstaculo: -");
 
-        this.mensajePremio = new Label();
-        this.mensajePremio.setText("Premio: -");
-        this.mensajePremio.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.mensajePremio = new LabelPlayerStyle("Premio: -");
 
-        this.mensajeEnergiaPerdida = new Label();
-        this.mensajeEnergiaPerdida.setText("Energia Perdida: -");
-        this.mensajeEnergiaPerdida.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.mensajeEnergiaPerdida = new LabelPlayerStyle("Energia Perdida: -");
 
-        this.mensajeEnergiaGanada = new Label();
-        this.mensajeEnergiaGanada.setText("Energia Ganada: -");
-        this.mensajeEnergiaGanada.setStyle("-fx-font: 24 italics; -fx-text-fill: DarkRed; -fx-alignment: center");
+        this.mensajeEnergiaGanada = new LabelPlayerStyle("Energia Ganada: -");
 
         this.botonDado = new BotonDado();
 
         this.setMaxHeight(400);
         this.setMaxWidth(650);
-        this.setStyle("-fx-background-color: GoldenRod");
+        this.setStyle("-fx-background-color: DarkOliveGreen");
         this.setAlignment(Pos.CENTER);
 
         this.getChildren().addAll(this.mensajeObstaculo, this.mensajeEnergiaPerdida, this.mensajeEnergiaGanada,this.mensajePremio);
@@ -92,7 +84,6 @@ public class ContenedorMensaje extends VBox implements Observer {
                     this.mensajeEnergiaPerdida.setText(String.format("Perdiste 1 puntos de energia."));
 
                 }
-
 
                 Premio premio = casilla.getPremio();
                 String nombrePremio = casilla.getPremio().getClass().getSimpleName();

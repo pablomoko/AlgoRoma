@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.GestorTurnos;
+import edu.fiuba.algo3.controlador.SiguienteTurnoEventHandler;
 import edu.fiuba.algo3.controlador.TirarDadoEventHandler;
 import edu.fiuba.algo3.modelo.Jugador;
 import edu.fiuba.algo3.modelo.Tablero;
@@ -31,10 +32,19 @@ public class ContenedorPrincipal extends StackPane implements Observer {
         this.setPrefHeight(stage.getHeight());
 
         BotonDado botonDado = new BotonDado();
-        botonDado.setOnAction(new TirarDadoEventHandler(botonDado, this));
+
+        Button botonContinuar = new Button();
+        botonContinuar.setText("Siguiente Turno");
+        botonContinuar.setPrefSize(220, 30);
+        botonContinuar.setStyle("-fx-font: 20 arial; -fx-background-color: #67350b; -fx-text-fill: #FFB347");
+        botonContinuar.setDisable(true);
+
+        botonDado.setOnAction(new TirarDadoEventHandler(botonDado, botonContinuar,this));
+
+        botonContinuar.setOnAction(new SiguienteTurnoEventHandler(gestorTurnos, this, botonContinuar, botonDado));
 
         ContenedorTablero contenedorTablero = new ContenedorTablero(stage, ancho, alto, tablero, gestorTurnos);
-        ContenedorEstado contenedorEstado = new ContenedorEstado(stage, alto, gestorTurnos, tablero, botonDado, this);
+        ContenedorEstado contenedorEstado = new ContenedorEstado(stage, alto, gestorTurnos, botonDado, botonContinuar);
 
         this.contenedorTableroYEstado = new ContenedorTableroYEstado(contenedorTablero, contenedorEstado);
         this.contenedorTableroYEstado.setPrefWidth(stage.getWidth());
@@ -58,6 +68,7 @@ public class ContenedorPrincipal extends StackPane implements Observer {
     public Stage getStage(){
         return this.stage;
     }
+
 
     @Override
     public void update(Observable o, Object arg) {

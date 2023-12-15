@@ -5,6 +5,7 @@ import edu.fiuba.algo3.modelo.casilla.Casilla;
 import edu.fiuba.algo3.vista.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -16,12 +17,16 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
 
     private ContenedorPrincipal contenedorPrincipal;
 
+    private Button botonContinuar;
 
 
-    public TirarDadoEventHandler(BotonDado botonDado, ContenedorPrincipal contenedorPrincipal) {
+
+    public TirarDadoEventHandler(BotonDado botonDado, Button botonContinuar, ContenedorPrincipal contenedorPrincipal) {
         this.botonDado = botonDado;
         this.dado = new Dado();
+        this.botonContinuar = botonContinuar;
         this.contenedorPrincipal = contenedorPrincipal;
+
     }
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -44,5 +49,9 @@ public class TirarDadoEventHandler implements EventHandler<ActionEvent> {
         Casilla casillaJugador = this.contenedorPrincipal.getTablero().obtenerCasillaDe(this.contenedorPrincipal.getGestorTurnos().obtenerTurnoActual().obtenerMovible());
         casillaJugador.addObserver(contenedorMensaje);
         casillaJugador.notifyObservers();
+
+        this.botonDado.setDisable(true);
+        this.botonContinuar.setDisable(false);
+
     }
 }
