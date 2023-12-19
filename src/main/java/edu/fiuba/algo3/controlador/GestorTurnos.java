@@ -16,7 +16,7 @@ public class GestorTurnos {
     public GestorTurnos(int rondasMaximas) {
         this.listaDeTurnos = new ArrayList<>();
         this.indiceTurnoActual = 0;
-        this.rondasMaximas = rondasMaximas;
+        this.rondasMaximas = 2;
         this.rondaActual = 1;
         this.jugadorQueIniciaRonda = 0;
     }
